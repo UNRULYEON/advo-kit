@@ -1,26 +1,35 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import styled from 'styled-components'
+import Box from './components/Box'
+// import DeckSelector from './components/DeckSelector'
+// import Footer from './components/Footer'
+import Menu from './components/Menu'
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <AppStyled>
+      {/* <DeckSelector /> */}
+      <Box />
+      {/* <Footer /> */}
+      <Menu />
+    </AppStyled>
+  )
 }
 
-export default App;
+const AppStyled = styled.main`
+  width: 100%;
+  height: 100%;
+
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 4fr min-content;
+  grid-template-areas:
+    /* 'selector' */
+    'box'
+    'box'
+    'footer';
+  justify-items: center;
+  align-items: center;
+  flex-flow: column;
+`
+
+export default App
