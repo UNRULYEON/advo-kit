@@ -1,5 +1,4 @@
 import { AnimatePresence } from 'framer-motion'
-import { createReadStream } from 'fs'
 import { useAtom } from 'jotai'
 import { FC, useState } from 'react'
 import styled from 'styled-components'
