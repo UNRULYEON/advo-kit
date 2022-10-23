@@ -1,56 +1,80 @@
-import { motion, useAnimationControls, Variants } from 'framer-motion'
-import { FC, useEffect } from 'react'
+import {
+  motion,
+  PanInfo,
+  useAnimationControls,
+  useDragControls,
+  Variants,
+} from 'framer-motion'
+import { FC } from 'react'
 import styled from 'styled-components'
 
 type CardProps = {
+  id: string
   image?: string
   question: string
-  presented: boolean
-  discarded: boolean
+  moveCardToBack: (id: string) => void
 }
 
-const Card: FC<CardProps> = ({ question, presented, discarded }) => {
+const Card: FC<CardProps> = ({ id, question, moveCardToBack }) => {
   const cardControls = useAnimationControls()
+  const dragControls = useDragControls()
+
   const cardVariants: Variants = {
-    hidden: {
-      translateZ: 250,
-      translateX: 100,
+    'to-side': {
+      translateX: 320,
       translateY: 60,
-    },
-    presented: {
-      translateZ: 395,
-      translateX: 100,
-      translateY: -330,
+      rotateZ: 5,
       transition: {
-        duration: 0.4,
-        ease: 'backOut',
+        duration: 0.3,
+      },
+      transitionEnd: {
+        zIndex: -1,
       },
     },
-    discarded: {
-      opacity: 0,
-      scale: 0.9,
-      translateY: -310,
-      // rotateZ: 8,
-      // translateZ: 395,
-      // translateX: 0,
-      // translateY: -330,
+    'to-back': {
+      translateX: 100,
+      translateY: 60,
+      rotateZ: 0,
+      zIndex: -1,
+      transition: {
+        duration: 0.25,
+      },
     },
   }
 
-  useEffect(() => {
-    if (presented) cardControls.start('presented')
-  }, [presented, cardControls])
+  const handleOnDrag = (
+    _: MouseEvent | TouchEvent | PointerEvent,
+    info: PanInfo
+  ) => {
+    // if (info.offset.x > 200 || info.offset.x < -200) {
+    //   console.log('drag')
+    //   cardControls.start('to-back').then(() => moveCardToBack(id))
+    // }
+  }
 
-  useEffect(() => {
-    if (discarded) cardControls.start('discarded')
-  }, [discarded, cardControls])
+  const handleOnClick = async () => {
+    await cardControls.start('to-side')
+    await cardControls.start('to-back')
+    moveCardToBack(id)
+  }
 
   return (
     <CardStyled
       variants={cardVariants}
       animate={cardControls}
-      initial="hidden"
+      initial={{
+        translateX: 100,
+        translateY: 60,
+        translateZ: 250,
+      }}
       whileTap={{ scale: 0.95 }}
+      drag="x"
+      dragControls={dragControls}
+      whileDrag={{ scale: 1.05 }}
+      dragConstraints={{ left: -250, right: 250 }}
+      onDragEnd={handleOnDrag}
+      dragSnapToOrigin
+      onClick={handleOnClick}
     >
       {question}
     </CardStyled>
@@ -66,11 +90,11 @@ const CardStyled = styled(motion.div)`
   justify-content: center;
   align-items: center;
 
-  transform: translateX(100px) translateY(60px) translateZ(250px);
-
   background-color: white;
   color: black;
   border-radius: 8px;
+
+  user-select: none;
 
   :hover {
     cursor: pointer;

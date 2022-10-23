@@ -1,7 +1,12 @@
 import { useAtom } from 'jotai'
 import { FC, useState } from 'react'
 import styled from 'styled-components'
-import { motion, useAnimationControls, Variants } from 'framer-motion'
+import {
+  AnimatePresence,
+  motion,
+  useAnimationControls,
+  Variants,
+} from 'framer-motion'
 import { Card as CardType } from '../constants'
 import { selectedDeckAtom } from '../state'
 import Card from './Card'
@@ -19,18 +24,11 @@ const shuffle = (arr: any[]) => {
 
 const Box: FC = () => {
   const [isLidOpen, setIsLidOpen] = useState<boolean>(false)
-  const [deck, setDeck] = useState<
-    ({ presented: boolean; discarded: boolean } & CardType)[]
-  >([
-    ...shuffle(
-      useAtom(selectedDeckAtom)[0].cards.map((card) => ({
-        ...card,
-        presented: false,
-        discarded: false,
-      }))
-    ),
+  const [isDeckVisible, setIsDeckVisible] = useState<boolean>(false)
+  const [deck, setDeck] = useState<CardType[]>([
+    ...shuffle(useAtom(selectedDeckAtom)[0].cards),
+    { id: 'joker', question: 'JOKER' },
   ])
-  const [currentCardIndex, setCurrentCardIndex] = useState<number>(-1)
 
   const lidControls = useAnimationControls()
   const lidVariants: Variants = {
@@ -46,25 +44,40 @@ const Box: FC = () => {
     },
   }
 
+  const deckControls = useAnimationControls()
+  const deckVariants: Variants = {
+    hidden: {
+      translateZ: 200,
+    },
+    visible: {
+      zIndex: 1,
+      translateY: -370,
+      translateZ: 300,
+    },
+  }
+
   const handleOnClickBox = async () => {
     if (!isLidOpen) {
-      await lidControls.start('open')
-      setIsLidOpen(true)
+      await lidControls.start('open').then(() => setIsLidOpen(true))
+      await deckControls.start('visible').then(() => setIsDeckVisible)
     }
-
-    const newCurrentCardIndex = currentCardIndex + 1
-    const newDeck = [...deck]
-
-    if (currentCardIndex >= 0) {
-      newDeck[currentCardIndex].presented = false
-      newDeck[currentCardIndex].discarded = true
-    }
-
-    newDeck[newCurrentCardIndex].presented = true
-
-    setDeck(newDeck)
-    setCurrentCardIndex(newCurrentCardIndex)
   }
+
+  const moveCardToBack = (id: string) => {
+    setDeck((od) => {
+      const newDeck = [...od]
+      const cardToMoveIndex = newDeck.findIndex((c) => c.id === id)
+      const cardToMove = newDeck[cardToMoveIndex]
+      newDeck.splice(cardToMoveIndex, 1)
+      const reorderedDeck = [...newDeck, cardToMove]
+
+      return reorderedDeck
+    })
+  }
+
+  const filteredAndReversedDeck = deck
+    .filter((c) => c.id !== deck[0].id)
+    .reverse()
 
   return (
     <Scene>
@@ -73,14 +86,16 @@ const Box: FC = () => {
         <div className="right" />
         <div className="back" />
         <div className="left" />
-        {deck.map((card) => (
-          <Card
-            key={card.id}
-            question={card.question}
-            presented={card.presented}
-            discarded={card.discarded}
-          />
-        ))}
+        <DeckStyled variants={deckVariants} animate={deckControls}>
+          {filteredAndReversedDeck.map((card) => (
+            <Card
+              key={card.id}
+              id={card.id}
+              question={card.question}
+              moveCardToBack={moveCardToBack}
+            />
+          ))}
+        </DeckStyled>
         <div className="inside-shadow" />
         <motion.div
           initial="closed"
@@ -103,6 +118,10 @@ const Scene = styled.div`
 
   perspective: 1000px;
   perspective-origin: 50% calc(50% - 150px);
+`
+
+const DeckStyled = styled(motion.div)`
+  display: flex;
 `
 
 const BoxStyled = styled.div`
