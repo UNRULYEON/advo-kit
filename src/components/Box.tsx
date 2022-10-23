@@ -1,12 +1,7 @@
 import { useAtom } from 'jotai'
 import { FC, useState } from 'react'
 import styled from 'styled-components'
-import {
-  AnimatePresence,
-  motion,
-  useAnimationControls,
-  Variants,
-} from 'framer-motion'
+import { motion, useAnimationControls, Variants } from 'framer-motion'
 import { Card as CardType } from '../constants'
 import { selectedDeckAtom } from '../state'
 import Card from './Card'
@@ -24,7 +19,6 @@ const shuffle = (arr: any[]) => {
 
 const Box: FC = () => {
   const [isLidOpen, setIsLidOpen] = useState<boolean>(false)
-  const [isDeckVisible, setIsDeckVisible] = useState<boolean>(false)
   const [deck, setDeck] = useState<CardType[]>([
     ...shuffle(useAtom(selectedDeckAtom)[0].cards),
     { id: 'joker', question: 'JOKER' },
@@ -59,7 +53,7 @@ const Box: FC = () => {
   const handleOnClickBox = async () => {
     if (!isLidOpen) {
       await lidControls.start('open').then(() => setIsLidOpen(true))
-      await deckControls.start('visible').then(() => setIsDeckVisible)
+      await deckControls.start('visible')
     }
   }
 
