@@ -28,7 +28,6 @@ const Card: FC<CardProps> = ({ id, question, moveCardToBack }) => {
         duration: 0.3,
       },
       transitionEnd: {
-        // TODO: Breaks once deck is looped once
         zIndex: -1,
       },
     },
@@ -39,6 +38,9 @@ const Card: FC<CardProps> = ({ id, question, moveCardToBack }) => {
       zIndex: -1,
       transition: {
         duration: 0.25,
+      },
+      transitionEnd: {
+        zIndex: 0,
       },
     },
   }
