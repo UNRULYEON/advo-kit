@@ -5,6 +5,7 @@ import { motion, useAnimationControls, Variants } from 'framer-motion'
 import { Card as CardType } from '../constants'
 import { selectedDeckAtom } from '../state'
 import Card from './Card'
+import CoolblueLogoButton from './CoolblueLogoButton'
 
 const shuffle = (arr: any[]) => {
   const tempArr = [...arr]
@@ -45,12 +46,12 @@ const Box: FC = () => {
     },
     visible: {
       zIndex: 1,
-      translateY: -370,
-      translateZ: 300,
+      translateY: -400,
+      translateZ: 400,
     },
   }
 
-  const handleOnClickBox = async () => {
+  const handleOnClickButton = async () => {
     if (!isLidOpen) {
       await lidControls.start('open').then(() => setIsLidOpen(true))
       await deckControls.start('visible')
@@ -75,8 +76,10 @@ const Box: FC = () => {
 
   return (
     <Scene>
-      <BoxStyled onClick={() => handleOnClickBox()}>
-        <div className="front">Coolblue</div>
+      <BoxStyled>
+        <div className="front">
+          <CoolblueLogoButton onClick={handleOnClickButton} />
+        </div>
         <div className="right" />
         <div className="back" />
         <div className="left" />
@@ -125,10 +128,6 @@ const BoxStyled = styled.div`
   position: relative;
   transform-style: preserve-3d;
   transform: scale(0.8);
-
-  :hover {
-    cursor: pointer;
-  }
 
   .front,
   .right,
