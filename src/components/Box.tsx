@@ -99,7 +99,9 @@ const Box: FC = () => {
           animate={lidControls}
           variants={lidVariants}
           className="top"
-        />
+        >
+          <TopInsides />
+        </motion.div>
       </BoxStyled>
     </Scene>
   )
@@ -127,7 +129,7 @@ const BoxStyled = styled.div`
   height: 300px;
   position: relative;
   transform-style: preserve-3d;
-  transform: scale(0.8);
+  transform: scale(0.8) rotateY(0deg) rotateX(0deg);
 
   .front,
   .right,
@@ -182,16 +184,18 @@ const BoxStyled = styled.div`
   }
 
   .top {
-    position: absolute;
+    position: relative;
     width: 400px;
     height: 401px;
+    transform-style: preserve-3d;
 
     transform-origin: top center;
-    background: linear-gradient(
+    /* background-color: rgba(0, 0, 0, 0.3); */
+    /* background: linear-gradient(
       0deg,
       rgba(0, 144, 227, 1) 0%,
       rgba(0, 104, 163, 1) 100%
-    );
+    ); */
   }
 
   .inside-shadow {
@@ -210,3 +214,181 @@ const BoxStyled = styled.div`
 `
 
 export default Box
+
+const TopInsides: FC = () => {
+  return (
+    <>
+      <TopTop />
+      <TopRightOutside />
+      <TopRightInside />
+      <TopRightCover />
+
+      <TopLeftOutside />
+      <TopLeftInside />
+      <TopLeftCover />
+
+      <TopFrontOutside />
+      <TopFrontInside />
+      <TopFrontCover />
+
+      <TopBackOutside />
+      <TopBackInside />
+      <TopBackCover />
+    </>
+  )
+}
+
+// TOP
+const TopTop = styled.div`
+  position: absolute;
+  width: 400px;
+  height: 401px;
+
+  transform: translateZ(30px);
+
+  background-color: rgba(0, 0, 0, 0.15);
+  /* background-color: #0090e3; */
+`
+
+// RIGHT
+const TopRightOutside = styled.div`
+  position: absolute;
+  height: 400px;
+  width: 30px;
+
+  transform: rotateY(90deg) translateZ(385px) translateX(-15px);
+
+  background-color: rgba(0, 0, 0, 0.15);
+  /* background-color: #0090e3; */
+`
+const TopRightInside = styled.div`
+  position: absolute;
+  height: 360px;
+  width: 30px;
+
+  transform: rotateY(90deg) translateZ(365px) translateX(-15px) translateY(20px);
+
+  background-color: rgba(0, 0, 0, 0.15);
+  /* background-color: #0090e3; */
+`
+
+const TopRightCover = styled.div`
+  position: absolute;
+  height: 360px;
+
+  border-right: 20px solid rgba(0, 0, 0, 0.15);
+  /* border-right: 20px solid #0090e3; */
+  border-top: 20px solid transparent;
+  border-bottom: 20px solid transparent;
+
+  transform: translateX(380px);
+`
+
+// LEFT
+const TopLeftOutside = styled.div`
+  position: absolute;
+  height: 400px;
+  width: 30px;
+
+  transform: rotateY(90deg) translateZ(-15px) translateX(-15px);
+
+  background-color: rgba(0, 0, 0, 0.15);
+  /* background-color: #0090e3; */
+`
+
+const TopLeftInside = styled.div`
+  position: absolute;
+  height: 360px;
+  width: 30px;
+
+  transform: rotateY(90deg) translateZ(5px) translateX(-15px) translateY(20px);
+
+  background-color: rgba(0, 0, 0, 0.15);
+  /* background-color: #0090e3; */
+`
+
+const TopLeftCover = styled.div`
+  position: absolute;
+  height: 360px;
+
+  border-left: 20px solid rgba(0, 0, 0, 0.15);
+  /* border-left: 20px solid #0090e3; */
+  border-top: 20px solid transparent;
+  border-bottom: 20px solid transparent;
+
+  transform: translateX(0px);
+`
+
+// FRONT
+const TopFrontOutside = styled.div`
+  position: absolute;
+  height: 400px;
+  width: 30px;
+
+  transform: rotateY(90deg) rotateX(90deg) translateZ(-200px) translateY(185px)
+    translateX(-15px);
+
+  background-color: rgba(0, 0, 0, 0.15);
+  /* background-color: #0090e3; */
+`
+
+const TopFrontInside = styled.div`
+  position: absolute;
+  height: 360px;
+  width: 30px;
+
+  transform: rotateY(90deg) rotateX(90deg) translateZ(-200px) translateY(185px)
+    translateX(-15px);
+
+  background-color: rgba(0, 0, 0, 0.15);
+  /* background-color: #0090e3; */
+`
+
+const TopFrontCover = styled.div`
+  position: absolute;
+  width: 360px;
+
+  border-bottom: 20px solid rgba(0, 0, 0, 0.15);
+  /* border-bottom: 20px solid #0090e3; */
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+
+  transform: translateY(380px);
+`
+
+// BACK
+const TopBackOutside = styled.div`
+  position: absolute;
+  height: 400px;
+  width: 30px;
+
+  transform: rotateY(90deg) rotateX(90deg) translateZ(200px) translateY(185px)
+    translateX(-15px);
+
+  background-color: rgba(0, 0, 0, 0.15);
+  /* background-color: #0090e3; */
+`
+
+const TopBackInside = styled.div`
+  position: absolute;
+  height: 360px;
+  width: 30px;
+
+  transform: rotateY(90deg) rotateX(90deg) translateZ(160px) translateY(185px)
+    translateX(-15px);
+
+  background-color: rgba(0, 0, 0, 0.15);
+  /* background-color: #0090e3; */
+`
+
+const TopBackCover = styled.div`
+  position: absolute;
+  width: 360px;
+
+  border-top: 20px solid rgba(0, 0, 0, 0.15);
+  /* border-top: 20px solid #0090e3; */
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+
+  transform: translateY(0px);
+`
