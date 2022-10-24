@@ -13,9 +13,9 @@ const CoolblueLogoButton: FC<CoolblueLogoButtonProps> = ({ onClick }) => {
       <ButtonSideStyled />
       <ButtonFaceStyled
         onClick={() => onClick()}
-        initial={{ translateY: 7 }}
-        whileHover={{ translateY: 10 }}
-        whileTap={{ translateY: 5 }}
+        initial={{ translateY: 6 }}
+        whileHover={{ translateY: 8 }}
+        whileTap={{ translateY: 0.1 }}
       >
         <CoolblueLogoText width={60} height={60} />
       </ButtonFaceStyled>
@@ -38,6 +38,8 @@ const ButtonFaceStyled = styled(motion.div)`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  z-index: 1;
 
   width: 100px;
   height: 100px;
