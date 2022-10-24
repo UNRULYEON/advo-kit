@@ -140,19 +140,10 @@ const BoxStyled = styled.div`
     height: 300px;
   }
 
-  .left,
-  .right {
-    border-bottom-left-radius: 25px;
-    border-bottom-right-radius: 25px;
-  }
-
   .front {
     display: flex;
     justify-content: center;
     align-items: center;
-
-    border-bottom-left-radius: 20px;
-    border-bottom-right-radius: 20px;
 
     transform: translateZ(400px);
 
@@ -167,9 +158,6 @@ const BoxStyled = styled.div`
   }
 
   .back {
-    border-bottom-left-radius: 20px;
-    border-bottom-right-radius: 20px;
-
     transform: rotateY(180deg);
 
     background-color: #0090e3;
