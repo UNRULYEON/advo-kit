@@ -6,6 +6,7 @@ import { Card as CardType } from '../constants'
 import { selectedDeckAtom } from '../state'
 import Card from './Card'
 import CoolblueLogoButton from './CoolblueLogoButton'
+import TopInsides from './TopInsides'
 
 const shuffle = (arr: any[]) => {
   const tempArr = [...arr]
@@ -24,6 +25,8 @@ const Box: FC = () => {
     ...shuffle(useAtom(selectedDeckAtom)[0].cards),
     { id: 'joker', question: 'JOKER' },
   ])
+
+  const boxControls = useAnimationControls()
 
   const lidControls = useAnimationControls()
   const lidVariants: Variants = {
@@ -76,7 +79,16 @@ const Box: FC = () => {
 
   return (
     <Scene>
-      <BoxStyled>
+      <BoxStyled
+        animate={boxControls}
+        onPan={(e, pointInfo) => {
+          // console.log(pointInfo)
+          boxControls.set({
+            rotateY: pointInfo.offset.x / 10,
+            rotateX: -pointInfo.offset.y / 10,
+          })
+        }}
+      >
         <div className="front">
           <CoolblueLogoButton onClick={handleOnClickButton} />
         </div>
@@ -123,7 +135,7 @@ const DeckStyled = styled(motion.div)`
   display: flex;
 `
 
-const BoxStyled = styled.div`
+const BoxStyled = styled(motion.div)`
   margin-top: 200px;
   width: 400px;
   height: 300px;
@@ -174,16 +186,10 @@ const BoxStyled = styled.div`
   .top {
     position: relative;
     width: 400px;
-    height: 401px;
+    height: 400px;
     transform-style: preserve-3d;
 
     transform-origin: top center;
-    /* background-color: rgba(0, 0, 0, 0.3); */
-    /* background: linear-gradient(
-      0deg,
-      rgba(0, 144, 227, 1) 0%,
-      rgba(0, 104, 163, 1) 100%
-    ); */
   }
 
   .inside-shadow {
@@ -199,184 +205,19 @@ const BoxStyled = styled.div`
     transform: translateY(-200px) translateZ(200px) rotateZ(90deg)
       rotateY(90deg);
   }
+
+  .shadow {
+    width: inherit;
+    height: inherit;
+
+    box-shadow: inset 0px 0px 0px 2px rgba(0, 0, 0, 0.1);
+
+    /* background: linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 0.1) 0%,
+      rgba(0, 0, 0, 0.25) 100%
+    ); */
+  }
 `
 
 export default Box
-
-const TopInsides: FC = () => {
-  return (
-    <>
-      <TopTop />
-      <TopRightOutside />
-      <TopRightInside />
-      <TopRightCover />
-
-      <TopLeftOutside />
-      <TopLeftInside />
-      <TopLeftCover />
-
-      <TopFrontOutside />
-      <TopFrontInside />
-      <TopFrontCover />
-
-      <TopBackOutside />
-      <TopBackInside />
-      <TopBackCover />
-    </>
-  )
-}
-
-// TOP
-const TopTop = styled.div`
-  position: absolute;
-  width: 400px;
-  height: 401px;
-
-  transform: translateZ(30px);
-
-  background-color: rgba(0, 0, 0, 0.15);
-  /* background-color: #0090e3; */
-`
-
-// RIGHT
-const TopRightOutside = styled.div`
-  position: absolute;
-  height: 400px;
-  width: 30px;
-
-  transform: rotateY(90deg) translateZ(385px) translateX(-15px);
-
-  background-color: rgba(0, 0, 0, 0.15);
-  /* background-color: #0090e3; */
-`
-const TopRightInside = styled.div`
-  position: absolute;
-  height: 360px;
-  width: 30px;
-
-  transform: rotateY(90deg) translateZ(365px) translateX(-15px) translateY(20px);
-
-  background-color: rgba(0, 0, 0, 0.15);
-  /* background-color: #0090e3; */
-`
-
-const TopRightCover = styled.div`
-  position: absolute;
-  height: 360px;
-
-  border-right: 20px solid rgba(0, 0, 0, 0.15);
-  /* border-right: 20px solid #0090e3; */
-  border-top: 20px solid transparent;
-  border-bottom: 20px solid transparent;
-
-  transform: translateX(380px);
-`
-
-// LEFT
-const TopLeftOutside = styled.div`
-  position: absolute;
-  height: 400px;
-  width: 30px;
-
-  transform: rotateY(90deg) translateZ(-15px) translateX(-15px);
-
-  background-color: rgba(0, 0, 0, 0.15);
-  /* background-color: #0090e3; */
-`
-
-const TopLeftInside = styled.div`
-  position: absolute;
-  height: 360px;
-  width: 30px;
-
-  transform: rotateY(90deg) translateZ(5px) translateX(-15px) translateY(20px);
-
-  background-color: rgba(0, 0, 0, 0.15);
-  /* background-color: #0090e3; */
-`
-
-const TopLeftCover = styled.div`
-  position: absolute;
-  height: 360px;
-
-  border-left: 20px solid rgba(0, 0, 0, 0.15);
-  /* border-left: 20px solid #0090e3; */
-  border-top: 20px solid transparent;
-  border-bottom: 20px solid transparent;
-
-  transform: translateX(0px);
-`
-
-// FRONT
-const TopFrontOutside = styled.div`
-  position: absolute;
-  height: 400px;
-  width: 30px;
-
-  transform: rotateY(90deg) rotateX(90deg) translateZ(-200px) translateY(185px)
-    translateX(-15px);
-
-  background-color: rgba(0, 0, 0, 0.15);
-  /* background-color: #0090e3; */
-`
-
-const TopFrontInside = styled.div`
-  position: absolute;
-  height: 360px;
-  width: 30px;
-
-  transform: rotateY(90deg) rotateX(90deg) translateZ(-200px) translateY(185px)
-    translateX(-15px);
-
-  background-color: rgba(0, 0, 0, 0.15);
-  /* background-color: #0090e3; */
-`
-
-const TopFrontCover = styled.div`
-  position: absolute;
-  width: 360px;
-
-  border-bottom: 20px solid rgba(0, 0, 0, 0.15);
-  /* border-bottom: 20px solid #0090e3; */
-  border-left: 20px solid transparent;
-  border-right: 20px solid transparent;
-
-  transform: translateY(380px);
-`
-
-// BACK
-const TopBackOutside = styled.div`
-  position: absolute;
-  height: 400px;
-  width: 30px;
-
-  transform: rotateY(90deg) rotateX(90deg) translateZ(200px) translateY(185px)
-    translateX(-15px);
-
-  background-color: rgba(0, 0, 0, 0.15);
-  /* background-color: #0090e3; */
-`
-
-const TopBackInside = styled.div`
-  position: absolute;
-  height: 360px;
-  width: 30px;
-
-  transform: rotateY(90deg) rotateX(90deg) translateZ(160px) translateY(185px)
-    translateX(-15px);
-
-  background-color: rgba(0, 0, 0, 0.15);
-  /* background-color: #0090e3; */
-`
-
-const TopBackCover = styled.div`
-  position: absolute;
-  width: 360px;
-
-  border-top: 20px solid rgba(0, 0, 0, 0.15);
-  /* border-top: 20px solid #0090e3; */
-  border-left: 20px solid transparent;
-  border-right: 20px solid transparent;
-
-  transform: translateY(0px);
-`
