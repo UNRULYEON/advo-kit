@@ -7,6 +7,10 @@ import { selectedDeckAtom } from '../state'
 import Card from './Card'
 import CoolblueLogoButton from './CoolblueLogoButton'
 import TopInsides from './TopInsides'
+import RightInsides from './RightInsides'
+import LeftInsides from './LeftInsides'
+import BackInsides from './BackInsides'
+import FrontInsides from './FrontInsides'
 
 const shuffle = (arr: any[]) => {
   const tempArr = [...arr]
@@ -89,12 +93,19 @@ const Box: FC = () => {
           })
         }}
       >
-        <div className="front">
-          <CoolblueLogoButton onClick={handleOnClickButton} />
+        <CoolblueLogoButton onClick={handleOnClickButton} />
+        <div className="right">
+          <RightInsides />
         </div>
-        <div className="right" />
-        <div className="back" />
-        <div className="left" />
+        <div className="left">
+          <LeftInsides />
+        </div>
+        <div className="front">
+          <FrontInsides />
+        </div>
+        <div className="back">
+          <BackInsides />
+        </div>
         <DeckStyled variants={deckVariants} animate={deckControls}>
           {filteredAndReversedDeck.map((card) => (
             <Card
@@ -150,13 +161,10 @@ const BoxStyled = styled(motion.div)`
     position: absolute;
     width: 400px;
     height: 300px;
+    transform-style: preserve-3d;
   }
 
   .front {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
     transform: translateZ(400px);
 
     background-color: #0090e3;
@@ -198,7 +206,7 @@ const BoxStyled = styled(motion.div)`
     height: 400px;
     background: linear-gradient(
       90deg,
-      rgba(0, 0, 0, 0.6) 0%,
+      rgba(0, 0, 0, 0.4) 0%,
       rgba(255, 255, 255, 0) 100%
     );
 
