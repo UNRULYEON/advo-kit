@@ -25,6 +25,8 @@ const CoolblueLogoButton: FC<CoolblueLogoButtonProps> = ({ onClick }) => {
 
 const ButtonStyled = styled.div`
   position: relative;
+
+  transform: translateZ(401px) translateY(195px) translateX(150px);
 `
 const ButtonSideStyled = styled.div`
   position: absolute;
