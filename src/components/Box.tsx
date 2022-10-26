@@ -162,6 +162,8 @@ const BoxStyled = styled(motion.div)`
     width: 400px;
     height: 300px;
     transform-style: preserve-3d;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
   }
 
   .front {
