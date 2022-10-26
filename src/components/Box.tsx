@@ -93,7 +93,12 @@ const Box: FC = () => {
           })
         }}
       >
-        <CoolblueLogoButton onClick={handleOnClickButton} />
+        <CoolblueLogoButton
+          onClick={handleOnClickButton}
+          alternateTooltipText={
+            isLidOpen ? 'Click on me card mate!' : undefined
+          }
+        />
         <div className="right">
           <RightInsides />
         </div>

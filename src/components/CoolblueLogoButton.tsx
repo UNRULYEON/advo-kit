@@ -5,9 +5,13 @@ import CoolblueLogoText from './CoolblueLogoText'
 
 type CoolblueLogoButtonProps = {
   onClick: () => void
+  alternateTooltipText?: string
 }
 
-const CoolblueLogoButton: FC<CoolblueLogoButtonProps> = ({ onClick }) => {
+const CoolblueLogoButton: FC<CoolblueLogoButtonProps> = ({
+  onClick,
+  alternateTooltipText,
+}) => {
   const tooltipControls = useAnimationControls()
   const tooltipVariants: Variants = {
     hide: {
@@ -44,7 +48,7 @@ const CoolblueLogoButton: FC<CoolblueLogoButtonProps> = ({ onClick }) => {
             animate={tooltipControls}
             variants={tooltipVariants}
           >
-            Click me to start
+            {alternateTooltipText ? alternateTooltipText : 'Click me to start'}
           </TooltipStyled>
         </ButtonFaceStyled>
       </ButtonStyled>
