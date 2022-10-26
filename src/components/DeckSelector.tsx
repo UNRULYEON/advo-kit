@@ -150,6 +150,8 @@ const DeckOptionList = styled(motion.div)`
 
   background-color: white;
   color: black;
+
+  filter: drop-shadow(0px 6px 8px #eeeeee);
 `
 
 const DeckOption = styled.div<{ disabled?: boolean }>`
