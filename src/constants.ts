@@ -1,4 +1,4 @@
-import StakeHolderMeetingsCards from './decks/stakeholder-meetings.json'
+import StakeHolderMeetingCards from './decks/stakeholder-meeting.json'
 
 export type Card = {
   id: string
@@ -14,13 +14,8 @@ export type Deck = {
 
 export const Decks: Deck[] = [
   {
-    id: 'stakeholder-meetings',
-    name: 'Stakeholder meetings',
-    cards: StakeHolderMeetingsCards,
-  },
-  {
-    id: 'test-deck',
-    name: 'Deck with an insanely long title',
-    cards: StakeHolderMeetingsCards,
+    id: 'stakeholder-meeting',
+    name: 'Stakeholder meeting',
+    cards: StakeHolderMeetingCards,
   },
 ]

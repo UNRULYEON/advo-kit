@@ -5,23 +5,31 @@ import {
   useDragControls,
   Variants,
 } from 'framer-motion'
+import React, { Suspense } from 'react'
 import { FC } from 'react'
 import styled from 'styled-components'
 
 type CardProps = {
   id: string
-  image?: string
   question: string
+  image: string
+  deckName: string
   moveCardToBack: (id: string) => void
 }
 
-const Card: FC<CardProps> = ({ id, question, moveCardToBack }) => {
+const Card: FC<CardProps> = ({
+  id,
+  question,
+  image,
+  deckName,
+  moveCardToBack,
+}) => {
   const cardControls = useAnimationControls()
   const dragControls = useDragControls()
 
   const cardVariants: Variants = {
     'to-side': {
-      translateX: 320,
+      translateX: 370,
       translateY: 60,
       rotateZ: 5,
       transition: {
@@ -61,36 +69,43 @@ const Card: FC<CardProps> = ({ id, question, moveCardToBack }) => {
     moveCardToBack(id)
   }
 
+  const Image = image
+    ? React.lazy(() => import(`../images/${image}.tsx`))
+    : React.lazy(() => import(`../images/AvocadoImage`))
+
   return (
-    <CardStyled
-      variants={cardVariants}
-      animate={cardControls}
-      initial={{
-        translateX: 100,
-        translateY: 60,
-      }}
-      whileTap={{ scale: 0.95 }}
-      drag="x"
-      dragControls={dragControls}
-      whileDrag={{ scale: 1.05 }}
-      dragConstraints={{ left: -250, right: 250 }}
-      onDragEnd={handleOnDrag}
-      dragSnapToOrigin
-      onClick={handleOnClick}
-    >
-      {question}
-    </CardStyled>
+    <Suspense>
+      <CardStyled
+        variants={cardVariants}
+        animate={cardControls}
+        initial={{
+          translateX: 100,
+          translateY: 60,
+        }}
+        whileTap={{ scale: 0.95 }}
+        drag="x"
+        dragControls={dragControls}
+        whileDrag={{ scale: 1.05 }}
+        dragConstraints={{ left: -250, right: 250 }}
+        onDragEnd={handleOnDrag}
+        dragSnapToOrigin
+        onClick={handleOnClick}
+      >
+        <CardContents>
+          <ImageStyled>
+            <Image />
+          </ImageStyled>
+          <CardQuestion>{question}</CardQuestion>
+          <DeckName>{deckName}</DeckName>
+        </CardContents>
+      </CardStyled>
+    </Suspense>
   )
 }
 
 const CardStyled = styled(motion.div)`
   position: absolute;
-  width: 200px;
-  height: 300px;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  max-width: 220px;
 
   background-color: white;
   color: black;
@@ -101,6 +116,48 @@ const CardStyled = styled(motion.div)`
   :hover {
     cursor: pointer;
   }
+`
+
+const CardContents = styled.div`
+  width: inherit;
+  height: 100%;
+  max-height: -webkit-fill-available;
+  padding: 27px 16px 20px 16px;
+
+  display: grid;
+  grid-template-rows: 111px 120px min-content;
+  grid-template-columns: 1fr;
+`
+
+const ImageStyled = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`
+
+const CardQuestion = styled.div`
+  display: flex;
+  align-items: flex-end;
+
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+`
+
+const DeckName = styled.div`
+  margin-top: 20px;
+  padding: 6px 8px;
+
+  border-radius: 4px;
+
+  background-color: #e0f6e0;
+
+  color: #00b900;
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 9px;
 `
 
 export default Card

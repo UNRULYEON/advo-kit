@@ -25,9 +25,13 @@ const shuffle = (arr: any[]) => {
 
 const Box: FC = () => {
   const [isLidOpen, setIsLidOpen] = useState<boolean>(false)
+  const [selectedDeck] = useAtom(selectedDeckAtom)
   const [deck, setDeck] = useState<CardType[]>([
-    ...shuffle(useAtom(selectedDeckAtom)[0].cards),
-    { id: 'joker', question: 'JOKER' },
+    ...shuffle(selectedDeck.cards),
+    {
+      id: 'joker',
+      question: "You've reached the end of the deck. Click to start over. ",
+    },
   ])
 
   const boxControls = useAnimationControls()
@@ -49,10 +53,12 @@ const Box: FC = () => {
   const deckControls = useAnimationControls()
   const deckVariants: Variants = {
     hidden: {
-      translateZ: 200,
+      translateX: -10,
+      translateZ: 180,
     },
     visible: {
       zIndex: 1,
+      translateX: -10,
       translateY: -400,
       translateZ: 400,
     },
@@ -117,6 +123,8 @@ const Box: FC = () => {
               key={card.id}
               id={card.id}
               question={card.question}
+              image={card.image}
+              deckName={selectedDeck.name}
               moveCardToBack={moveCardToBack}
             />
           ))}

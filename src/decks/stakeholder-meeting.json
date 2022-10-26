@@ -2,46 +2,46 @@
   {
     "id": "does-this-meet-all-functional-requirements",
     "question": "Does this meet all functional requirements?",
-    "image": ""
+    "image": "StakeholderMeetingImage"
   },
   {
     "id": "why-do-we-want-this",
     "question": "Why do we want this?",
-    "image": ""
+    "image": "StakeholderMeetingImage"
   },
   {
     "id": "what-are-the-business-goals",
     "question": "What are the business goals?",
-    "image": ""
+    "image": "StakeholderMeetingImage"
   },
   {
     "id": "what-problem-are-we-trying-to-solve",
     "question": "What problem are we trying to solve?",
-    "image": ""
+    "image": "StakeholderMeetingImage"
   },
   {
     "id": "who-is-involved,-other-than-the-stakeholders-in-the-room",
     "question": "Who is involved, other than the stakeholders in the room?",
-    "image": ""
+    "image": "StakeholderMeetingImage"
   },
   {
     "id": "what-are-the-functional-requirements",
     "question": "What are the functional requirements?",
-    "image": ""
+    "image": "StakeholderMeetingImage"
   },
   {
     "id": "does-this-effectively-reflect-the-brand",
     "question": "Does this effectively reflect the brand?",
-    "image": ""
+    "image": "StakeholderMeetingImage"
   },
   {
     "id": "what-are-the-risks-of-doing-this",
     "question": "What are the risks of doing this?",
-    "image": ""
+    "image": "StakeholderMeetingImage"
   },
   {
     "id": "do-we-need-research",
     "question": "Do we need research?",
-    "image": ""
+    "image": "StakeholderMeetingImage"
   }
 ]
