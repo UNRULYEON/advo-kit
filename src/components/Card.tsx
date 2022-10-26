@@ -5,7 +5,6 @@ import {
   useDragControls,
   Variants,
 } from 'framer-motion'
-import React, { Suspense } from 'react'
 import { FC } from 'react'
 import styled from 'styled-components'
 
@@ -69,37 +68,30 @@ const Card: FC<CardProps> = ({
     moveCardToBack(id)
   }
 
-  const Image = image
-    ? React.lazy(() => import(`../images/${image}.tsx`))
-    : React.lazy(() => import(`../images/AvocadoImage`))
-
   return (
-    <Suspense>
-      <CardStyled
-        variants={cardVariants}
-        animate={cardControls}
-        initial={{
-          translateX: 100,
-          translateY: 60,
-        }}
-        whileTap={{ scale: 0.95 }}
-        drag="x"
-        dragControls={dragControls}
-        whileDrag={{ scale: 1.05 }}
-        dragConstraints={{ left: -250, right: 250 }}
-        onDragEnd={handleOnDrag}
-        dragSnapToOrigin
-        onClick={handleOnClick}
-      >
-        <CardContents>
-          <ImageStyled>
-            <Image />
-          </ImageStyled>
-          <CardQuestion>{question}</CardQuestion>
-          <DeckName>{deckName}</DeckName>
-        </CardContents>
-      </CardStyled>
-    </Suspense>
+    <CardStyled
+      // index={invertedIndex}
+      variants={cardVariants}
+      animate={cardControls}
+      initial={{
+        translateX: 100,
+        translateY: 60,
+      }}
+      whileTap={{ scale: 0.95 }}
+      drag="x"
+      dragControls={dragControls}
+      whileDrag={{ scale: 1.05 }}
+      dragConstraints={{ left: -250, right: 250 }}
+      onDragEnd={handleOnDrag}
+      dragSnapToOrigin
+      onClick={handleOnClick}
+    >
+      <CardContents>
+        <ImageStyled src={`/images/${image}`} />
+        <CardQuestion>{question}</CardQuestion>
+        <DeckName>{deckName}</DeckName>
+      </CardContents>
+    </CardStyled>
   )
 }
 
@@ -129,10 +121,9 @@ const CardContents = styled.div`
   grid-template-columns: 1fr;
 `
 
-const ImageStyled = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
+const ImageStyled = styled.img`
+  height: 110px;
+  justify-self: center;
 `
 
 const CardQuestion = styled.div`

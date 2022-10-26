@@ -1,7 +1,12 @@
 import { useAtom } from 'jotai'
 import { FC, useState } from 'react'
 import styled from 'styled-components'
-import { motion, useAnimationControls, Variants } from 'framer-motion'
+import {
+  AnimatePresence,
+  motion,
+  useAnimationControls,
+  Variants,
+} from 'framer-motion'
 import { Card as CardType } from '../constants'
 import { selectedDeckAtom } from '../state'
 import Card from './Card'
@@ -30,7 +35,8 @@ const Box: FC = () => {
     ...shuffle(selectedDeck.cards),
     {
       id: 'joker',
-      question: "You've reached the end of the deck. Click to start over. ",
+      question: "You've reached the end. Click to start over. ",
+      image: 'avocado.png',
     },
   ])
 
