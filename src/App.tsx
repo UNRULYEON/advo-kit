@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import Box from './components/Box'
 // import DeckSelector from './components/DeckSelector'
-// import Footer from './components/Footer'
+import Footer from './components/Footer'
 import Menu from './components/Menu'
 
 const App = () => {
@@ -9,7 +9,7 @@ const App = () => {
     <AppStyled>
       {/* <DeckSelector /> */}
       <Box />
-      {/* <Footer /> */}
+      <Footer />
       <Menu />
     </AppStyled>
   )
