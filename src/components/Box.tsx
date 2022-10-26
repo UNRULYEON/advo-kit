@@ -92,13 +92,13 @@ const Box: FC = () => {
     <Scene>
       <BoxStyled
         animate={boxControls}
-        onPan={(e, pointInfo) => {
-          // console.log(pointInfo)
-          boxControls.set({
-            rotateY: pointInfo.offset.x / 10,
-            rotateX: -pointInfo.offset.y / 10,
-          })
-        }}
+        // onPan={(e, pointInfo) => {
+        //   // console.log(pointInfo)
+        //   boxControls.set({
+        //     rotateY: pointInfo.offset.x / 10,
+        //     rotateX: -pointInfo.offset.y / 10,
+        //   })
+        // }}
       >
         <CoolblueLogoButton
           onClick={handleOnClickButton}
