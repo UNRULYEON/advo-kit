@@ -152,7 +152,7 @@ const BoxStyled = styled(motion.div)`
   height: 300px;
   position: relative;
   transform-style: preserve-3d;
-  transform: scale(0.8) rotateY(0deg) rotateX(0deg);
+  transform: scale(0.8) rotateY(0deg) rotateX(0deg) translateZ(-100px);
 
   .front,
   .right,
