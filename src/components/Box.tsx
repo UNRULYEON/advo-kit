@@ -108,7 +108,7 @@ const Box: FC = () => {
         <CoolblueLogoButton
           onClick={handleOnClickButton}
           alternateTooltipText={
-            isLidOpen ? 'Click on me card mate!' : undefined
+            isLidOpen ? 'Click on a card to start!' : undefined
           }
         />
         <div className="right">
