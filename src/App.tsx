@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import Box from './components/Box'
 import DeckSelector from './components/DeckSelector'
+import FactSlogan from './components/FactSlogan'
 import Footer from './components/Footer'
 import Menu from './components/Menu'
 
@@ -8,6 +9,7 @@ const App = () => {
   return (
     <AppStyled>
       <Box />
+      <FactSlogan fact="Advo-kit" slogan="Think outside the box" />
       <DeckSelector />
       <Footer />
       <Menu />
