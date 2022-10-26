@@ -139,6 +139,7 @@ const Box: FC = () => {
         >
           <TopInsides />
         </motion.div>
+        <div className="box-shadow" />
       </BoxStyled>
     </Scene>
   )
@@ -241,6 +242,18 @@ const BoxStyled = styled(motion.div)`
       rgba(0, 0, 0, 0.1) 0%,
       rgba(0, 0, 0, 0.25) 100%
     ); */
+  }
+
+  .box-shadow {
+    position: absolute;
+    width: 500px;
+    height: 500px;
+
+    background: rgba(0, 0, 0, 0.3);
+    filter: blur(7.5px);
+
+    transform: translateY(-300px) translateZ(115px) translateX(-50px)
+      rotateZ(90deg) rotateY(90deg) scale(0.93);
   }
 `
 
