@@ -1,12 +1,7 @@
 import { useAtom } from 'jotai'
 import { FC, useState } from 'react'
 import styled from 'styled-components'
-import {
-  AnimatePresence,
-  motion,
-  useAnimationControls,
-  Variants,
-} from 'framer-motion'
+import { motion, useAnimationControls, Variants } from 'framer-motion'
 import { Card as CardType } from '../constants'
 import { selectedDeckAtom } from '../state'
 import Card from './Card'
