@@ -41,6 +41,7 @@ const Card: FC<CardProps> = ({
     'to-back': {
       translateX: 100,
       translateY: 60,
+      scale: 0.9,
       rotateZ: 0,
       zIndex: -1,
       transition: {
@@ -48,6 +49,7 @@ const Card: FC<CardProps> = ({
       },
       transitionEnd: {
         zIndex: 0,
+        scale: 1,
       },
     },
   }
