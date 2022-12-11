@@ -6,10 +6,6 @@ import Dropdown from ".";
 export default {
   title: "Dropdown",
   component: Dropdown,
-  argTypes: {},
-  args: {
-    active: false,
-  },
 } as ComponentMeta<typeof Dropdown>;
 
 const defaultProps: ComponentProps<typeof Dropdown> = {
