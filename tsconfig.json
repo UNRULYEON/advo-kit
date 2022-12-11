@@ -26,6 +26,9 @@
       "@/icons/*": [
         "icons/*"
       ],
+      "@/state": [
+        "state/index"
+      ],
     },
     "plugins": [
       {
