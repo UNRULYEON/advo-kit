@@ -1,6 +1,6 @@
 import { FC, SVGProps } from "react";
 
-const ArrowDown: FC<SVGProps<SVGSVGElement>> = ({ ...rest }) => {
+const ArrowDownIcon: FC<SVGProps<SVGSVGElement>> = ({ ...rest }) => {
   return (
     <svg
       width="12"
@@ -14,4 +14,4 @@ const ArrowDown: FC<SVGProps<SVGSVGElement>> = ({ ...rest }) => {
   );
 };
 
-export default ArrowDown;
+export default ArrowDownIcon;

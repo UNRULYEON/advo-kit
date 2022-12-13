@@ -9,6 +9,6 @@ const kits: Kit[] = [
   { id: 'stakeholder-meeting', name: 'Stakeholder meeting' }
 ]
 
-export const currentKitAtom = atom<Kit['id']>(kits[0].id)
+export const currentKitAtom = atom<Kit>(kits[0])
 
-export const availableKitsAtom = atom<Kit[]>((get) => kits.filter((kit) => kit.id !== get(currentKitAtom)))
+export const availableKitsAtom = atom<Kit[]>((get) => kits.filter((kit) => kit.id !== get(currentKitAtom).id))

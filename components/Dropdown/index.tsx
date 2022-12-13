@@ -2,7 +2,7 @@
 
 import { FC, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import ArrowDown from "@/icons/ArrowDown";
+import ArrowDown from "@/icons/ArrowDownIcon";
 
 type Item = {
   id: string;
@@ -28,7 +28,7 @@ const Dropdown: FC<DropdownProps> = ({
   return (
     <div className="relative">
       <div
-        className={`transition h-10 px-2 flex bg-white items-center border border-[#DDDDDD] rounded select-none hover:cursor-pointer hover:border-coolblue ${
+        className={`transition h-10 px-2 flex bg-white items-center border border-gray rounded select-none hover:cursor-pointer hover:border-coolblue ${
           active && "border-coolblue"
         }`}
         onClick={() => setActive((s) => !s)}

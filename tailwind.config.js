@@ -21,7 +21,9 @@ module.exports = {
         'hot-orange': '#FF6B00',
         'cool-black': '#111111',
         'gray-blue': '#F2F7FC',
+        'evening-blue': '#1E4680',
         'silver': '#BBBBBB',
+        'gray': '#DDDDDD'
       },
     },
   },
