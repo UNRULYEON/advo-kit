@@ -21,6 +21,7 @@ const KitDropdown = () => {
 
   return (
     <Dropdown
+      label="Choose your kit"
       handleOnClick={handleOnClick}
       currentItem={currentItem}
       items={kitItems}
