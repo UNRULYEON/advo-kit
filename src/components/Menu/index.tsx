@@ -18,12 +18,16 @@ const Menu: FC<MenuProps> = ({ active: activeProps = false }) => {
     if (active) setQuery("");
   }, [active]);
 
+  const filtered = currentKit.cards.filter((card) =>
+    card.question.toLowerCase().includes(query)
+  );
+
   return (
     <div className="relative">
       <AnimatePresence>
         {active && (
           <motion.div
-            className="absolute inset-x-0 bottom-14 flex flex-col gap-4 rounded bg-white p-4 w-full max-w-[350px] max-h-[641px] shadow-[0px_6px_8px_-3px_#EEEEEE]"
+            className="absolute inset-x-0 bottom-14 flex flex-col gap-4 rounded bg-white p-4 w-full max-w-[350px] h-[641px] shadow-[0px_6px_8px_-3px_#EEEEEE]"
             initial={{ opacity: 0, y: 3 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 3 }}
@@ -39,9 +43,12 @@ const Menu: FC<MenuProps> = ({ active: activeProps = false }) => {
               trailingIcon={<SearchIcon className="fill-coolblue" />}
               autoFocus
             />
-            <div className="overflow-auto">
-              {currentKit.cards.map((card) => (
-                <div key={card.question} className="text-[14px] py-[12px]">
+            <div className="overflow-auto h-fill-available">
+              {filtered.map((card) => (
+                <div
+                  key={card.question}
+                  className="text-[14px] leading-[16px] tracking-[-0.019em] py-[12px]"
+                >
                   {card.question}
                 </div>
               ))}
