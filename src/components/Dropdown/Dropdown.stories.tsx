@@ -9,6 +9,7 @@ export default {
 } as ComponentMeta<typeof Dropdown>;
 
 const defaultProps: ComponentProps<typeof Dropdown> = {
+  label: "Choose your kit",
   currentItem: { id: "stakeholder-meeting", name: "Stakeholder meeting" },
   items: [
     { id: "stakeholder-meeting", name: "Stakeholder meeting" },
