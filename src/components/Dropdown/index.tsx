@@ -2,7 +2,7 @@ import { FC, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import ArrowDown from "@icons/ArrowDownIcon";
 
-type Item = {
+export type Item = {
   id: string;
   name: string;
   disabled?: boolean;
@@ -13,6 +13,7 @@ type DropdownProps = {
   label?: string;
   currentItem?: Item;
   items: Item[];
+  handleOnClick: (item: Item) => void;
 };
 
 const Dropdown: FC<DropdownProps> = ({
@@ -20,8 +21,14 @@ const Dropdown: FC<DropdownProps> = ({
   label = "Make a selection",
   currentItem,
   items,
+  handleOnClick,
 }) => {
   const [active, setActive] = useState<boolean>(activeProps);
+
+  const handleOnItemClick = (item: Item) => {
+    handleOnClick(item);
+    setActive(false);
+  };
 
   return (
     <div className="relative">
@@ -70,6 +77,7 @@ const Dropdown: FC<DropdownProps> = ({
                 item={item}
                 isCurrent={item.id === currentItem?.id}
                 disabled={item.disabled}
+                onClick={() => handleOnItemClick(item)}
               />
             ))}
           </motion.div>
@@ -83,14 +91,21 @@ type DropdownItemProps = {
   item: Item;
   isCurrent: boolean;
   disabled?: boolean;
+  onClick: () => void;
 };
 
-const DropdownItem: FC<DropdownItemProps> = ({ item, isCurrent, disabled }) => {
+const DropdownItem: FC<DropdownItemProps> = ({
+  item,
+  isCurrent,
+  disabled,
+  onClick,
+}) => {
   return (
     <div
       className={`transition h-10 text-sm flex items-center px-[10px] ${
         disabled ? "text-silver" : "hover:cursor-pointer hover:bg-gray-blue"
       } ${isCurrent ? "text-coolblue" : "text-cool-black"}`}
+      onClick={() => !disabled && onClick()}
     >
       {item.name}
     </div>

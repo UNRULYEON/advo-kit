@@ -1,7 +1,7 @@
-import { ComponentProps } from "react";
+import { ComponentProps, useState } from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 
-import Dropdown from ".";
+import Dropdown, { Item } from ".";
 
 export default {
   title: "Dropdown",
@@ -17,11 +17,23 @@ const defaultProps: ComponentProps<typeof Dropdown> = {
     { id: "developer-kick-off", name: "Developer kick-off" },
     { id: "soon", name: "Soon...", disabled: true },
   ],
+  handleOnClick: () => {},
 };
 
-const Template: ComponentStory<typeof Dropdown> = (args) => (
-  <Dropdown {...defaultProps} {...args} />
-);
+const Template: ComponentStory<typeof Dropdown> = (args) => {
+  const [currentItem, setCurrentItem] = useState(defaultProps.currentItem);
+
+  const handleOnClick = (item: Item) => setCurrentItem(item);
+
+  return (
+    <Dropdown
+      {...defaultProps}
+      {...args}
+      currentItem={currentItem}
+      handleOnClick={handleOnClick}
+    />
+  );
+};
 
 export const Primary = Template.bind({});
 Primary.storyName = "Default";
