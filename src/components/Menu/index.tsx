@@ -1,8 +1,9 @@
-import MenuIcon from "@icons/MenuIcon";
-import SearchIcon from "@icons/SearchIcon";
 import { AnimatePresence, motion } from "framer-motion";
 import { FC, useEffect, useState } from "react";
+import MenuIcon from "@icons/MenuIcon";
+import SearchIcon from "@icons/SearchIcon";
 import Input from "../Input";
+import { useKitContext } from "@components/KitContext";
 
 type MenuProps = {
   active?: boolean;
@@ -11,7 +12,7 @@ type MenuProps = {
 const Menu: FC<MenuProps> = ({ active: activeProps = false }) => {
   const [active, setActive] = useState<boolean>(activeProps);
   const [query, setQuery] = useState<string>("");
-  // const currentKit = useAtomValue(currentKitAtom);
+  const { currentKit } = useKitContext();
 
   useEffect(() => {
     if (active) setQuery("");
@@ -22,7 +23,7 @@ const Menu: FC<MenuProps> = ({ active: activeProps = false }) => {
       <AnimatePresence>
         {active && (
           <motion.div
-            className="absolute inset-x-0 bottom-14 flex flex-col gap-4 rounded bg-white p-4 min-w-[350px] shadow-[0px_6px_8px_-3px_#EEEEEE]"
+            className="absolute inset-x-0 bottom-14 flex flex-col gap-4 rounded bg-white p-4 w-full max-w-[350px] max-h-[641px] shadow-[0px_6px_8px_-3px_#EEEEEE]"
             initial={{ opacity: 0, y: 3 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 3 }}
@@ -38,6 +39,13 @@ const Menu: FC<MenuProps> = ({ active: activeProps = false }) => {
               trailingIcon={<SearchIcon className="fill-coolblue" />}
               autoFocus
             />
+            <div className="overflow-auto">
+              {currentKit.cards.map((card) => (
+                <div key={card.question} className="text-[14px] py-[12px]">
+                  {card.question}
+                </div>
+              ))}
+            </div>
           </motion.div>
         )}
       </AnimatePresence>

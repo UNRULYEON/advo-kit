@@ -26,6 +26,9 @@
       ],
       "@icons/*": [
         "./src/icons/*"
+      ],
+      "@kits": [
+        "./src/kits.ts"
       ]
     }
   },
