@@ -1,7 +1,4 @@
 .scene {
   width: inherit;
   height: inherit;
-  
-  perspective: 1000px;
-  perspective-origin: 50% calc(50% - 150px);
 }

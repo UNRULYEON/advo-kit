@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { HTMLMotionProps, motion } from "framer-motion";
 import { forwardRef } from "react";
 import "./Rectangle.css";
 
@@ -8,7 +8,7 @@ type RectangleProps = {
   depth?: number;
   notAbsolute?: boolean;
   style?: React.CSSProperties;
-};
+} & HTMLMotionProps<"div">;
 
 const Rectangle = forwardRef<HTMLDivElement, RectangleProps>(
   (
