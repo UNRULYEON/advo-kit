@@ -1,7 +1,7 @@
-import FactSlogan from "@components/FactSlogan";
-import KitContext from "@components/KitContext";
-import KitDropdown from "@components/KitDropdown";
-import Menu from "@components/Menu";
+import FactSlogan from '@components/FactSlogan';
+import KitContext from '@components/KitContext';
+import KitDropdown from '@components/KitDropdown';
+import Menu from '@components/Menu';
 
 const App = () => {
   return (

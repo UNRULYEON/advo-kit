@@ -1,7 +1,7 @@
-import { FC, useEffect } from "react";
-import Rectangle from "@components/Rectangle";
-import { motion, useAnimationControls, Variants } from "framer-motion";
-import "./Box.css";
+import { FC, useEffect } from 'react';
+import Rectangle from '@components/Rectangle';
+import { motion, useAnimationControls, Variants } from 'framer-motion';
+import './Box.css';
 
 type BoxProps = {
   open: boolean;
@@ -26,16 +26,16 @@ const Box: FC<BoxProps> = ({ open, rotate = false }) => {
       rotateX: 340,
       transition: {
         duration: 0.5,
-        ease: "backOut",
+        ease: 'backOut',
       },
     },
   };
 
   useEffect(() => {
     if (open) {
-      lidControls.start("open");
+      lidControls.start('open');
     } else {
-      lidControls.start("closed");
+      lidControls.start('closed');
     }
   });
 
@@ -43,7 +43,7 @@ const Box: FC<BoxProps> = ({ open, rotate = false }) => {
     <motion.div
       className="scene flex items-center justify-center relative"
       style={{
-        transformStyle: "preserve-3d",
+        transformStyle: 'preserve-3d',
       }}
       animate={boxControls}
       onPan={(e, pointInfo) => {
@@ -100,8 +100,8 @@ const Box: FC<BoxProps> = ({ open, rotate = false }) => {
         variants={lidVariants}
         initial="closed"
         style={{
-          transformStyle: "preserve-3d",
-          transformOrigin: "top center",
+          transformStyle: 'preserve-3d',
+          transformOrigin: 'top center',
         }}
       />
     </motion.div>

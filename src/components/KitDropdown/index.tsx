@@ -1,5 +1,5 @@
-import Dropdown, { Item } from "@components/Dropdown";
-import { useKitContext } from "@components/KitContext";
+import Dropdown, { Item } from '@components/Dropdown';
+import { useKitContext } from '@components/KitContext';
 
 const KitDropdown = () => {
   const { kits, currentKit, setCurrentKit } = useKitContext();
@@ -19,14 +19,7 @@ const KitDropdown = () => {
     if (kit) setCurrentKit(kit);
   };
 
-  return (
-    <Dropdown
-      label="Choose your kit"
-      handleOnClick={handleOnClick}
-      currentItem={currentItem}
-      items={kitItems}
-    />
-  );
+  return <Dropdown label="Choose your kit" handleOnClick={handleOnClick} currentItem={currentItem} items={kitItems} />;
 };
 
 export default KitDropdown;

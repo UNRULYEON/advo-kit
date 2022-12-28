@@ -1,13 +1,13 @@
-import { ComponentProps } from "react";
-import { ComponentMeta, ComponentStory } from "@storybook/react";
+import { ComponentProps } from 'react';
+import { ComponentMeta, ComponentStory } from '@storybook/react';
 
-import Box from ".";
+import Box from '.';
 
 export default {
-  title: "Box",
+  title: 'Box',
   component: Box,
   parameters: {
-    layout: "centered",
+    layout: 'centered',
   },
 } as ComponentMeta<typeof Box>;
 
@@ -19,8 +19,8 @@ const defaultProps: ComponentProps<typeof Box> = {
 const Template: ComponentStory<typeof Box> = (args) => (
   <div
     style={{
-      perspective: "750px",
-      perspectiveOrigin: "50% calc(50% - 150px)",
+      perspective: '750px',
+      perspectiveOrigin: '50% calc(50% - 150px)',
     }}
   >
     <Box {...defaultProps} {...args} />
@@ -28,7 +28,7 @@ const Template: ComponentStory<typeof Box> = (args) => (
 );
 
 export const Primary = Template.bind({});
-Primary.storyName = "Default";
+Primary.storyName = 'Default';
 Primary.args = {
   open: false,
   rotate: false,

@@ -1,23 +1,21 @@
-import { ComponentProps } from "react";
-import { ComponentMeta, ComponentStory } from "@storybook/react";
+import { ComponentProps } from 'react';
+import { ComponentMeta, ComponentStory } from '@storybook/react';
 
-import Card from ".";
+import Card from '.';
 
 export default {
-  title: "Card",
+  title: 'Card',
   component: Card,
   parameters: {
-    layout: "centered",
+    layout: 'centered',
   },
 } as ComponentMeta<typeof Card>;
 
 const defaultProps: ComponentProps<typeof Card> = {
-  question: "Does this meet all functional requirements?",
+  question: 'Does this meet all functional requirements?',
 };
 
-const Template: ComponentStory<typeof Card> = (args) => (
-  <Card {...defaultProps} {...args} />
-);
+const Template: ComponentStory<typeof Card> = (args) => <Card {...defaultProps} {...args} />;
 
 export const Primary = Template.bind({});
-Primary.storyName = "Default";
+Primary.storyName = 'Default';

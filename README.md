@@ -18,7 +18,7 @@ This project is deployed using Vercel. Linking the project to Vercel is optional
 
 1. Install the [Vercel CLI](https://vercel.com/docs/cli)
 2. Log in with `vercel login`
-3. Run `vercel` to link the project with Vercel 
+3. Run `vercel` to link the project with Vercel
 
 ## Storybooks
 

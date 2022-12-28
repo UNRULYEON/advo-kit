@@ -1,14 +1,14 @@
-import { ComponentProps, useRef } from "react";
-import { ComponentMeta, ComponentStory } from "@storybook/react";
+import { ComponentProps, useRef } from 'react';
+import { ComponentMeta, ComponentStory } from '@storybook/react';
 
-import Rectangle from ".";
-import { useAnimationFrame } from "framer-motion";
+import Rectangle from '.';
+import { useAnimationFrame } from 'framer-motion';
 
 export default {
-  title: "Rectangle",
+  title: 'Rectangle',
   component: Rectangle,
   parameters: {
-    layout: "centered",
+    layout: 'centered',
   },
 } as ComponentMeta<typeof Rectangle>;
 
@@ -32,7 +32,7 @@ const Template: ComponentStory<typeof Rectangle> = (args) => {
   return (
     <div
       style={{
-        perspective: "800px",
+        perspective: '800px',
       }}
     >
       <Rectangle ref={ref} {...defaultProps} {...args} />
@@ -41,4 +41,4 @@ const Template: ComponentStory<typeof Rectangle> = (args) => {
 };
 
 export const Primary = Template.bind({});
-Primary.storyName = "Default";
+Primary.storyName = 'Default';

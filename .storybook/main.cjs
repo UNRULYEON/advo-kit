@@ -3,14 +3,11 @@ const path = require('path');
 const alias = require('@rollup/plugin-alias');
 
 module.exports = {
-  "stories": [
-    "../src/components/**/*.stories.mdx",
-    "../src/components/**/*.stories.@(js|jsx|ts|tsx)"
-  ],
-  "addons": [
-    "@storybook/addon-links",
-    "@storybook/addon-essentials",
-    "@storybook/addon-interactions",
+  stories: ['../src/components/**/*.stories.mdx', '../src/components/**/*.stories.@(js|jsx|ts|tsx)'],
+  addons: [
+    '@storybook/addon-links',
+    '@storybook/addon-essentials',
+    '@storybook/addon-interactions',
     {
       name: '@storybook/addon-postcss',
       options: {
@@ -20,12 +17,12 @@ module.exports = {
       },
     },
   ],
-  "framework": "@storybook/react",
-  "core": {
-    "builder": "@storybook/builder-vite"
+  framework: '@storybook/react',
+  core: {
+    builder: '@storybook/builder-vite',
   },
-  "features": {
-    "storyStoreV7": true
+  features: {
+    storyStoreV7: true,
   },
   async viteFinal(config, { configType }) {
     // return the customized config
@@ -34,12 +31,12 @@ module.exports = {
       plugins: [
         alias({
           entries: {
-            '@components': path.resolve(__dirname, "../src/components"),
-            '@icons': path.resolve(__dirname, "../src/icons"),
-            '@kits': path.resolve(__dirname, "../src/kits.ts")
-          }
-        })
-      ]
+            '@components': path.resolve(__dirname, '../src/components'),
+            '@icons': path.resolve(__dirname, '../src/icons'),
+            '@kits': path.resolve(__dirname, '../src/kits.ts'),
+          },
+        }),
+      ],
     });
   },
-}
+};

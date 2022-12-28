@@ -1,6 +1,6 @@
-import { HTMLMotionProps, motion } from "framer-motion";
-import { forwardRef } from "react";
-import "./Rectangle.css";
+import { HTMLMotionProps, motion } from 'framer-motion';
+import { forwardRef } from 'react';
+import './Rectangle.css';
 
 type RectangleProps = {
   width: number;
@@ -8,16 +8,13 @@ type RectangleProps = {
   depth?: number;
   notAbsolute?: boolean;
   style?: React.CSSProperties;
-} & HTMLMotionProps<"div">;
+} & HTMLMotionProps<'div'>;
 
 const Rectangle = forwardRef<HTMLDivElement, RectangleProps>(
-  (
-    { height, width, depth = 0, notAbsolute, style, ...rest }: RectangleProps,
-    ref
-  ) => {
+  ({ height, width, depth = 0, notAbsolute, style, ...rest }: RectangleProps, ref) => {
     return (
       <motion.div
-        className={`rectangle ${!notAbsolute && "absolute"}`}
+        className={`rectangle ${!notAbsolute && 'absolute'}`}
         style={{
           ...style,
           height: `${height}px`,
@@ -39,9 +36,7 @@ const Rectangle = forwardRef<HTMLDivElement, RectangleProps>(
           style={{
             height: `${height}px`,
             width: `${depth}px`,
-            transform: `rotateY(90deg) translateZ(${width / 2}px) translateX(${
-              depth / 2
-            }px)`,
+            transform: `rotateY(90deg) translateZ(${width / 2}px) translateX(${depth / 2}px)`,
           }}
         />
         <div
@@ -57,9 +52,7 @@ const Rectangle = forwardRef<HTMLDivElement, RectangleProps>(
           style={{
             height: `${height}px`,
             width: `${depth}px`,
-            transform: `rotateY(270deg) translateZ(${width / 2}px) translateX(${
-              -depth / 2
-            }px)`,
+            transform: `rotateY(270deg) translateZ(${width / 2}px) translateX(${-depth / 2}px)`,
           }}
         />
         <div
@@ -67,9 +60,7 @@ const Rectangle = forwardRef<HTMLDivElement, RectangleProps>(
           style={{
             height: `${depth}px`,
             width: `${width}px`,
-            transform: `rotateX(90deg) translateZ(${height / 2}px) translateY(${
-              -depth / 2
-            }px)`,
+            transform: `rotateX(90deg) translateZ(${height / 2}px) translateY(${-depth / 2}px)`,
           }}
         />
         <div

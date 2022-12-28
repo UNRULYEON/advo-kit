@@ -1,9 +1,9 @@
-import { AnimatePresence, motion } from "framer-motion";
-import { FC, useEffect, useState } from "react";
-import MenuIcon from "@icons/MenuIcon";
-import SearchIcon from "@icons/SearchIcon";
-import Input from "../Input";
-import { useKitContext } from "@components/KitContext";
+import { AnimatePresence, motion } from 'framer-motion';
+import { FC, useEffect, useState } from 'react';
+import MenuIcon from '@icons/MenuIcon';
+import SearchIcon from '@icons/SearchIcon';
+import Input from '../Input';
+import { useKitContext } from '@components/KitContext';
 
 type MenuProps = {
   active?: boolean;
@@ -11,16 +11,14 @@ type MenuProps = {
 
 const Menu: FC<MenuProps> = ({ active: activeProps = false }) => {
   const [active, setActive] = useState<boolean>(activeProps);
-  const [query, setQuery] = useState<string>("");
+  const [query, setQuery] = useState<string>('');
   const { currentKit } = useKitContext();
 
   useEffect(() => {
-    if (active) setQuery("");
+    if (active) setQuery('');
   }, [active]);
 
-  const filtered = currentKit.cards.filter((card) =>
-    card.question.toLowerCase().includes(query)
-  );
+  const filtered = currentKit.cards.filter((card) => card.question.toLowerCase().includes(query));
 
   return (
     <div className="relative">
@@ -33,9 +31,7 @@ const Menu: FC<MenuProps> = ({ active: activeProps = false }) => {
             exit={{ opacity: 0, y: 3 }}
             transition={{ duration: 0.2 }}
           >
-            <span className="text-dark-blue text-[20px] font-[DobraMedium] font-medium">
-              List of questions
-            </span>
+            <span className="text-dark-blue text-[20px] font-[DobraMedium] font-medium">List of questions</span>
             <Input
               placeholder="Search"
               value={query}
@@ -45,10 +41,7 @@ const Menu: FC<MenuProps> = ({ active: activeProps = false }) => {
             />
             <div className="overflow-auto h-fill-available">
               {filtered.map((card) => (
-                <div
-                  key={card.question}
-                  className="text-[14px] leading-[16px] tracking-[-0.019em] py-[12px]"
-                >
+                <div key={card.question} className="text-[14px] leading-[16px] tracking-[-0.019em] py-[12px]">
                   {card.question}
                 </div>
               ))}

@@ -1,6 +1,6 @@
-import { FC, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
-import ArrowDown from "@icons/ArrowDownIcon";
+import { FC, useState } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
+import ArrowDown from '@icons/ArrowDownIcon';
 
 export type Item = {
   id: string;
@@ -18,7 +18,7 @@ type DropdownProps = {
 
 const Dropdown: FC<DropdownProps> = ({
   active: activeProps = false,
-  label = "Make a selection",
+  label = 'Make a selection',
   currentItem,
   items,
   handleOnClick,
@@ -34,7 +34,7 @@ const Dropdown: FC<DropdownProps> = ({
     <div className="relative">
       <div
         className={`transition h-10 px-2 flex bg-white items-center border border-gray rounded select-none hover:cursor-pointer hover:border-coolblue ${
-          active && "border-coolblue"
+          active && 'border-coolblue'
         }`}
         onClick={() => setActive((s) => !s)}
       >
@@ -42,7 +42,7 @@ const Dropdown: FC<DropdownProps> = ({
           <motion.span
             initial={{ y: currentItem ? 0 : 30 }}
             animate={{ y: active ? 30 : 0 }}
-            transition={{ type: "spring", stiffness: 500, damping: 30 }}
+            transition={{ type: 'spring', stiffness: 500, damping: 30 }}
             className="absolute"
           >
             {currentItem?.name}
@@ -50,17 +50,13 @@ const Dropdown: FC<DropdownProps> = ({
           <motion.span
             initial={{ y: currentItem ? -30 : 0 }}
             animate={{ y: active ? 0 : -30 }}
-            transition={{ type: "spring", stiffness: 500, damping: 30 }}
+            transition={{ type: 'spring', stiffness: 500, damping: 30 }}
             className="absolute"
           >
             {label}
           </motion.span>
         </div>
-        <ArrowDown
-          className={`transition ${
-            active ? "rotate-90 fill-coolblue" : "fill-silver"
-          }`}
-        />
+        <ArrowDown className={`transition ${active ? 'rotate-90 fill-coolblue' : 'fill-silver'}`} />
       </div>
       <AnimatePresence>
         {active && (
@@ -94,17 +90,12 @@ type DropdownItemProps = {
   onClick: () => void;
 };
 
-const DropdownItem: FC<DropdownItemProps> = ({
-  item,
-  isCurrent,
-  disabled,
-  onClick,
-}) => {
+const DropdownItem: FC<DropdownItemProps> = ({ item, isCurrent, disabled, onClick }) => {
   return (
     <div
       className={`transition h-10 text-sm flex items-center px-[10px] ${
-        disabled ? "text-silver" : "hover:cursor-pointer hover:bg-gray-blue"
-      } ${isCurrent ? "text-coolblue" : "text-cool-black"}`}
+        disabled ? 'text-silver' : 'hover:cursor-pointer hover:bg-gray-blue'
+      } ${isCurrent ? 'text-coolblue' : 'text-cool-black'}`}
       onClick={() => !disabled && onClick()}
     >
       {item.name}

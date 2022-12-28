@@ -1,7 +1,7 @@
-import "./preview.css";
+import './preview.css';
 
 export const parameters = {
-  actions: { argTypesRegex: "^on[A-Z].*" },
+  actions: { argTypesRegex: '^on[A-Z].*' },
   controls: {
     matchers: {
       color: /(background|color)$/i,
@@ -13,16 +13,16 @@ export const parameters = {
     values: [
       {
         name: 'Gray blue',
-        value: '#F2F7FC'
+        value: '#F2F7FC',
       },
       {
         name: 'Light',
-        value: '#F8F8F8'
+        value: '#F8F8F8',
       },
       {
         name: 'Dark',
-        value: '#333333'
-      }
-    ]
-  }
-}
+        value: '#333333',
+      },
+    ],
+  },
+};
