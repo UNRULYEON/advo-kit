@@ -54,7 +54,7 @@ const Template: ComponentStory<typeof Box> = (args) => (
   <div
     style={{
       perspective: '750px',
-      perspectiveOrigin: '50% calc(50% - 150px)',
+      perspectiveOrigin: '50% calc(50% - 200px)',
     }}
   >
     <Box {...defaultProps} {...args} />

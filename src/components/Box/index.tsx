@@ -116,6 +116,29 @@ const Box: FC<BoxProps> = ({ open, color, opacity = 1, rotate = false }) => {
           transformOrigin: 'top center',
         }}
       />
+      {/* Inside shadow */}
+      <Rectangle
+        width={width - 0.5}
+        height={height + thickness * 1.9}
+        color={'0'}
+        depth={0.1}
+        style={{
+          background: `linear-gradient(180deg, rgba(51, 103, 185, ${opacity}) 0%, rgba(28, 56, 99, ${opacity}) 100%)`,
+          transform: `rotateX(90deg) translateZ(${width / 2 + 1}px)`,
+        }}
+      />
+      {/* Bottom shadow */}
+      <Rectangle
+        width={width}
+        height={height + thickness * 3}
+        color={'rgba(0, 0, 0, 0.41)'}
+        depth={0.1}
+        opacity={opacity}
+        style={{
+          filter: 'blur(10px)',
+          transform: `rotateX(270deg) translateZ(${width / 2}px)`,
+        }}
+      />
     </motion.div>
   );
 };
