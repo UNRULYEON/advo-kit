@@ -7,29 +7,4 @@
 
 .rectangle > div {
   position: absolute;
-  opacity: 0.3;
-}
-
-.rectangle > div.front {
-  background-color: #ee4444;
-}
-
-.rectangle > div.right {
-  background-color: #ffcc00;
-}
-
-.rectangle > div.back {
-  background-color: #ff0055;
-}
-
-.rectangle > div.left {
-  background-color: #8855ff;
-}
-
-.rectangle > div.top {
-  background-color: #0099ff;
-}
-
-.rectangle > div.bottom {
-  background-color: #22cc88;
 }

@@ -5,10 +5,12 @@ import './Box.css';
 
 type BoxProps = {
   open: boolean;
+  color?: string;
+  opacity?: number;
   rotate?: boolean;
 };
 
-const Box: FC<BoxProps> = ({ open, rotate = false }) => {
+const Box: FC<BoxProps> = ({ open, color, opacity = 1, rotate = false }) => {
   const thickness = 10;
   const width = 150;
   const height = 150;
@@ -60,6 +62,8 @@ const Box: FC<BoxProps> = ({ open, rotate = false }) => {
         width={width}
         height={height}
         depth={thickness}
+        color={color}
+        opacity={opacity}
         style={{
           transform: `rotateY(0deg) translateZ(${width / 2 + thickness}px)`,
         }}
@@ -69,6 +73,8 @@ const Box: FC<BoxProps> = ({ open, rotate = false }) => {
         width={width}
         height={height}
         depth={thickness}
+        color={color}
+        opacity={opacity}
         style={{
           transform: `rotateY(90deg) translateZ(${width / 2}px)`,
         }}
@@ -78,6 +84,8 @@ const Box: FC<BoxProps> = ({ open, rotate = false }) => {
         width={width}
         height={height}
         depth={thickness}
+        color={color}
+        opacity={opacity}
         style={{
           transform: `rotateY(180deg) translateZ(${width / 2 + thickness}px)`,
         }}
@@ -87,6 +95,8 @@ const Box: FC<BoxProps> = ({ open, rotate = false }) => {
         width={width}
         height={height}
         depth={thickness}
+        color={color}
+        opacity={opacity}
         style={{
           transform: `rotateY(270deg) translateZ(${width / 2}px)`,
         }}
@@ -96,6 +106,8 @@ const Box: FC<BoxProps> = ({ open, rotate = false }) => {
         width={width}
         height={height + thickness * 2}
         depth={thickness}
+        color={color}
+        opacity={opacity}
         animate={lidControls}
         variants={lidVariants}
         initial="closed"
