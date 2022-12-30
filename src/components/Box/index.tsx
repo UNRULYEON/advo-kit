@@ -118,12 +118,14 @@ const Box: FC<BoxProps> = ({ open, color, opacity = 1, rotate = false }) => {
       />
       {/* Inside shadow */}
       <Rectangle
-        width={width - 0.5}
-        height={height + thickness * 1.9}
+        width={width - thickness * 2}
+        height={height}
         color={'0'}
         depth={0.1}
         style={{
-          background: `linear-gradient(180deg, rgba(51, 103, 185, ${opacity}) 0%, rgba(28, 56, 99, ${opacity}) 100%)`,
+          background: `linear-gradient(180deg, rgba(51, 103, 185, ${opacity - 0.2}) 0%, rgba(28, 56, 99, ${
+            opacity - 0.2
+          }) 100%)`,
           transform: `rotateX(90deg) translateZ(${width / 2 + 1}px)`,
         }}
       />
