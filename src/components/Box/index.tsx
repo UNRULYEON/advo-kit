@@ -4,28 +4,28 @@ import { motion, useAnimationControls, Variants } from 'framer-motion';
 import './Box.css';
 
 type BoxProps = {
+  width?: number;
+  height?: number;
+  thickness?: number;
   open: boolean;
   color?: string;
   opacity?: number;
   rotate?: boolean;
 };
 
-const Box: FC<BoxProps> = ({ open, color, opacity = 1, rotate = false }) => {
-  const thickness = 10;
-  const width = 150;
-  const height = 150;
-
+const Box: FC<BoxProps> = ({ width = 200, height = 200, thickness = 20, open, color, opacity = 1, rotate = false }) => {
   const boxControls = useAnimationControls();
   const lidControls = useAnimationControls();
   const lidVariants: Variants = {
     closed: {
-      rotateX: 270,
-      rotateZ: 180,
-      translateY: thickness,
+      rotateY: 0,
+      rotateX: -90,
+      rotateZ: 0,
+      translateY: -(height / 2) - width / 2 - thickness,
       translateZ: -(width / 2 + thickness),
     },
     open: {
-      rotateX: 340,
+      rotateX: -15,
       transition: {
         duration: 0.5,
         ease: 'backOut',
@@ -104,7 +104,7 @@ const Box: FC<BoxProps> = ({ open, color, opacity = 1, rotate = false }) => {
       {/* Top */}
       <Rectangle
         width={width}
-        height={height + thickness * 2}
+        height={width + thickness * 2}
         depth={thickness}
         color={color}
         opacity={opacity}
@@ -113,32 +113,32 @@ const Box: FC<BoxProps> = ({ open, color, opacity = 1, rotate = false }) => {
         initial="closed"
         style={{
           transformStyle: 'preserve-3d',
-          transformOrigin: 'top center',
+          transformOrigin: 'bottom center',
         }}
       />
       {/* Inside shadow */}
       <Rectangle
         width={width - thickness * 2}
-        height={height}
+        height={height - -(width - height)}
         color={'0'}
         depth={0.1}
         style={{
           background: `linear-gradient(180deg, rgba(51, 103, 185, ${opacity - 0.2}) 0%, rgba(28, 56, 99, ${
             opacity - 0.2
           }) 100%)`,
-          transform: `rotateX(90deg) translateZ(${width / 2 + 1}px)`,
+          transform: `rotateX(90deg) translateZ(${height / 2}px)`,
         }}
       />
       {/* Bottom shadow */}
       <Rectangle
         width={width}
-        height={height + thickness * 3}
+        height={width + thickness * 2}
         color={'rgba(0, 0, 0, 0.41)'}
         depth={0.1}
         opacity={opacity}
         style={{
           filter: 'blur(10px)',
-          transform: `rotateX(270deg) translateZ(${width / 2}px)`,
+          transform: `rotateX(270deg) translateZ(${height / 2}px)`,
         }}
       />
     </motion.div>

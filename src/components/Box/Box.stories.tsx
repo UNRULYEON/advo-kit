@@ -10,6 +10,24 @@ export default {
     layout: 'centered',
   },
   argTypes: {
+    width: {
+      name: 'Width',
+      defaultValue: 200,
+      description: 'Width of the box',
+      type: 'number',
+    },
+    height: {
+      name: 'Height',
+      defaultValue: 200,
+      description: 'Height of the box',
+      type: 'number',
+    },
+    thickness: {
+      name: 'Thickness',
+      defaultValue: 20,
+      description: 'Thickness of the box',
+      type: 'number',
+    },
     color: {
       name: 'Color',
       defaultValue: '#0090E3',
