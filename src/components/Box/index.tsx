@@ -2,6 +2,7 @@ import { FC, useEffect } from 'react';
 import Rectangle from '@components/Rectangle';
 import { motion, useAnimationControls, Variants } from 'framer-motion';
 import './Box.css';
+import hexToRgba from '@utils/hexToRGBA';
 
 type BoxProps = {
   width?: number;
@@ -40,6 +41,9 @@ const Box: FC<BoxProps> = ({ width = 200, height = 200, thickness = 20, open, co
       lidControls.start('closed');
     }
   });
+
+  const rgba = color && hexToRgba(color);
+  const innerShadowBottom = rgba && `rgba(${rgba.r + 28}, ${rgba.g - 88}, ${rgba.b - 128}, ${opacity - 0.2})`;
 
   return (
     <motion.div
@@ -123,9 +127,7 @@ const Box: FC<BoxProps> = ({ width = 200, height = 200, thickness = 20, open, co
         color={'0'}
         depth={0.1}
         style={{
-          background: `linear-gradient(180deg, rgba(51, 103, 185, ${opacity - 0.2}) 0%, rgba(28, 56, 99, ${
-            opacity - 0.2
-          }) 100%)`,
+          background: `linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, ${innerShadowBottom} 100%)`,
           transform: `rotateX(90deg) translateZ(${height / 2}px)`,
         }}
       />

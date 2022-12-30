@@ -19,6 +19,7 @@
     "paths": {
       "@components/*": ["./src/components/*"],
       "@icons/*": ["./src/icons/*"],
+      "@utils/*": ["./src/utils/*"],
       "@kits": ["./src/kits.ts"]
     }
   },
