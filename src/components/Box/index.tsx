@@ -9,12 +9,22 @@ type BoxProps = {
   height?: number;
   thickness?: number;
   open: boolean;
-  color?: string;
+  boxColor?: string;
+  buttonColor?: string;
   opacity?: number;
   rotate?: boolean;
 };
 
-const Box: FC<BoxProps> = ({ width = 200, height = 200, thickness = 20, open, color, opacity = 1, rotate = false }) => {
+const Box: FC<BoxProps> = ({
+  width = 200,
+  height = 200,
+  thickness = 20,
+  open,
+  boxColor,
+  buttonColor,
+  opacity = 1,
+  rotate = false,
+}) => {
   const boxControls = useAnimationControls();
   const lidControls = useAnimationControls();
   const lidVariants: Variants = {
@@ -42,13 +52,15 @@ const Box: FC<BoxProps> = ({ width = 200, height = 200, thickness = 20, open, co
     }
   });
 
-  const rgba = color && hexToRgba(color);
+  const rgba = boxColor && hexToRgba(boxColor);
   const innerShadowBottom = rgba && `rgba(${rgba.r + 28}, ${rgba.g - 88}, ${rgba.b - 128}, ${opacity - 0.2})`;
 
   return (
     <motion.div
       className="scene flex items-center justify-center relative"
       style={{
+        width: width,
+        height: height,
         transformStyle: 'preserve-3d',
       }}
       animate={boxControls}
@@ -66,7 +78,7 @@ const Box: FC<BoxProps> = ({ width = 200, height = 200, thickness = 20, open, co
         width={width}
         height={height}
         depth={thickness}
-        color={color}
+        color={boxColor}
         opacity={opacity}
         style={{
           transform: `rotateY(0deg) translateZ(${width / 2 + thickness}px)`,
@@ -77,7 +89,7 @@ const Box: FC<BoxProps> = ({ width = 200, height = 200, thickness = 20, open, co
         width={width}
         height={height}
         depth={thickness}
-        color={color}
+        color={boxColor}
         opacity={opacity}
         style={{
           transform: `rotateY(90deg) translateZ(${width / 2}px)`,
@@ -88,7 +100,7 @@ const Box: FC<BoxProps> = ({ width = 200, height = 200, thickness = 20, open, co
         width={width}
         height={height}
         depth={thickness}
-        color={color}
+        color={boxColor}
         opacity={opacity}
         style={{
           transform: `rotateY(180deg) translateZ(${width / 2 + thickness}px)`,
@@ -99,7 +111,7 @@ const Box: FC<BoxProps> = ({ width = 200, height = 200, thickness = 20, open, co
         width={width}
         height={height}
         depth={thickness}
-        color={color}
+        color={boxColor}
         opacity={opacity}
         style={{
           transform: `rotateY(270deg) translateZ(${width / 2}px)`,
@@ -110,7 +122,7 @@ const Box: FC<BoxProps> = ({ width = 200, height = 200, thickness = 20, open, co
         width={width}
         height={width + thickness * 2}
         depth={thickness}
-        color={color}
+        color={boxColor}
         opacity={opacity}
         animate={lidControls}
         variants={lidVariants}

@@ -28,8 +28,8 @@ export default {
       description: 'Thickness of the box',
       type: 'number',
     },
-    color: {
-      name: 'Color',
+    boxColor: {
+      name: 'Box color',
       defaultValue: '#0090E3',
       description: 'Color of the box',
       color: {
