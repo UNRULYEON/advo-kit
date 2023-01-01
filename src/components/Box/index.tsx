@@ -1,14 +1,17 @@
-import { FC, useEffect } from 'react';
+import { FC, useEffect, useState } from 'react';
 import Rectangle from '@components/Rectangle';
-import { motion, useAnimationControls, Variants } from 'framer-motion';
-import './Box.css';
+import CoolblueLogo from '@components/CoolblueLogo';
+import { AnimatePresence, motion, useAnimationControls, Variants } from 'framer-motion';
+import { useFloating, offset } from '@floating-ui/react';
 import hexToRgba from '@utils/hexToRGBA';
+import './Box.css';
 
 type BoxProps = {
   width?: number;
   height?: number;
   thickness?: number;
   open: boolean;
+  buttonCallback: () => void;
   boxColor?: string;
   buttonColor?: string;
   opacity?: number;
@@ -20,6 +23,7 @@ const Box: FC<BoxProps> = ({
   height = 200,
   thickness = 20,
   open,
+  buttonCallback,
   boxColor,
   buttonColor,
   opacity = 1,
@@ -27,6 +31,11 @@ const Box: FC<BoxProps> = ({
 }) => {
   const boxControls = useAnimationControls();
   const lidControls = useAnimationControls();
+  const tooltipControls = useAnimationControls();
+  const { x, y, reference, floating, strategy } = useFloating({
+    middleware: [offset(-35)],
+  });
+
   const lidVariants: Variants = {
     closed: {
       rotateY: 0,
@@ -40,6 +49,46 @@ const Box: FC<BoxProps> = ({
       transition: {
         duration: 0.5,
         ease: 'backOut',
+      },
+    },
+  };
+
+  const buttonVariants: Variants = {
+    default: {
+      marginTop: 5,
+      translateZ: width / 2 + thickness,
+      transition: {
+        duration: 0.1,
+      },
+    },
+    pressed: {
+      marginTop: 0,
+      transition: {
+        duration: 0.1,
+      },
+    },
+  };
+
+  const tooltipVariants: Variants = {
+    hidden: {
+      opacity: 0,
+      marginTop: 0,
+      transition: {
+        duration: 0.1,
+      },
+    },
+    visible: {
+      opacity: 1,
+      marginTop: 0,
+      transition: {
+        duration: 0.1,
+      },
+    },
+    pressed: {
+      opacity: 1,
+      marginTop: -5,
+      transition: {
+        duration: 0.1,
       },
     },
   };
@@ -155,6 +204,44 @@ const Box: FC<BoxProps> = ({
           transform: `rotateX(270deg) translateZ(${height / 2}px)`,
         }}
       />
+      <button
+        ref={reference}
+        className="flex flex-col items-center relative h-[85px] w-[85px]"
+        style={{
+          transform: `rotateY(0deg) translateZ(${width / 2 + thickness}px)`,
+        }}
+        onClick={buttonCallback}
+        onMouseOver={() => tooltipControls.start('visible')}
+        onMouseLeave={() => tooltipControls.start('hidden')}
+      >
+        <div className="bg-[#983D01] w-[80px] h-[80px] absolute rounded-full" />
+        <motion.div
+          initial="default"
+          variants={buttonVariants}
+          whileTap="pressed"
+          className="flex items-center justify-center w-[80px] h-[80px] bg-hot-orange rounded-full absolute"
+        >
+          <CoolblueLogo width={width / 4} height={height / 4} />
+        </motion.div>
+      </button>
+      <motion.div
+        animate={tooltipControls}
+        variants={tooltipVariants}
+        initial="hidden"
+        exit="hidden"
+        transition={{ duration: 0.2 }}
+        ref={floating}
+        className="bg-cool-black text-white text-opacity-100 rounded-[4px] text-[12px] py-2 px-3"
+        style={{
+          position: strategy,
+          top: y ?? 0,
+          left: x ?? 0,
+          width: 'max-content',
+          transform: `translateZ(${width / 2 + thickness}px)`,
+        }}
+      >
+        Click me to start
+      </motion.div>
     </motion.div>
   );
 };

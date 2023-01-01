@@ -1,4 +1,4 @@
-import { ComponentProps } from 'react';
+import { ComponentProps, useState } from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 
 import Box from '.';
@@ -63,21 +63,20 @@ export default {
   },
 } as ComponentMeta<typeof Box>;
 
-const defaultProps: ComponentProps<typeof Box> = {
-  open: false,
-  rotate: false,
-};
+const Template: ComponentStory<typeof Box> = (args) => {
+  const [open, setOpen] = useState(false);
 
-const Template: ComponentStory<typeof Box> = (args) => (
-  <div
-    style={{
-      perspective: '750px',
-      perspectiveOrigin: '50% calc(50% - 200px)',
-    }}
-  >
-    <Box {...defaultProps} {...args} />
-  </div>
-);
+  return (
+    <div
+      style={{
+        perspective: '750px',
+        perspectiveOrigin: '50% calc(50% - 200px)',
+      }}
+    >
+      <Box {...args} open={open} buttonCallback={() => setOpen((o) => !o)} />
+    </div>
+  );
+};
 
 export const Primary = Template.bind({});
 Primary.storyName = 'Default';
