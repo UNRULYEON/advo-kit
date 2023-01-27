@@ -11,14 +11,14 @@ const KitBox = () => {
 
   const boxVariants: Variants = {
     closed: {
-      z: 0,
+      z: 200,
       y: 0,
       transition: {
         duration: 0.5,
       },
     },
     open: {
-      z: 600,
+      z: 625,
       y: 60,
       transition: {
         duration: 0.25,

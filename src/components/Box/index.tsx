@@ -111,21 +111,21 @@ const Box: FC<BoxProps> = ({
       height: height,
       scale: 0.6,
       y: 0,
+      z: 0,
     },
     visible: {
-      y: -250,
+      y: -275,
+      z: 100,
     },
   };
 
   useEffect(() => {
     if (open) {
-      lidControls.start('open').then(() => {
-        deckControls.start('visible');
-      });
+      lidControls.start('open');
+      deckControls.start('visible');
     } else {
-      deckControls.start('hidden').then(() => {
-        lidControls.start('closed');
-      });
+      deckControls.start('hidden');
+      lidControls.start('closed');
     }
   });
 
