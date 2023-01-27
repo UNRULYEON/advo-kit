@@ -4,14 +4,14 @@ import Loader from '@components/Loader';
 import { AnimatePresence, motion } from 'framer-motion';
 
 type Context = {
-  kits: Kit[] | null;
-  currentKit: Kit | null;
+  kits: Kit[];
+  currentKit: Kit;
   setCurrentKit: React.Dispatch<React.SetStateAction<Kit | null>>;
 };
 
 const initialContext: Context = {
-  kits: null,
-  currentKit: null,
+  kits: [],
+  currentKit: { id: '', name: '', cards: [] },
   setCurrentKit: () => {},
 };
 
@@ -22,8 +22,8 @@ type KitContextProps = {
 };
 
 const KitContext: FC<KitContextProps> = ({ children }) => {
-  const [kits, setKits] = useState<Kit[] | null>(initialContext.kits);
-  const [currentKit, setCurrentKit] = useState<Kit | null>(initialContext.currentKit);
+  const [kits, setKits] = useState<Kit[] | null>(null);
+  const [currentKit, setCurrentKit] = useState<Kit | null>(null);
 
   useEffect(() => {
     const fetchKits = async () => {
@@ -38,7 +38,7 @@ const KitContext: FC<KitContextProps> = ({ children }) => {
 
   return (
     <AnimatePresence mode="wait">
-      {kits && (
+      {kits && currentKit && (
         <motion.div
           key="yes-kit"
           className="w-full h-full"
@@ -58,7 +58,7 @@ const KitContext: FC<KitContextProps> = ({ children }) => {
           </Context.Provider>
         </motion.div>
       )}
-      {!kits && (
+      {(!kits || !currentKit) && (
         <motion.div
           key="no-kit"
           className="flex items-center justify-center w-full h-full"
