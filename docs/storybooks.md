@@ -5,7 +5,7 @@
 ## Running Storybooks
 
 1. Make sure you've followed [Getting started](../README.md#getting-started)
-2. Run `yarn storybooks` to run Storybooks
+2. Run `yarn sb` to run Storybooks
 
 ## Create a new Storybook
 

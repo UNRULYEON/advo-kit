@@ -8,8 +8,8 @@
     "build": "tsc && vite build",
     "preview": "vite preview",
     "vercel": "vercel dev",
-    "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook",
+    "sb": "start-storybook -p 6006",
+    "build-sb": "build-storybook",
     "prepare": "husky install"
   },
   "dependencies": {
