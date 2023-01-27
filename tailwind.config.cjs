@@ -21,6 +21,7 @@ module.exports = {
         'evening-blue': '#1E4680',
         silver: '#BBBBBB',
         gray: '#DDDDDD',
+        brightgrey: '#eee',
       },
     },
   },
