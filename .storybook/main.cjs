@@ -32,6 +32,7 @@ module.exports = {
         alias({
           entries: {
             '@components': path.resolve(__dirname, '../src/components'),
+            '@hooks': path.resolve(__dirname, '../src/hooks'),
             '@icons': path.resolve(__dirname, '../src/icons'),
             '@utils': path.resolve(__dirname, '../src/utils'),
             '@kits': path.resolve(__dirname, '../src/kits.ts'),

@@ -1,10 +1,13 @@
-import { FC, useEffect, useState } from 'react';
+import { FC, useEffect, useRef } from 'react';
 import Rectangle from '@components/Rectangle';
 import CoolblueLogo from '@components/CoolblueLogo';
-import { AnimatePresence, motion, useAnimationControls, Variants } from 'framer-motion';
+import { motion, useAnimationControls, Variants } from 'framer-motion';
 import { useFloating, offset } from '@floating-ui/react';
 import hexToRgba from '@utils/hexToRGBA';
 import './Box.css';
+import { Kit } from '@kits';
+import Card from '@components/Card';
+import useOnClickOutside from '@hooks/useOnClickOutside';
 
 type BoxProps = {
   width?: number;
@@ -16,6 +19,7 @@ type BoxProps = {
   buttonColor?: string;
   opacity?: number;
   rotate?: boolean;
+  kit?: Kit;
 };
 
 const Box: FC<BoxProps> = ({
@@ -28,12 +32,20 @@ const Box: FC<BoxProps> = ({
   buttonColor,
   opacity = 1,
   rotate = false,
+  kit,
 }) => {
+  const boxRef = useRef<HTMLDivElement | null>(null);
   const boxControls = useAnimationControls();
   const lidControls = useAnimationControls();
   const tooltipControls = useAnimationControls();
+  const deckControls = useAnimationControls();
   const { x, y, reference, floating, strategy } = useFloating({
     middleware: [offset(-35)],
+  });
+  useOnClickOutside(boxRef, () => {
+    if (open) {
+      buttonCallback();
+    }
   });
 
   const lidVariants: Variants = {
@@ -93,10 +105,26 @@ const Box: FC<BoxProps> = ({
     },
   };
 
+  const deckVariants: Variants = {
+    hidden: {
+      width: width,
+      height: height,
+      scale: 0.6,
+      y: 0,
+      z: 0,
+    },
+    visible: {
+      y: -275,
+      z: 100,
+    },
+  };
+
   useEffect(() => {
     if (open) {
       lidControls.start('open');
+      deckControls.start('visible');
     } else {
+      deckControls.start('hidden');
       lidControls.start('closed');
     }
   });
@@ -106,6 +134,7 @@ const Box: FC<BoxProps> = ({
 
   return (
     <motion.div
+      ref={boxRef}
       className="scene flex items-center justify-center relative"
       style={{
         width: width,
@@ -166,6 +195,25 @@ const Box: FC<BoxProps> = ({
           transform: `rotateY(270deg) translateZ(${width / 2}px)`,
         }}
       />
+      {/* Cards */}
+      {kit && (
+        <motion.div
+          className={`absolute`}
+          variants={deckVariants}
+          animate={deckControls}
+          initial="hidden"
+          transition={{
+            type: 'spring',
+            bounce: 0.2,
+          }}
+        >
+          <div className="relative w-full h-full ">
+            {kit.cards.map(({ question }) => (
+              <Card key={question} question={question} className="absolute" />
+            ))}
+          </div>
+        </motion.div>
+      )}
       {/* Top */}
       <Rectangle
         width={width}
