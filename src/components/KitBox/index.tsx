@@ -38,13 +38,21 @@ const KitBox = () => {
 
   return (
     <div
+      className="grid w-full h-full"
       style={{
+        gridTemplateColumns: '1fr 500px 1fr',
         marginTop: '200px',
         perspective: '1000px',
         perspectiveOrigin: '50% calc(50% - 225px)',
       }}
     >
+      <div
+        onClick={() => {
+          if (open) handleOnBoxButtonClick();
+        }}
+      />
       <motion.div
+        className="place-self-center"
         animate={boxControls}
         variants={boxVariants}
         style={{
@@ -53,6 +61,11 @@ const KitBox = () => {
       >
         <Box open={open} buttonCallback={handleOnBoxButtonClick} boxColor="#0090E3" kit={currentKit} />
       </motion.div>
+      <div
+        onClick={() => {
+          if (open) handleOnBoxButtonClick();
+        }}
+      />
     </div>
   );
 };

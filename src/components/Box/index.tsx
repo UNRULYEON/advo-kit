@@ -7,7 +7,6 @@ import hexToRgba from '@utils/hexToRGBA';
 import './Box.css';
 import { Kit, Card as CardType } from '@kits';
 import Card from '@components/Card';
-import useOnClickOutside from '@hooks/useOnClickOutside';
 
 function shuffle<T>(arr: T[]): T[] {
   const tempArr: T[] = [...arr];
@@ -57,10 +56,6 @@ const Box: FC<BoxProps> = ({
   const [cardsShuffled, setCardsShuffled] = useState<CardType[]>(
     kit ? [{ question: "You've reached the end! Click to start over." }, ...shuffle(kit.cards)] : []
   );
-
-  useOnClickOutside(boxRef, () => {
-    if (open) buttonCallback();
-  });
 
   const lidVariants: Variants = {
     closed: {
