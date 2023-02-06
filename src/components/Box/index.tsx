@@ -1,13 +1,24 @@
-import { FC, useEffect, useRef } from 'react';
+import { FC, useEffect, useRef, useState } from 'react';
 import Rectangle from '@components/Rectangle';
 import CoolblueLogo from '@components/CoolblueLogo';
 import { motion, useAnimationControls, Variants } from 'framer-motion';
 import { useFloating, offset } from '@floating-ui/react';
 import hexToRgba from '@utils/hexToRGBA';
 import './Box.css';
-import { Kit } from '@kits';
+import { Kit, Card as CardType } from '@kits';
 import Card from '@components/Card';
 import useOnClickOutside from '@hooks/useOnClickOutside';
+
+function shuffle<T>(arr: T[]): T[] {
+  const tempArr: T[] = [...arr];
+
+  for (let i = tempArr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [tempArr[i], tempArr[j]] = [tempArr[j], tempArr[i]];
+  }
+
+  return tempArr;
+}
 
 type BoxProps = {
   width?: number;
@@ -42,10 +53,13 @@ const Box: FC<BoxProps> = ({
   const { x, y, reference, floating, strategy } = useFloating({
     middleware: [offset(-35)],
   });
+
+  const [cardsShuffled, setCardsShuffled] = useState<CardType[]>(
+    kit ? [{ question: "You've reached the end! Click to start over." }, ...shuffle(kit.cards)] : []
+  );
+
   useOnClickOutside(boxRef, () => {
-    if (open) {
-      buttonCallback();
-    }
+    if (open) buttonCallback();
   });
 
   const lidVariants: Variants = {
@@ -129,6 +143,18 @@ const Box: FC<BoxProps> = ({
     }
   });
 
+  const moveCardToBack = (question: string) => {
+    setCardsShuffled((oc) => {
+      const newDeck = [...oc];
+      const cardToMoveIndex = newDeck.findIndex((c) => c.question === question);
+      const cardToMove = newDeck[cardToMoveIndex];
+      newDeck.splice(cardToMoveIndex, 1);
+      const reorderedDeck = [cardToMove, ...newDeck];
+
+      return reorderedDeck;
+    });
+  };
+
   const rgba = boxColor && hexToRgba(boxColor);
   const innerShadowBottom = rgba && `rgba(${rgba.r + 28}, ${rgba.g - 88}, ${rgba.b - 128}, ${opacity - 0.2})`;
 
@@ -196,7 +222,7 @@ const Box: FC<BoxProps> = ({
         }}
       />
       {/* Cards */}
-      {kit && (
+      {cardsShuffled.length > 0 && (
         <motion.div
           className={`absolute`}
           variants={deckVariants}
@@ -208,8 +234,14 @@ const Box: FC<BoxProps> = ({
           }}
         >
           <div className="relative w-full h-full ">
-            {kit.cards.map(({ question }) => (
-              <Card key={question} question={question} className="absolute" />
+            {cardsShuffled.map(({ question }, i) => (
+              <Card
+                key={question}
+                question={question}
+                first={i === cardsShuffled.length - 1}
+                className="absolute"
+                moveCardToBack={moveCardToBack}
+              />
             ))}
           </div>
         </motion.div>
