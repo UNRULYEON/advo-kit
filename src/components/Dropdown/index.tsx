@@ -1,6 +1,7 @@
-import { FC, useState } from 'react';
+import { FC, useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import ArrowDown from '@icons/ArrowDownIcon';
+import useOnClickOutside from '@hooks/useOnClickOutside';
 
 export type Item = {
   id: string;
@@ -24,6 +25,9 @@ const Dropdown: FC<DropdownProps> = ({
   handleOnClick,
 }) => {
   const [active, setActive] = useState<boolean>(activeProps);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useOnClickOutside(ref, () => setActive(false));
 
   const handleOnItemClick = (item: Item) => {
     handleOnClick(item);
@@ -31,7 +35,7 @@ const Dropdown: FC<DropdownProps> = ({
   };
 
   return (
-    <div className="relative">
+    <div className="relative" ref={ref}>
       <div
         className={`transition h-10 px-2 flex bg-white items-center border border-gray rounded select-none hover:cursor-pointer hover:border-coolblue ${
           active && 'border-coolblue'
