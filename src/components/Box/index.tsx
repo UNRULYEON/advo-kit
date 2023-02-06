@@ -42,7 +42,7 @@ const Box: FC<BoxProps> = ({
   boxColor,
   buttonColor,
   opacity = 1,
-  rotate = true,
+  rotate = false,
   kit,
 }) => {
   const boxRef = useRef<HTMLDivElement | null>(null);
