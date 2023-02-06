@@ -8,7 +8,7 @@ type InputProps = {
 const Input: FC<InputProps> = ({ leadingIcon, trailingIcon, ...rest }) => {
   const Component = (
     <input
-      className={`transition h-10 w-full px-4 border border-gray rounded hover:border-coolblue focus:border-coolblue focus:caret-coolblue ${
+      className={`transition h-10 w-full px-4 border border-gray rounded hover:border-coolblue focus:border-coolblue focus:caret-coolblue focus:outline-none ${
         leadingIcon && 'pl-10'
       } ${trailingIcon && 'pr-10'}`}
       {...rest}
