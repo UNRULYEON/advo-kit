@@ -65,8 +65,13 @@ const Card: FC<CardProps> = ({ question, first, className, moveCardToBack, style
 
   return (
     <motion.div
-      className={`font-[Poppins] font-bold text-[20px] leading-[26px] tracking-[-0.02em] bg-white w-[200px] h-[300px] p-4 rounded-lg flex content-end select-none ${className}`}
-      style={{ ...style }}
+      className={`text-center justify-center items-center text-navy font-[Poppins] font-bold text-[19px] leading-[25px] tracking-[-0.02em] p-[23px] bg-white w-[200px] h-[300px] rounded-lg flex content-end select-none ${className}`}
+      style={{
+        backgroundImage: 'url(/background.svg)',
+        backgroundRepeat: 'no-repeat',
+        backgroundPosition: 'center',
+        ...style,
+      }}
       variants={cardVariants}
       animate={cardControls}
       whileTap={{ scale: 0.95 }}
