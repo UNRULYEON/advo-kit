@@ -93,7 +93,7 @@ type DropdownItemProps = {
 const DropdownItem: FC<DropdownItemProps> = ({ item, isCurrent, disabled, onClick }) => {
   return (
     <div
-      className={`transition h-10 text-sm flex items-center px-[10px] ${
+      className={`transition h-10 text-[13px] flex items-center px-[10px] ${
         disabled ? 'text-silver' : 'hover:cursor-pointer hover:bg-gray-blue'
       } ${isCurrent ? 'text-coolblue' : 'text-cool-black'}`}
       onClick={() => !disabled && onClick()}
