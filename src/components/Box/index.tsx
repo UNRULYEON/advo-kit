@@ -42,7 +42,7 @@ const Box: FC<BoxProps> = ({
   boxColor,
   buttonColor,
   opacity = 1,
-  rotate = false,
+  rotate = true,
   kit,
 }) => {
   const boxRef = useRef<HTMLDivElement | null>(null);
@@ -260,6 +260,7 @@ const Box: FC<BoxProps> = ({
           transformStyle: 'preserve-3d',
           transformOrigin: 'bottom center',
         }}
+        lid
       />
       {/* Inside shadow */}
       <Rectangle
