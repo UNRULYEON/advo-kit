@@ -13,6 +13,7 @@ export default {
 
 const defaultProps: ComponentProps<typeof Card> = {
   question: 'Does this meet all functional requirements?',
+  first: false,
 };
 
 const Template: ComponentStory<typeof Card> = (args) => <Card {...defaultProps} {...args} />;
