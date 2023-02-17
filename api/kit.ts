@@ -34,6 +34,132 @@ const kits = [
       },
     ],
   },
+  {
+    id: 'demo-kit-1',
+    name: 'Demo Kit 1',
+    cards: [
+      {
+        question: 'Question 1',
+      },
+      {
+        question: 'Question 2',
+      },
+      {
+        question: 'Question 3',
+      },
+      {
+        question: 'Question 4',
+      },
+      {
+        question: 'Question 5',
+      },
+      {
+        question: 'Question 6',
+      },
+      {
+        question: 'Question 7',
+      },
+      {
+        question: 'Question 8',
+      },
+      {
+        question: 'Question 9',
+      },
+      {
+        question: 'Question 10',
+      },
+      {
+        question: 'Question 11',
+      },
+      {
+        question: 'Question 12',
+      },
+    ],
+  },
+  {
+    id: 'demo-kit-2',
+    name: 'Demo Kit 2',
+    cards: [
+      {
+        question: 'Question 1',
+      },
+      {
+        question: 'Question 2',
+      },
+      {
+        question: 'Question 3',
+      },
+      {
+        question: 'Question 4',
+      },
+      {
+        question: 'Question 5',
+      },
+      {
+        question: 'Question 6',
+      },
+      {
+        question: 'Question 7',
+      },
+      {
+        question: 'Question 8',
+      },
+      {
+        question: 'Question 9',
+      },
+      {
+        question: 'Question 10',
+      },
+      {
+        question: 'Question 11',
+      },
+      {
+        question: 'Question 12',
+      },
+    ],
+  },
+  {
+    id: 'demo-kit-3',
+    name: 'Demo Kit 3',
+    cards: [
+      {
+        question: 'Question 1',
+      },
+      {
+        question: 'Question 2',
+      },
+      {
+        question: 'Question 3',
+      },
+      {
+        question: 'Question 4',
+      },
+      {
+        question: 'Question 5',
+      },
+      {
+        question: 'Question 6',
+      },
+      {
+        question: 'Question 7',
+      },
+      {
+        question: 'Question 8',
+      },
+      {
+        question: 'Question 9',
+      },
+      {
+        question: 'Question 10',
+      },
+      {
+        question: 'Question 11',
+      },
+      {
+        question: 'Question 12',
+      },
+    ],
+  },
 ];
 
 export default function handler(_: NextApiRequest, response: NextApiResponse) {

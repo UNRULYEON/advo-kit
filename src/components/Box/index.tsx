@@ -53,9 +53,22 @@ const Box: FC<BoxProps> = ({
     middleware: [offset(-35)],
   });
 
-  const [cardsShuffled, setCardsShuffled] = useState<CardType[]>(
-    kit ? [{ question: "You've reached the end! Click to start over." }, ...shuffle(kit.cards)] : []
-  );
+  const [cardsShuffled, setCardsShuffled] = useState<CardType[]>([]);
+
+  useEffect(() => {
+    if (kit) {
+      setCardsShuffled([{ question: "You've reached the end! Click to start over." }, ...shuffle(kit.cards)]);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (kit) {
+      deckControls.start('hidden').then(() => {
+        setCardsShuffled([{ question: "You've reached the end! Click to start over." }, ...shuffle(kit.cards)]);
+        deckControls.start('visible');
+      });
+    }
+  }, [kit]);
 
   const lidVariants: Variants = {
     closed: {
@@ -136,7 +149,7 @@ const Box: FC<BoxProps> = ({
       deckControls.start('hidden');
       lidControls.start('closed');
     }
-  });
+  }, [open]);
 
   const moveCardToBack = (question: string) => {
     setCardsShuffled((oc) => {
