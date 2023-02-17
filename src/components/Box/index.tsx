@@ -66,7 +66,7 @@ const Box: FC<BoxProps> = ({
       translateZ: -(width / 2 + thickness),
     },
     open: {
-      rotateX: -15,
+      rotateX: -30,
       transition: {
         duration: 0.5,
         ease: 'backOut',
