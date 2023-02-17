@@ -55,18 +55,26 @@ const Box: FC<BoxProps> = ({
 
   const [cardsShuffled, setCardsShuffled] = useState<CardType[]>([]);
 
+  const shuffleDeck = () => {
+    setCardsShuffled([{ question: "You've reached the end! Click to start over." }, ...shuffle(kit!.cards)]);
+  };
+
   useEffect(() => {
     if (kit) {
-      setCardsShuffled([{ question: "You've reached the end! Click to start over." }, ...shuffle(kit.cards)]);
+      shuffleDeck();
     }
   }, []);
 
   useEffect(() => {
     if (kit) {
-      deckControls.start('hidden').then(() => {
-        setCardsShuffled([{ question: "You've reached the end! Click to start over." }, ...shuffle(kit.cards)]);
-        deckControls.start('visible');
-      });
+      if (open) {
+        deckControls.start('hidden').then(() => {
+          shuffleDeck();
+          deckControls.start('visible');
+        });
+      } else {
+        shuffleDeck();
+      }
     }
   }, [kit]);
 
