@@ -15,7 +15,7 @@
   "postCreateCommand": "yarn install && yarn global add vercel",
   "customizations": {
     "vscode": {
-      "extensions": ["bradlc.vscode-tailwindcss"]
+      "extensions": ["bradlc.vscode-tailwindcss", "esbenp.prettier-vscode"]
     }
   }
   // Configure tool-specific properties.
