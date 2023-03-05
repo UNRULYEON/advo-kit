@@ -9,7 +9,7 @@ type MenuProps = {
   active?: boolean;
 };
 
-const Menu: FC<MenuProps> = ({ active: activeProps = false }) => {
+const KitMenu: FC<MenuProps> = ({ active: activeProps = false }) => {
   const [active, setActive] = useState<boolean>(activeProps);
   const [query, setQuery] = useState<string>('');
   const { currentKit } = useKitContext();
@@ -59,4 +59,4 @@ const Menu: FC<MenuProps> = ({ active: activeProps = false }) => {
   );
 };
 
-export default Menu;
+export default KitMenu;

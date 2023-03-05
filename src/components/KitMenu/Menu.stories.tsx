@@ -1,14 +1,14 @@
 import { ComponentProps } from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 
-import Menu from '.';
+import KitMenu from '.';
 
 export default {
   title: 'Menu',
-  component: Menu,
-} as ComponentMeta<typeof Menu>;
+  component: KitMenu,
+} as ComponentMeta<typeof KitMenu>;
 
-const defaultProps: ComponentProps<typeof Menu> = {};
+const defaultProps: ComponentProps<typeof KitMenu> = {};
 
 const AlignBottom = ({ children }: { children: React.ReactNode }) => (
   <div className="flex flex-col justify-end" style={{ height: 'calc(100vh - 32px)' }}>
@@ -16,9 +16,9 @@ const AlignBottom = ({ children }: { children: React.ReactNode }) => (
   </div>
 );
 
-const Template: ComponentStory<typeof Menu> = (args) => (
+const Template: ComponentStory<typeof KitMenu> = (args) => (
   <AlignBottom>
-    <Menu {...defaultProps} {...args} />
+    <KitMenu {...defaultProps} {...args} />
   </AlignBottom>
 );
 
