@@ -1,9 +1,10 @@
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, clamp, motion } from 'framer-motion';
 import { FC, useEffect, useState } from 'react';
 import MenuIcon from '@icons/MenuIcon';
 import SearchIcon from '@icons/SearchIcon';
 import Input from '../Input';
 import { useKitContext } from '@components/KitContext';
+import { Card } from '@kits';
 
 type MenuProps = {
   active?: boolean;
@@ -12,11 +13,40 @@ type MenuProps = {
 const KitMenu: FC<MenuProps> = ({ active: activeProps = false }) => {
   const [active, setActive] = useState<boolean>(activeProps);
   const [query, setQuery] = useState<string>('');
-  const { currentKit } = useKitContext();
+  const [allSelected, setAllSelected] = useState<boolean>(true);
+  const { currentKit, currentCardSelection, setCurrentCardSelection } = useKitContext();
 
   useEffect(() => {
     if (active) setQuery('');
   }, [active]);
+
+  useEffect(() => {
+    setAllSelected(true);
+    setCurrentCardSelection(currentKit.cards);
+  }, [currentKit]);
+
+  const handleOnChangeCard = (card: Card) => {
+    const state = currentCardSelection.includes(card);
+    let newCss: Card[] = [];
+
+    setCurrentCardSelection((css) => {
+      newCss = state ? css.filter((c) => c.question !== card.question) : [...css, card];
+
+      return newCss;
+    });
+    setAllSelected((_) => newCss.length === currentKit.cards.length);
+  };
+
+  const handleAllSelection = () => {
+    let state: boolean = false;
+    if (allSelected) {
+      setAllSelected(false);
+      setCurrentCardSelection([]);
+    } else {
+      setAllSelected(true);
+      setCurrentCardSelection(currentKit.cards);
+    }
+  };
 
   const filtered = currentKit.cards.filter((card) => card.question.toLowerCase().includes(query));
 
@@ -39,10 +69,26 @@ const KitMenu: FC<MenuProps> = ({ active: activeProps = false }) => {
               trailingIcon={<SearchIcon className="fill-coolblue" />}
               autoFocus
             />
+            <button
+              className="text-coolblue font-bold text-[14px] self-start mt-2 hover:underline"
+              onClick={handleAllSelection}
+            >
+              {allSelected ? 'Deselect all' : 'Select all'}
+            </button>
             <div className="overflow-auto h-fill-available">
               {filtered.map((card) => (
-                <div key={card.question} className="text-[14px] leading-[16px] tracking-[-0.019em] py-[12px]">
-                  {card.question}
+                <div key={card.question} className="flex gap-3 items-start select-none py-[12px]">
+                  <input
+                    type="checkbox"
+                    id={card.question}
+                    name={card.question}
+                    value={card.question}
+                    checked={currentCardSelection.includes(card)}
+                    onChange={() => handleOnChangeCard(card)}
+                  />
+                  <label className="text-[14px] leading-[16px] tracking-[-0.019em]" htmlFor={card.question}>
+                    {card.question}
+                  </label>
                 </div>
               ))}
             </div>

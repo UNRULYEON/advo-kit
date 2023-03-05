@@ -37,3 +37,50 @@ a {
   font-family: 'Open Sans';
   color: #0090e3;
 }
+
+input[type='checkbox'] {
+  /* Add if not using autoprefixer */
+  -webkit-appearance: none;
+  appearance: none;
+  /* For iOS < 15 to remove gradient background */
+  background-color: #fff;
+  /* Not removed via appearance */
+  margin: 0;
+  font: inherit;
+  color: white;
+
+  min-width: 16px;
+  min-height: 16px;
+  width: 16px;
+  height: 16px;
+  border: 1px solid #bbbbbb;
+  border-radius: 4px;
+
+  display: grid;
+  place-content: center;
+}
+
+input[type='checkbox']::before {
+  content: '';
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
+  transform: scale(0);
+  border: 0px solid #bbbbbb;
+
+  display: flex;
+}
+
+input[type='checkbox']:checked::before {
+  transform: scale(1);
+  transform-origin: center;
+
+  background-image: url(/checkmark.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+input[type='checkbox']:focus {
+  outline: max(2px, 0.15em) solid #0090e3;
+  outline-offset: max(2px, 0.15em);
+}

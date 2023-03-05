@@ -7,6 +7,7 @@ import hexToRgba from '@utils/hexToRGBA';
 import './Box.css';
 import { Kit, Card as CardType } from '@kits';
 import Card from '@components/Card';
+import { useKitContext } from '@components/KitContext';
 
 function shuffle<T>(arr: T[]): T[] {
   const tempArr: T[] = [...arr];
@@ -44,6 +45,7 @@ const Box: FC<BoxProps> = ({
   rotate = false,
   kit,
 }) => {
+  const { currentCardSelection } = useKitContext();
   const boxRef = useRef<HTMLDivElement | null>(null);
   const boxControls = useAnimationControls();
   const lidControls = useAnimationControls();
@@ -77,6 +79,17 @@ const Box: FC<BoxProps> = ({
       }
     }
   }, [kit]);
+
+  useEffect(() => {
+    setCardsShuffled((_) =>
+      shuffle(
+        [
+          ...(kit?.cards?.filter((c) => currentCardSelection.includes(c)) || []),
+          { question: "You've reached the end! Click to start over." },
+        ] || [{ question: "You've reached the end! Click to start over." }]
+      )
+    );
+  }, [currentCardSelection]);
 
   const lidVariants: Variants = {
     closed: {
@@ -257,6 +270,7 @@ const Box: FC<BoxProps> = ({
                 first={i === cardsShuffled.length - 1}
                 className="absolute"
                 moveCardToBack={moveCardToBack}
+                allowToMoveBack={cardsShuffled.length > 1}
               />
             ))}
           </div>

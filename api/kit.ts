@@ -158,6 +158,21 @@ const kits = [
       {
         question: 'Question 12',
       },
+      {
+        question: 'Question 13',
+      },
+      {
+        question: 'Question 14',
+      },
+      {
+        question: 'Question 15',
+      },
+      {
+        question: 'Question 16',
+      },
+      {
+        question: 'Question 17',
+      },
     ],
   },
 ];

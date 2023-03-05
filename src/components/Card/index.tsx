@@ -6,10 +6,11 @@ type CardProps = {
   first: boolean;
   className?: string;
   moveCardToBack?: (question: string) => void;
+  allowToMoveBack?: boolean;
   style?: React.CSSProperties;
 };
 
-const Card: FC<CardProps> = ({ question, first, className, moveCardToBack, style }) => {
+const Card: FC<CardProps> = ({ question, first, className, moveCardToBack, allowToMoveBack, style }) => {
   const cardControls = useAnimationControls();
 
   const cardVariants: Variants = {
@@ -49,7 +50,7 @@ const Card: FC<CardProps> = ({ question, first, className, moveCardToBack, style
   };
 
   const handleOnClick = async () => {
-    if (!moveCardToBack) return;
+    if (!moveCardToBack || !allowToMoveBack) return;
 
     await cardControls.start('to-side');
     await cardControls.start('to-back');
