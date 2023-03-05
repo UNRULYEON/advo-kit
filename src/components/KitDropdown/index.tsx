@@ -1,4 +1,4 @@
-import Dialog from '@components/Dialog';
+import Dialog, { DialogContent, DialogTitle } from '@components/Dialog';
 import Dropdown, { Item } from '@components/Dropdown';
 import { useKitContext } from '@components/KitContext';
 import { useState } from 'react';
@@ -42,7 +42,18 @@ const KitDropdown = () => {
         items={[...kitItems, requestFeature]}
       />
       <Dialog open={requestFeatureDialogOpen} HandleCloseDialog={handleCloseDialog}>
-        Request a deck!
+        <DialogTitle closeDialog={handleCloseDialog}>Request a deck</DialogTitle>
+        <DialogContent>
+          Hey, can't find your deck?
+          <br />
+          <br />
+          Request your deck by sending an email to <a href="mailto:pim.beijers@coolblue.nl">pim.beijers@coolblue.nl</a>.
+          Tell us the name of the deck and provide a list of questions. And we'll make sure the deck will be added as
+          soon as possible.
+          <br />
+          <br />
+          With a smile!
+        </DialogContent>
       </Dialog>
     </>
   );
