@@ -1,8 +1,8 @@
 <svg width="188" height="288" viewBox="0 0 188 288" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<mask id="mask0_403_2531" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="188" height="288">
+<mask id="mask0_417_2011" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="188" height="288">
 <rect width="188" height="288" rx="4" fill="#F2F7FC"/>
 </mask>
-<g mask="url(#mask0_403_2531)">
+<g mask="url(#mask0_417_2011)">
 <rect width="94" height="94" fill="#F2F7FC"/>
 <rect width="94" height="94" fill="url(#pattern0)"/>
 <rect x="94" width="94" height="94" fill="#F2F7FC"/>
@@ -19,44 +19,44 @@
 <rect y="282" width="94" height="94" fill="url(#pattern6)"/>
 <rect x="94" y="282" width="94" height="94" fill="#F2F7FC"/>
 <rect x="94" y="282" width="94" height="94" fill="url(#pattern7)"/>
-<rect width="188" height="288" fill="url(#paint0_linear_403_2531)"/>
-<path d="M159.792 28.2642L153.263 34.7935" stroke="#FF6600" stroke-width="1.6"/>
-<path d="M159.792 34.7944L153.263 28.2651" stroke="#FF6600" stroke-width="1.6"/>
-<path d="M81.793 263.264L75.2637 269.793" stroke="#FF6600" stroke-width="1.6"/>
-<path d="M81.793 269.794L75.2637 263.265" stroke="#FF6600" stroke-width="1.6"/>
+<rect width="188" height="288" fill="url(#paint0_linear_417_2011)"/>
+<path d="M34.793 28.2642L28.2637 34.7935" stroke="#FF6600" stroke-width="1.6"/>
+<path d="M34.793 34.7944L28.2637 28.2651" stroke="#FF6600" stroke-width="1.6"/>
+<path d="M159.793 248.264L153.264 254.793" stroke="#FF6600" stroke-width="1.6"/>
+<path d="M159.793 254.794L153.264 248.265" stroke="#FF6600" stroke-width="1.6"/>
 </g>
 <defs>
 <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="0.333333" height="0.333333">
-<use xlink:href="#image0_403_2531" transform="scale(0.00416667)"/>
+<use xlink:href="#image0_417_2011" transform="scale(0.00416667)"/>
 </pattern>
 <pattern id="pattern1" patternContentUnits="objectBoundingBox" width="0.333333" height="0.333333">
-<use xlink:href="#image0_403_2531" transform="scale(0.00416667)"/>
+<use xlink:href="#image0_417_2011" transform="scale(0.00416667)"/>
 </pattern>
 <pattern id="pattern2" patternContentUnits="objectBoundingBox" width="0.333333" height="0.333333">
-<use xlink:href="#image0_403_2531" transform="scale(0.00416667)"/>
+<use xlink:href="#image0_417_2011" transform="scale(0.00416667)"/>
 </pattern>
 <pattern id="pattern3" patternContentUnits="objectBoundingBox" width="0.333333" height="0.333333">
-<use xlink:href="#image0_403_2531" transform="scale(0.00416667)"/>
+<use xlink:href="#image0_417_2011" transform="scale(0.00416667)"/>
 </pattern>
 <pattern id="pattern4" patternContentUnits="objectBoundingBox" width="0.333333" height="0.333333">
-<use xlink:href="#image0_403_2531" transform="scale(0.00416667)"/>
+<use xlink:href="#image0_417_2011" transform="scale(0.00416667)"/>
 </pattern>
 <pattern id="pattern5" patternContentUnits="objectBoundingBox" width="0.333333" height="0.333333">
-<use xlink:href="#image0_403_2531" transform="scale(0.00416667)"/>
+<use xlink:href="#image0_417_2011" transform="scale(0.00416667)"/>
 </pattern>
 <pattern id="pattern6" patternContentUnits="objectBoundingBox" width="0.333333" height="0.333333">
-<use xlink:href="#image0_403_2531" transform="scale(0.00416667)"/>
+<use xlink:href="#image0_417_2011" transform="scale(0.00416667)"/>
 </pattern>
 <pattern id="pattern7" patternContentUnits="objectBoundingBox" width="0.333333" height="0.333333">
-<use xlink:href="#image0_403_2531" transform="scale(0.00416667)"/>
+<use xlink:href="#image0_417_2011" transform="scale(0.00416667)"/>
 </pattern>
-<linearGradient id="paint0_linear_403_2531" x1="94" y1="0" x2="94" y2="288" gradientUnits="userSpaceOnUse">
+<linearGradient id="paint0_linear_417_2011" x1="94" y1="0" x2="94" y2="288" gradientUnits="userSpaceOnUse">
 <stop stop-color="#F2F7FC" stop-opacity="0"/>
 <stop offset="0.20006" stop-color="#F2F7FC" stop-opacity="0.647423"/>
 <stop offset="0.50101" stop-color="#F2F7FC"/>
 <stop offset="0.858661" stop-color="#F2F7FC" stop-opacity="0.48866"/>
 <stop offset="1" stop-color="#F2F7FC" stop-opacity="0"/>
 </linearGradient>
-<image id="image0_403_2531" width="80" height="80" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAABQCAYAAACOEfKtAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAI+SURBVHgB7d1BTttAFMbxN0OhQuqaCqmHaAVl3Z6k4SSFk5CepF0HovYQlSKyroQCkqd+aZzieGaYrOZJ/v82CbEtoU+eOMHfE+7ufhWk49zk/OTomyDpbvn4RUKYdj/73tZ2w3oHRO2Gp/xgL0KMioWnvGuay8HehNiTCq9ps3P6ZL54mATvbwZH8p6YDe/i9HjquhdSITZPTx8u3r35JSN0u3j45Lz/vvt6F54+374HnmmaO8s5NHI91vDUx9PjH+1DbwU+Dy9Kz0T9aHO7WF0J1to8pprJrM2m6IDZ8s97QY8uZwEAAAAAAAAAAAAwZvvcNpz9tnPb1YsB8+XjjVYoSgpNuo8/PPw5v199FQOcVKbhhRAm2xcyhabdok/7y1+dvX19LRVVDTBV3omFmGxJVS4/VV3CWt4p6SdmK2aVy0/Vl7DK9RPXj5l+nlRmIkCVDDHCSnjKTICqJERL4SlTAapciNbCUyY+Bz4XDg5CapvPbKvF1BmYutr2GCu+mwmwKLyOoRBNLOHsHIbxOZZXUtlLcxj6vL2wyODC8i9EqX0mmvwqF7vapq7OoWk+b8YRqqj+VU4K5zBicyx6bM3wzNhnDqObY9FjBP/t8wdVZjYAAAAAAAAAAACA0eO24VAqk0EzQbsqm5mNorrtGOTmWHrdmEHRx7np+cnRpYzYS3Ms2wBTLana5Z2aSuZY1ks4VzEbc3mnZI7FlfTzxi43x+J6/4xgg/CGUiEOrsKEF5foJ/YDJLy8WIh/AaA0w6zTr1PTAAAAAElFTkSuQmCC"/>
+<image id="image0_417_2011" width="80" height="80" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAABQCAYAAACOEfKtAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAI+SURBVHgB7d1BTttAFMbxN0OhQuqaCqmHaAVl3Z6k4SSFk5CepF0HovYQlSKyroQCkqd+aZzieGaYrOZJ/v82CbEtoU+eOMHfE+7ufhWk49zk/OTomyDpbvn4RUKYdj/73tZ2w3oHRO2Gp/xgL0KMioWnvGuay8HehNiTCq9ps3P6ZL54mATvbwZH8p6YDe/i9HjquhdSITZPTx8u3r35JSN0u3j45Lz/vvt6F54+374HnmmaO8s5NHI91vDUx9PjH+1DbwU+Dy9Kz0T9aHO7WF0J1to8pprJrM2m6IDZ8s97QY8uZwEAAAAAAAAAAAAwZvvcNpz9tnPb1YsB8+XjjVYoSgpNuo8/PPw5v199FQOcVKbhhRAm2xcyhabdok/7y1+dvX19LRVVDTBV3omFmGxJVS4/VV3CWt4p6SdmK2aVy0/Vl7DK9RPXj5l+nlRmIkCVDDHCSnjKTICqJERL4SlTAapciNbCUyY+Bz4XDg5CapvPbKvF1BmYutr2GCu+mwmwKLyOoRBNLOHsHIbxOZZXUtlLcxj6vL2wyODC8i9EqX0mmvwqF7vapq7OoWk+b8YRqqj+VU4K5zBicyx6bM3wzNhnDqObY9FjBP/t8wdVZjYAAAAAAAAAAACA0eO24VAqk0EzQbsqm5mNorrtGOTmWHrdmEHRx7np+cnRpYzYS3Ms2wBTLana5Z2aSuZY1ks4VzEbc3mnZI7FlfTzxi43x+J6/4xgg/CGUiEOrsKEF5foJ/YDJLy8WIh/AaA0w6zTr1PTAAAAAElFTkSuQmCC"/>
 </defs>
 </svg>
