@@ -4,6 +4,7 @@ import KitBox from '@components/KitBox';
 import KitContext from '@components/KitContext';
 import KitDropdown from '@components/KitDropdown';
 import KitMenu from '@components/KitMenu';
+import ResetPreferencesButton from '@components/ResetPreferencesButton';
 
 const App = () => {
   return (
@@ -20,10 +21,11 @@ const App = () => {
         <div className="flex-1 flex items-center justify-center">
           <KitBox />
         </div>
-        <div className="flex w-full p-3 lg:p-10 flex-col gap-2 sm:gap-0 sm:flex-row">
+        <div className="flex w-full p-3 lg:p-10 flex-col gap-2 sm:gap-0 sm:flex-row z-10">
           <div className="flex-1">
             <KitMenu />
           </div>
+          <ResetPreferencesButton />
         </div>
       </main>
     </KitContext>

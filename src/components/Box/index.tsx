@@ -45,7 +45,7 @@ const Box: FC<BoxProps> = ({
   rotate = false,
   kit,
 }) => {
-  const { currentCardSelection, firstLaunch, setFirstLaunchToFalse } = useKitContext();
+  const { currentCardSelection, firstLaunch, setFirstLaunch } = useKitContext();
   const boxRef = useRef<HTMLDivElement | null>(null);
   const boxControls = useAnimationControls();
   const lidControls = useAnimationControls();
@@ -173,7 +173,7 @@ const Box: FC<BoxProps> = ({
   }, [open]);
 
   const moveCardToBack = (question: string) => {
-    if (firstLaunch) setFirstLaunchToFalse();
+    if (firstLaunch) setFirstLaunch(false);
 
     setCardsShuffled((oc) => {
       const newDeck = [...oc];

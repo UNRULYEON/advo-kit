@@ -20,7 +20,7 @@ const initialContext: Context = {
   currentCardSelection: [],
   setCurrentCardSelection: () => {},
   firstLaunch: true,
-  setFirstLaunchToFalse: () => {},
+  setFirstLaunch: () => {},
 };
 
 const Context = createContext<Context>(initialContext);
@@ -33,7 +33,9 @@ const KitContext: FC<KitContextProps> = ({ children }) => {
   const [kits, setKits] = useState<Kit[] | null>(null);
   const [currentKit, setCurrentKit] = useState<Kit | null>(null);
   const [currentCardSelection, setCurrentCardSelection] = useState<Card[]>([]);
-  const [firstLaunch, setFirstLaunch] = useState<boolean>(JSON.parse(localStorage.getItem('first_launch') || 'true'));
+  const [firstLaunch, setFirstLaunchState] = useState<boolean>(
+    JSON.parse(localStorage.getItem('first_launch') || 'true')
+  );
 
   useEffect(() => {
     const fetchKits = async () => {
@@ -51,9 +53,9 @@ const KitContext: FC<KitContextProps> = ({ children }) => {
     if (currentKit) setCurrentCardSelection(currentKit.cards);
   }, [currentKit]);
 
-  const setFirstLaunchToFalse = () => {
-    setFirstLaunch(false);
-    localStorage.setItem('first_launch', 'false');
+  const setFirstLaunch = (value: boolean) => {
+    setFirstLaunchState(value);
+    localStorage.setItem('first_launch', `${value}`);
   };
 
   return (
@@ -75,7 +77,7 @@ const KitContext: FC<KitContextProps> = ({ children }) => {
               currentCardSelection,
               setCurrentCardSelection,
               firstLaunch,
-              setFirstLaunchToFalse,
+              setFirstLaunch,
             }}
           >
             {children}
