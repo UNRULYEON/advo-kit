@@ -5,7 +5,7 @@ import { motion, useAnimationControls, Variants } from 'framer-motion';
 import { useEffect, useState } from 'react';
 
 const KitBox = () => {
-  const { currentKit } = useKitContext();
+  const { currentKit, firstLaunch, setFirstLaunchToFalse } = useKitContext();
   const [open, setOpen] = useState(false);
   const boxControls = useAnimationControls();
 
@@ -34,7 +34,13 @@ const KitBox = () => {
     }
   }, [open]);
 
-  const handleOnBoxButtonClick = () => setOpen((s) => !s);
+  const handleOnBoxButtonClick = () => {
+    if (firstLaunch && open) {
+      setFirstLaunchToFalse();
+    }
+
+    setOpen((s) => !s);
+  };
 
   return (
     <div

@@ -9,6 +9,8 @@ type Context = {
   setCurrentKit: React.Dispatch<React.SetStateAction<Kit | null>>;
   currentCardSelection: Card[];
   setCurrentCardSelection: React.Dispatch<React.SetStateAction<Card[]>>;
+  firstLaunch: boolean;
+  setFirstLaunchToFalse: () => void;
 };
 
 const initialContext: Context = {
@@ -17,6 +19,8 @@ const initialContext: Context = {
   setCurrentKit: () => {},
   currentCardSelection: [],
   setCurrentCardSelection: () => {},
+  firstLaunch: true,
+  setFirstLaunchToFalse: () => {},
 };
 
 const Context = createContext<Context>(initialContext);
@@ -29,6 +33,7 @@ const KitContext: FC<KitContextProps> = ({ children }) => {
   const [kits, setKits] = useState<Kit[] | null>(null);
   const [currentKit, setCurrentKit] = useState<Kit | null>(null);
   const [currentCardSelection, setCurrentCardSelection] = useState<Card[]>([]);
+  const [firstLaunch, setFirstLaunch] = useState<boolean>(JSON.parse(localStorage.getItem('first_launch') || 'true'));
 
   useEffect(() => {
     const fetchKits = async () => {
@@ -45,6 +50,11 @@ const KitContext: FC<KitContextProps> = ({ children }) => {
   useEffect(() => {
     if (currentKit) setCurrentCardSelection(currentKit.cards);
   }, [currentKit]);
+
+  const setFirstLaunchToFalse = () => {
+    setFirstLaunch(false);
+    localStorage.setItem('first_launch', 'false');
+  };
 
   return (
     <AnimatePresence mode="wait">
@@ -64,6 +74,8 @@ const KitContext: FC<KitContextProps> = ({ children }) => {
               setCurrentKit,
               currentCardSelection,
               setCurrentCardSelection,
+              firstLaunch,
+              setFirstLaunchToFalse,
             }}
           >
             {children}
