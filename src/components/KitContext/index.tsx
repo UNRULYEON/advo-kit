@@ -10,7 +10,7 @@ type Context = {
   currentCardSelection: Card[];
   setCurrentCardSelection: React.Dispatch<React.SetStateAction<Card[]>>;
   firstLaunch: boolean;
-  setFirstLaunchToFalse: () => void;
+  setFirstLaunch: (value: boolean) => void;
 };
 
 const initialContext: Context = {
