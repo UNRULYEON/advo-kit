@@ -318,7 +318,7 @@ const Box: FC<BoxProps> = ({
             }}
           >
             <div className="relative w-full h-full ">
-              {cardsShuffled.map(({ question }, i) => (
+              {cardsShuffled.slice(0, 3).map(({ question }, i) => (
                 <Card
                   key={`${i}-${question.toLowerCase().replace(/ /g, '-')}`}
                   question={question}

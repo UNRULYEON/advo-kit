@@ -76,8 +76,8 @@ const KitMenu: FC<MenuProps> = ({ active: activeProps = false }) => {
               {allSelected ? 'Deselect all' : 'Select all'}
             </button>
             <div className="overflow-auto h-fill-available">
-              {filtered.map((card) => (
-                <div key={card.question} className="flex gap-3 items-start select-none py-[12px]">
+              {filtered.map((card, i) => (
+                <div key={`${i}-${card.question}`} className="flex gap-3 items-start select-none py-[12px]">
                   <input
                     type="checkbox"
                     id={card.question}

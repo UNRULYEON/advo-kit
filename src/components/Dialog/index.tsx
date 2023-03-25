@@ -22,7 +22,7 @@ const Dialog: FC<DialogProps> = ({ open, HandleCloseDialog, children }) => {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.2 }}
-          className="z-10 absolute left-0 top-0 right-0 bottom-0 bg-neutral-900/50 flex justify-center items-center"
+          className="z-20 absolute left-0 top-0 right-0 bottom-0 bg-neutral-900/50 flex justify-center items-center"
         >
           <div
             ref={ref}
