@@ -5,7 +5,7 @@ const ResetPreferencesButton = () => {
 
   return (
     <button className="font-bold text-coolblue hover:underline" onClick={() => setFirstLaunch(true)}>
-      Reset preferences
+      Reset instructions
     </button>
   );
 };
