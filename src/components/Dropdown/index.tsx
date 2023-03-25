@@ -65,7 +65,7 @@ const Dropdown: FC<DropdownProps> = ({
       <AnimatePresence>
         {active && (
           <motion.div
-            className="absolute top-12 w-fill-available shadow-[0px_6px_8px_-3px_#EEEEEE] bg-white select-none rounded overflow-clip"
+            className="absolute top-12 w-fill-available shadow-[0px_6px_8px_-3px_#EEEEEE] bg-white select-none rounded z-10"
             initial={{ opacity: 0, y: -3 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -3 }}

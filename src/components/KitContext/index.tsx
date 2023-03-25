@@ -39,7 +39,7 @@ const KitContext: FC<KitContextProps> = ({ children }) => {
 
   useEffect(() => {
     const fetchKits = async () => {
-      const response = await fetch('/api/kit');
+      const response = await fetch('/api/decks');
       const kits: Kit[] = await response.json();
       setKits(kits);
       setCurrentKit(kits[0]);
