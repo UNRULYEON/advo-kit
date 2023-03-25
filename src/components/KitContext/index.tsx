@@ -2,6 +2,7 @@ import { createContext, FC, useContext, useEffect, useState } from 'react';
 import { Card, Kit } from '@kits';
 import Loader from '@components/Loader';
 import { AnimatePresence, motion } from 'framer-motion';
+import { Toaster } from 'react-hot-toast';
 
 type Context = {
   kits: Kit[];
@@ -59,44 +60,47 @@ const KitContext: FC<KitContextProps> = ({ children }) => {
   };
 
   return (
-    <AnimatePresence mode="wait">
-      {kits && currentKit && (
-        <motion.div
-          key="yes-kit"
-          className="w-full h-full"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.3 }}
-        >
-          <Context.Provider
-            value={{
-              kits,
-              currentKit,
-              setCurrentKit,
-              currentCardSelection,
-              setCurrentCardSelection,
-              firstLaunch,
-              setFirstLaunch,
-            }}
+    <>
+      <Toaster key={'toast'} />
+      <AnimatePresence mode="wait">
+        {kits && currentKit && (
+          <motion.div
+            key="yes-kit"
+            className="w-full h-full"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
           >
-            {children}
-          </Context.Provider>
-        </motion.div>
-      )}
-      {(!kits || !currentKit) && (
-        <motion.div
-          key="no-kit"
-          className="flex items-center justify-center w-full h-full"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.3 }}
-        >
-          <Loader />
-        </motion.div>
-      )}
-    </AnimatePresence>
+            <Context.Provider
+              value={{
+                kits,
+                currentKit,
+                setCurrentKit,
+                currentCardSelection,
+                setCurrentCardSelection,
+                firstLaunch,
+                setFirstLaunch,
+              }}
+            >
+              {children}
+            </Context.Provider>
+          </motion.div>
+        )}
+        {(!kits || !currentKit) && (
+          <motion.div
+            key="no-kit"
+            className="flex items-center justify-center w-full h-full"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+          >
+            <Loader />
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   );
 };
 

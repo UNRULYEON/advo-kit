@@ -1,4 +1,3 @@
-import Box from '@components/Box';
 import FactSlogan from '@components/FactSlogan';
 import KitBox from '@components/KitBox';
 import KitContext from '@components/KitContext';

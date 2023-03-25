@@ -320,7 +320,7 @@ const Box: FC<BoxProps> = ({
             <div className="relative w-full h-full ">
               {cardsShuffled.map(({ question }, i) => (
                 <Card
-                  key={question}
+                  key={`${i}-${question.toLowerCase().replace(/ /g, '-')}`}
                   question={question}
                   first={i === cardsShuffled.length - 1}
                   className="absolute"

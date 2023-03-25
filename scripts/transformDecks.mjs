@@ -23,7 +23,7 @@ try {
       questions.shift();
 
       const deck = {
-        id: FILE_NAME.toLowerCase().replace(' ', '-'),
+        id: `${FILE_NAME.toLowerCase().replace(' ', '-')}`,
         name: FILE_NAME,
         cards: questions.map((question) => ({
           question: question.trim().replace(/^"(.*)"$/, '$1'),

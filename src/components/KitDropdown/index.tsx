@@ -2,6 +2,7 @@ import Dialog, { DialogContent, DialogTitle } from '@components/Dialog';
 import Dropdown, { Item } from '@components/Dropdown';
 import { useKitContext } from '@components/KitContext';
 import { useState } from 'react';
+import toast from 'react-hot-toast';
 
 const requestFeature: Item = {
   id: 'request-decj',
@@ -27,6 +28,8 @@ const KitDropdown = () => {
 
     const kit = kits.find((kit) => kit.id === item.id);
     if (kit) setCurrentKit(kit);
+
+    toast.success(`Deck changed to ${item.name}`);
   };
 
   const handleCloseDialog = () => {
