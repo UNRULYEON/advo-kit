@@ -178,6 +178,7 @@ const Box: FC<BoxProps> = ({
     setCardsShuffled((oc) => {
       const newDeck = [...oc];
       const cardToMoveIndex = newDeck.findIndex((c) => c.question === question);
+      console.log(cardToMoveIndex);
       const cardToMove = newDeck[cardToMoveIndex];
       newDeck.splice(cardToMoveIndex, 1);
       const reorderedDeck = [cardToMove, ...newDeck];
@@ -318,7 +319,7 @@ const Box: FC<BoxProps> = ({
             }}
           >
             <div className="relative w-full h-full ">
-              {cardsShuffled.slice(0, 3).map(({ question }, i) => (
+              {cardsShuffled.slice(cardsShuffled.length - 3, cardsShuffled.length).map(({ question }, i) => (
                 <Card
                   key={`${i}-${question.toLowerCase().replace(/ /g, '-')}`}
                   question={question}
