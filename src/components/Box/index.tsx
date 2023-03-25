@@ -259,14 +259,14 @@ const Box: FC<BoxProps> = ({
             {firstLaunch && open && (
               <motion.div
                 key="first-launch"
-                className="absolute font-['Gloria_Hallelujah'] text-[8px] select-none text-curious-blue"
+                className="absolute font-['Gloria_Hallelujah'] text-[6px] select-none text-curious-blue"
                 initial={{ opacity: 0, scale: 0.9, translateZ: 100, translateY: -275 }}
                 animate={{ opacity: 1, scale: 1, translateZ: 100, translateY: -275 }}
                 exit={{ opacity: 0, scale: 0.9, translateZ: 100, translateY: -275 }}
               >
                 <div
                   style={{
-                    transform: `translateX(-140px) translateY(20px) rotate(-5deg)`,
+                    transform: `translateX(-120px) translateY(20px) rotate(-5deg)`,
                   }}
                 >
                   Click outside the box to close it
@@ -274,7 +274,7 @@ const Box: FC<BoxProps> = ({
                 <div
                   className="relative flex w-3 h-3"
                   style={{
-                    transform: `translateX(-80px) translateY(25px)`,
+                    transform: `translateX(-75px) translateY(30px)`,
                   }}
                 >
                   <div className="absolute bg-curious-blue h-full w-full rounded-full animate-ping" />
@@ -282,7 +282,7 @@ const Box: FC<BoxProps> = ({
                 </div>
                 <div
                   style={{
-                    transform: `translateX(140px) translateY(-90px) rotate(5deg)`,
+                    transform: `translateX(125px) translateY(-70px) rotate(5deg)`,
                   }}
                 >
                   Click the card to see the next one
@@ -290,8 +290,8 @@ const Box: FC<BoxProps> = ({
                 <svg
                   className="absolute"
                   style={{
-                    transform: `translateX(230px) translateY(-160px)`,
-                    scale: '.6',
+                    transform: `translateX(280px) translateY(-210px)`,
+                    scale: '.4',
                   }}
                   width="78"
                   height="79"
