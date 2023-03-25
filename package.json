@@ -5,9 +5,10 @@
   "type": "module",
   "scripts": {
     "dev": "vite --host",
-    "build": "tsc && vite build",
+    "build": "tsc && vite build && yarn decks:transform",
     "preview": "vite preview",
     "vercel": "vercel dev",
+    "decks:transform": "node ./scripts/transformDecks.mjs",
     "sb": "start-storybook -p 6006",
     "build-sb": "build-storybook",
     "prepare": "husky install"
@@ -29,6 +30,7 @@
     "@storybook/builder-vite": "^0.2.5",
     "@storybook/react": "^6.5.14",
     "@storybook/testing-library": "^0.0.13",
+    "@types/node": "^18.15.9",
     "@types/react": "^18.0.26",
     "@types/react-dom": "^18.0.9",
     "@vitejs/plugin-react-swc": "^3.0.0",
