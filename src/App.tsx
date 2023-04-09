@@ -3,7 +3,7 @@ import KitBox from '@components/KitBox';
 import KitContext from '@components/KitContext';
 import KitDropdown from '@components/KitDropdown';
 import KitMenu from '@components/KitMenu';
-import ResetPreferencesButton from '@components/ResetPreferencesButton';
+import ShowInstructionsButton from '@components/ShowInstructionsButton';
 
 const App = () => {
   return (
@@ -24,7 +24,7 @@ const App = () => {
           <div className="flex-1">
             <KitMenu />
           </div>
-          <ResetPreferencesButton />
+          <ShowInstructionsButton />
         </div>
       </main>
     </KitContext>
