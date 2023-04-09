@@ -1,4 +1,4 @@
-# advo-kit
+# CommuniKit
 
 ## Getting started
 

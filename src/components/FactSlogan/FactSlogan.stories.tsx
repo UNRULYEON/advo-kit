@@ -12,7 +12,7 @@ export default {
 } as ComponentMeta<typeof FactSlogan>;
 
 const defaultProps: ComponentProps<typeof FactSlogan> = {
-  fact: 'Advo-kit',
+  fact: 'CommuniKit',
   slogan: 'Think outside the box',
 };
 

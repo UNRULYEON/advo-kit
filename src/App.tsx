@@ -11,7 +11,7 @@ const App = () => {
       <main className="flex flex-col w-full h-full bg-gray-blue overflow-hidden">
         <div className="flex w-full p-3 lg:p-10 flex-col gap-2 sm:gap-0 sm:flex-row">
           <div className="sm:flex-1">
-            <FactSlogan fact="Advo-kit" slogan="Think outside the box" />
+            <FactSlogan fact="CommuniKit" slogan="Think outside the box" />
           </div>
           <div className="sm:flex-1 md:max-w-[240px]">
             <KitDropdown />
