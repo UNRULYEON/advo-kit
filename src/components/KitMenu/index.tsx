@@ -55,7 +55,7 @@ const KitMenu: FC<MenuProps> = ({ active: activeProps = false }) => {
       <AnimatePresence>
         {active && (
           <motion.div
-            className="absolute inset-x-0 bottom-14 flex flex-col gap-4 rounded bg-white p-4 w-full max-w-[350px] h-[641px] shadow-[0px_6px_8px_-3px_#EEEEEE]"
+            className="absolute inset-x-0 bottom-12 flex flex-col gap-4 rounded-r rounded-tl bg-white p-4 w-full max-w-[350px] h-[641px] shadow-[0px_6px_8px_-3px_#EEEEEE]"
             initial={{ opacity: 0, y: 3 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 3 }}
@@ -97,9 +97,14 @@ const KitMenu: FC<MenuProps> = ({ active: activeProps = false }) => {
       </AnimatePresence>
       <button
         onClick={() => setActive((s) => !s)}
-        className="transition flex justify-center items-center rounded bg-dark-blue w-14 h-12 shadow-[inset_0px_-2px_0px_#19457E] hover:bg-evening-blue hover:shadow-[inset_0px_-2px_0px_#003366]"
+        className={`relative transition flex justify-center items-center  w-14 h-12 z-20
+                ${
+                  active
+                    ? 'bg-white hover:bg-neutral-100 shadow-[0px_6px_8px_-3px_#EEEEEE] rounded-b'
+                    : 'bg-dark-blue hover:bg-evening-blue hover:shadow-[inset_0px_-2px_0px_#003366] shadow-[inset_0px_-2px_0px_#19457E] rounded'
+                }`}
       >
-        <MenuIcon className="fill-white" />
+        <MenuIcon className={active ? 'fill-coolblue' : 'fill-white'} />
       </button>
     </div>
   );
