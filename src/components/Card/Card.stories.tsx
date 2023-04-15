@@ -12,6 +12,7 @@ export default {
 } as ComponentMeta<typeof Card>;
 
 const defaultProps: ComponentProps<typeof Card> = {
+  id: 'card',
   question: 'Does this meet all functional requirements?',
   first: false,
 };
