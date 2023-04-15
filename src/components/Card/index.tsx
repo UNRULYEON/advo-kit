@@ -2,6 +2,7 @@ import { FC, useEffect } from 'react';
 import { motion, useAnimationControls, Variants } from 'framer-motion';
 
 type CardProps = {
+  id: string;
   question: string;
   first: boolean;
   className?: string;
@@ -10,7 +11,7 @@ type CardProps = {
   style?: React.CSSProperties;
 };
 
-const Card: FC<CardProps> = ({ question, first, className, moveCardToBack, allowToMoveBack, style }) => {
+const Card: FC<CardProps> = ({ id, question, first, className, moveCardToBack, allowToMoveBack, style }) => {
   const cardControls = useAnimationControls();
 
   const cardVariants: Variants = {
@@ -55,7 +56,7 @@ const Card: FC<CardProps> = ({ question, first, className, moveCardToBack, allow
     await cardControls.start('to-side');
     await cardControls.start('to-back');
 
-    moveCardToBack(question);
+    moveCardToBack(id);
 
     cardControls.set('hidden');
   };

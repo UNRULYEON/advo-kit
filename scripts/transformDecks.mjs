@@ -23,9 +23,10 @@ try {
       questions.shift();
 
       const deck = {
-        id: `${FILE_NAME.toLowerCase().replace(' ', '-')}`,
+        id: `${FILE_NAME.toLowerCase().replace(/ /g, '-')}`,
         name: FILE_NAME,
-        cards: questions.map((question) => ({
+        cards: questions.map((question, i) => ({
+          id: `${i}-${question.toLowerCase().replace(/ /g, '-')}`,
           question: question.trim().replace(/^"(.*)"$/, '$1'),
         })),
       };

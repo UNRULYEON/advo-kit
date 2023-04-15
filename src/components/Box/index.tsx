@@ -58,7 +58,10 @@ const Box: FC<BoxProps> = ({
   const [cardsShuffled, setCardsShuffled] = useState<CardType[]>([]);
 
   const shuffleDeck = () => {
-    setCardsShuffled([{ question: "You've reached the end! Click to start over." }, ...shuffle(kit!.cards)]);
+    setCardsShuffled([
+      { id: 'end!', question: "You've reached the end! Click to start over." },
+      ...shuffle(kit!.cards),
+    ]);
   };
 
   useEffect(() => {
@@ -85,8 +88,8 @@ const Box: FC<BoxProps> = ({
       shuffle(
         [
           ...(kit?.cards?.filter((c) => currentCardSelection.includes(c)) || []),
-          { question: "You've reached the end! Click to start over." },
-        ] || [{ question: "You've reached the end! Click to start over." }]
+          { id: 'end!', question: "You've reached the end! Click to start over." },
+        ] || [{ id: 'end!', question: "You've reached the end! Click to start over." }]
       )
     );
   }, [currentCardSelection]);
@@ -172,13 +175,12 @@ const Box: FC<BoxProps> = ({
     }
   }, [open]);
 
-  const moveCardToBack = (question: string) => {
+  const moveCardToBack = (id: string) => {
     if (firstLaunch) setFirstLaunch(false);
 
     setCardsShuffled((oc) => {
       const newDeck = [...oc];
-      const cardToMoveIndex = newDeck.findIndex((c) => c.question === question);
-      console.log(cardToMoveIndex);
+      const cardToMoveIndex = newDeck.findIndex((c) => c.id === id);
       const cardToMove = newDeck[cardToMoveIndex];
       newDeck.splice(cardToMoveIndex, 1);
       const reorderedDeck = [cardToMove, ...newDeck];
@@ -319,9 +321,10 @@ const Box: FC<BoxProps> = ({
             }}
           >
             <div className="relative w-full h-full ">
-              {cardsShuffled.slice(cardsShuffled.length - 3, cardsShuffled.length).map(({ question }, i) => (
+              {cardsShuffled.slice(cardsShuffled.length - 3, cardsShuffled.length).map(({ id, question }, i) => (
                 <Card
                   key={`${i}-${question.toLowerCase().replace(/ /g, '-')}`}
+                  id={id}
                   question={question}
                   first={i === cardsShuffled.length - 1}
                   className="absolute"
