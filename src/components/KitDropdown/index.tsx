@@ -5,7 +5,7 @@ import { useState } from 'react';
 import toast from 'react-hot-toast';
 
 const requestFeature: Item = {
-  id: 'request-decj',
+  id: 'request-deck',
   name: 'Request a deck',
 };
 
@@ -42,7 +42,11 @@ const KitDropdown = () => {
         label="Choose your kit"
         handleOnClick={handleOnClick}
         currentItem={currentItem}
-        items={[...kitItems, requestFeature]}
+        items={[
+          ...kitItems,
+          { id: 'cant-find-what-youre-looking-for', name: "Can't find the right deck? ⤵️", disabled: true },
+          requestFeature,
+        ]}
       />
       <Dialog open={requestFeatureDialogOpen} HandleCloseDialog={handleCloseDialog}>
         <DialogTitle closeDialog={handleCloseDialog}>Request a deck</DialogTitle>
