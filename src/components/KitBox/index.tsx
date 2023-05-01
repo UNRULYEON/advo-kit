@@ -5,8 +5,7 @@ import { motion, useAnimationControls, Variants } from 'framer-motion';
 import { useEffect, useState } from 'react';
 
 const KitBox = () => {
-  const { currentKit, firstLaunch, setFirstLaunch } = useKitContext();
-  const [open, setOpen] = useState(false);
+  const { currentKit, firstLaunch, setFirstLaunch, isBoxOpen: open, setIsBoxOpen: setOpen } = useKitContext();
   const boxControls = useAnimationControls();
 
   const boxVariants: Variants = {

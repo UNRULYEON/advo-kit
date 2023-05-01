@@ -1,10 +1,15 @@
 import { useKitContext } from '@components/KitContext';
 
 const ShowInstructionsButton = () => {
-  const { firstLaunch, setFirstLaunch } = useKitContext();
+  const { setFirstLaunch, setIsBoxOpen } = useKitContext();
+
+  const handleOnClick = () => {
+    setFirstLaunch(true);
+    setIsBoxOpen(true);
+  };
 
   return (
-    <button className="font-bold text-coolblue hover:underline" onClick={() => setFirstLaunch(true)}>
+    <button className="font-bold text-coolblue hover:underline" onClick={handleOnClick}>
       Show instructions
     </button>
   );

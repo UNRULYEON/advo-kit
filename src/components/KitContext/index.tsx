@@ -12,6 +12,8 @@ type Context = {
   setCurrentCardSelection: React.Dispatch<React.SetStateAction<Card[]>>;
   firstLaunch: boolean;
   setFirstLaunch: (value: boolean) => void;
+  isBoxOpen: boolean;
+  setIsBoxOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 const initialContext: Context = {
@@ -22,6 +24,8 @@ const initialContext: Context = {
   setCurrentCardSelection: () => {},
   firstLaunch: true,
   setFirstLaunch: () => {},
+  isBoxOpen: false,
+  setIsBoxOpen: () => {},
 };
 
 const Context = createContext<Context>(initialContext);
@@ -37,6 +41,7 @@ const KitContext: FC<KitContextProps> = ({ children }) => {
   const [firstLaunch, setFirstLaunchState] = useState<boolean>(
     JSON.parse(localStorage.getItem('first_launch') || 'true')
   );
+  const [isBoxOpen, setIsBoxOpen] = useState<boolean>(false);
 
   useEffect(() => {
     const fetchKits = async () => {
@@ -81,6 +86,8 @@ const KitContext: FC<KitContextProps> = ({ children }) => {
                 setCurrentCardSelection,
                 firstLaunch,
                 setFirstLaunch,
+                isBoxOpen,
+                setIsBoxOpen,
               }}
             >
               {children}
