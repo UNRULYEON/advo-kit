@@ -85,3 +85,7 @@ input[type='checkbox']:focus {
   outline: max(2px, 0.15em) solid #0090e3;
   outline-offset: max(2px, 0.15em);
 }
+
+.toast-container > div > div {
+  max-width: 500px;
+}

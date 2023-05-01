@@ -66,7 +66,7 @@ const KitContext: FC<KitContextProps> = ({ children }) => {
 
   return (
     <>
-      <Toaster key={'toast'} />
+      <Toaster key={'toast'} containerClassName="toast-container" />
       <AnimatePresence mode="wait">
         {kits && currentKit && (
           <motion.div
