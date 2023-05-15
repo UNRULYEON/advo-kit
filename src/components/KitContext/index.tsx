@@ -3,6 +3,7 @@ import { Card, Kit } from '@kits';
 import Loader from '@components/Loader';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Toaster } from 'react-hot-toast';
+import decks from '../../../decks/transformed/decks.json';
 
 type Context = {
   kits: Kit[];
@@ -44,15 +45,9 @@ const KitContext: FC<KitContextProps> = ({ children }) => {
   const [isBoxOpen, setIsBoxOpen] = useState<boolean>(false);
 
   useEffect(() => {
-    const fetchKits = async () => {
-      const response = await fetch('/api/decks');
-      const kits: Kit[] = await response.json();
-      setKits(kits);
-      setCurrentKit(kits[0]);
-      setCurrentCardSelection(kits[0].cards);
-    };
-
-    fetchKits();
+    setKits(decks);
+    setCurrentKit(decks[0]);
+    setCurrentCardSelection(decks[0].cards);
   }, []);
 
   useEffect(() => {

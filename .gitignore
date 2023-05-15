@@ -26,6 +26,4 @@ dist-ssr
 *.sw?
 .vercel
 
-storybook-static
-
 decks/transformed
