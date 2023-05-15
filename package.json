@@ -9,7 +9,6 @@
     "preview": "vite preview",
     "vercel": "vercel dev",
     "decks:transform": "node ./scripts/transformDecks.mjs",
-    "sb": "start-storybook -p 6006",
     "prepare": "husky install"
   },
   "dependencies": {
