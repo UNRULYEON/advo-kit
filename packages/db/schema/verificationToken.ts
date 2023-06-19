@@ -1,14 +1,15 @@
-import { mysqlTable, varchar, timestamp } from "drizzle-orm/mysql-core";
+import { mysqlTable, text, timestamp, varchar } from "drizzle-orm/mysql-core";
 import { InferModel } from "drizzle-orm";
 
-export const VerificationToken = mysqlTable("VerificationToken", {
-  identifier: varchar("identifier", { length: 256 }),
-  token: varchar("token", { length: 256 }),
+export const verificationTokens = mysqlTable("verificationTokens", {
+  id: varchar("cuid", { length: 256 }).primaryKey(),
+  identifier: text("identifier"),
+  token: text("token"),
   expires: timestamp("expires"),
 });
 
-export type VerificationToken = InferModel<typeof VerificationToken>;
+export type VerificationToken = InferModel<typeof verificationTokens>;
 export type NewVerificationToken = InferModel<
-  typeof VerificationToken,
+  typeof verificationTokens,
   "insert"
 >;

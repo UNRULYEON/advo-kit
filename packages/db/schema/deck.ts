@@ -1,17 +1,12 @@
-import { mysqlTable, serial, varchar } from "drizzle-orm/mysql-core";
-import { InferModel, relations } from "drizzle-orm";
-import { Card } from "./card";
+import { mysqlTable, text, varchar } from "drizzle-orm/mysql-core";
+import { InferModel } from "drizzle-orm";
 
-export const Deck = mysqlTable("Deck", {
-  id: serial("id").primaryKey().autoincrement(),
+export const decks = mysqlTable("decks", {
+  id: varchar("cuid", { length: 256 }).primaryKey(),
 
-  emoji: varchar("emoji", { length: 256 }),
-  name: varchar("name", { length: 256 }),
+  emoji: text("emoji"),
+  name: text("name"),
 });
 
-export const DeckRelations = relations(Card, ({ many }) => ({
-  cards: many(Card),
-}));
-
-export type Deck = InferModel<typeof Deck>;
-export type NewDeck = InferModel<typeof Deck, "insert">;
+export type Deck = InferModel<typeof decks>;
+export type NewDeck = InferModel<typeof decks, "insert">;

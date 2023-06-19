@@ -5,7 +5,10 @@
     "build": "turbo run build",
     "dev": "turbo run dev",
     "lint": "turbo run lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "migrations:generate": "turbo run migrations:generate",
+    "migrations:push": "turbo run migrations:push",
+    "migrations:up": "turbo run migrations:up"
   },
   "devDependencies": {
     "@turbo/gen": "^1.9.7",

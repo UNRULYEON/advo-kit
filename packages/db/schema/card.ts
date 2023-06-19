@@ -1,27 +1,21 @@
-import {
-  int,
-  mysqlEnum,
-  mysqlTable,
-  serial,
-  varchar,
-} from "drizzle-orm/mysql-core";
+import { mysqlEnum, mysqlTable, text, varchar } from "drizzle-orm/mysql-core";
 import { InferModel, relations } from "drizzle-orm";
-import { Deck } from "./deck";
+import { decks } from "./deck";
 
-export const Card = mysqlTable("Card", {
-  id: serial("id").primaryKey().autoincrement(),
-  deckId: int("deckId").references(() => Deck.id),
+export const cards = mysqlTable("cards", {
+  id: varchar("cuid", { length: 256 }).primaryKey(),
+  deckId: text("deck_id"),
 
-  content: varchar("content", { length: 256 }),
+  content: text("content"),
   cardType: mysqlEnum("cardType", ["normal"]),
 });
 
-export const CardRelations = relations(Card, ({ one }) => ({
-  deck: one(Deck, {
-    fields: [Card.deckId],
-    references: [Deck.id],
+export const CardRelations = relations(cards, ({ one }) => ({
+  deck: one(decks, {
+    fields: [cards.deckId],
+    references: [decks.id],
   }),
 }));
 
-export type Card = InferModel<typeof Card>;
-export type NewCard = InferModel<typeof Card, "insert">;
+export type Card = InferModel<typeof cards>;
+export type NewCard = InferModel<typeof cards, "insert">;

@@ -1,0 +1,1 @@
+ALTER TABLE `verificationTokens` ADD `cuid` varchar(256) PRIMARY KEY NOT NULL;

@@ -1,27 +1,27 @@
 import {
   mysqlTable,
-  serial,
-  varchar,
+  text,
   int,
   timestamp,
+  varchar,
 } from "drizzle-orm/mysql-core";
 import { InferModel, relations } from "drizzle-orm";
-import { User } from "./user";
+import { users } from "./user";
 
-export const Session = mysqlTable("Session", {
-  id: serial("id").primaryKey(),
-  userId: int("userId").references(() => User.id),
+export const sessions = mysqlTable("sessions", {
+  id: varchar("cuid", { length: 256 }).primaryKey(),
+  userId: int("user_id"),
 
   expires: timestamp("expires"),
-  sessionToken: varchar("sessionToken", { length: 256 }),
+  sessionToken: text("sessionToken"),
 });
 
-export const SessionRelations = relations(Session, ({ one }) => ({
-  user: one(User, {
-    fields: [Session.userId],
-    references: [User.id],
+export const sessionsRelations = relations(sessions, ({ one }) => ({
+  user: one(users, {
+    fields: [sessions.userId],
+    references: [users.id],
   }),
 }));
 
-export type Session = InferModel<typeof Session>;
-export type NewSession = InferModel<typeof Session, "insert">;
+export type Session = InferModel<typeof sessions>;
+export type NewSession = InferModel<typeof sessions, "insert">;
