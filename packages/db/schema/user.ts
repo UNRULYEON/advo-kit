@@ -9,7 +9,6 @@ export const users = mysqlTable("users", {
   name: text("name"),
   email: text("email"),
   image: text("image"),
-  emailVerified: timestamp("emailVerified"),
 });
 
 export const usersRelations = relations(users, ({ many }) => ({

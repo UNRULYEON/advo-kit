@@ -1,4 +1,4 @@
-import { router, publicProcedure } from "../trcp";
+import { router, publicProcedure } from "../trpc";
 
 type User = { id: string; name: string };
 

@@ -7,6 +7,9 @@
       "outputs": [".next/**", "!.next/cache/**"]
     },
     "lint": {},
+    "db:up": {
+      "cache": false
+    },
     "dev": {
       "cache": false,
       "persistent": true
