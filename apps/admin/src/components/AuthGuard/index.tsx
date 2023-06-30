@@ -4,6 +4,7 @@ import { FC, ReactNode } from "react";
 import { useSession } from "next-auth/react";
 import { redirect, usePathname } from "next/navigation";
 import Loader from "@/components/Loader";
+import Navbar from "@/components/Navbar";
 
 const Container = ({ children }: { children: ReactNode }) => (
   <body className="w-full h-full bg-[#0d1117] text-[#e6edf3]">{children}</body>
@@ -31,7 +32,7 @@ export const AuthGuard: FC<AuthGuardProps> = ({ children }) => {
 
   return (
     <Container>
-      <nav>Hello Navbar!</nav>
+      <Navbar />
       {children}
     </Container>
   );

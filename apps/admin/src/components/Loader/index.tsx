@@ -1,5 +1,5 @@
-import { motion } from "framer-motion";
 import { FC } from "react";
+import { motion } from "framer-motion";
 
 const Loader: FC = () => {
   const duration = 0.8;
