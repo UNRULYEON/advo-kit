@@ -6,6 +6,7 @@ Digital decks
 
 - [Node](https://nodejs.org) (version specified in [.nvmrc](./.nvmrc))
 - [pnpm](https://pnpm.io/)
+- [Docker](https://www.docker.com/)
 
 ## What's inside?
 
