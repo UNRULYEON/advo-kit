@@ -33,7 +33,7 @@ export const AuthGuard: FC<AuthGuardProps> = ({ children }) => {
   return (
     <Container>
       <Navbar />
-      {children}
+      <main className="flex grow flex-col p-4">{children}</main>
     </Container>
   );
 };

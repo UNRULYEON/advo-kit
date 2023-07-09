@@ -6,7 +6,10 @@ import { usePathname } from "next/navigation";
 
 type Item = { name: string; href: string };
 
-const items: Item[] = [{ name: "Decks", href: "/" }];
+const items: Item[] = [
+  { name: "Dashboard", href: "/" },
+  { name: "Decks", href: "/decks" },
+];
 
 type ItemProps = Item;
 
