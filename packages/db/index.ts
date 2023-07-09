@@ -5,9 +5,9 @@ import { drizzle as drizzleLocal } from "drizzle-orm/mysql2";
 import { connect } from "@planetscale/database";
 import mysql from "mysql2/promise";
 
-export { users } from "./schema/user";
-export { decks } from "./schema/deck";
-export { cards } from "./schema/card";
+export { users, User, NewUser } from "./schema/user";
+export { decks, Deck, NewDeck } from "./schema/deck";
+export { cards, Card, NewCard } from "./schema/card";
 
 if (!process.env.DATABASE_HOST)
   throw new Error("DATABASE_HOST is not set in .env");

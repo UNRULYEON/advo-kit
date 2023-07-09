@@ -1,3 +1,4 @@
+import DecksTable from "@/components/DecksTable";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -5,5 +6,9 @@ export const metadata: Metadata = {
 };
 
 export default async function Home() {
-  return <>decks</>;
+  return (
+    <>
+      <DecksTable />
+    </>
+  );
 }
