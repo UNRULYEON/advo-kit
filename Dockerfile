@@ -9,9 +9,8 @@ RUN corepack enable && corepack prepare pnpm@latest --activate
 
 # Set up project
 WORKDIR /usr/app
-COPY package.json pnpm-lock.yaml ./
-RUN pnpm install
 COPY ./ ./
+RUN pnpm install
 RUN pnpm build
 
 # Start server
