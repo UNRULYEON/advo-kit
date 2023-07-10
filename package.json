@@ -7,7 +7,7 @@
     "dev": "turbo run dev",
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "preinstall:digitalocean": "npm install -g pnpm"
+    "postinstall:digitalocean": "npm install -g pnpm && rm yarn.lock"
   },
   "devDependencies": {
     "@turbo/gen": "^1.9.7",
