@@ -5,11 +5,14 @@
     "start": "turbo run start",
     "build": "turbo run build",
     "dev": "turbo run dev",
+    "prisma:generate": "turbo run prisma:generate",
+    "ssl:generate": "node ./scripts/ssl-certificate.mjs generate",
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
   "devDependencies": {
     "@turbo/gen": "^1.9.7",
+    "commander": "^11.0.0",
     "eslint": "^7.32.0",
     "prettier": "^2.5.1",
     "turbo": "latest"

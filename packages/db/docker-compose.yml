@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  advo-kit-db:
+    image: postgres
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=advokit
+      - POSTGRES_PASSWORD=advokit
+    volumes:
+      - postgresql:/var/lib/postgresql/data
+
+volumes:
+  postgresql:

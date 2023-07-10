@@ -4,6 +4,9 @@
 
 # Base image
 FROM node:16-alpine
+RUN apk upgrade --update-cache --available && \
+  apk add openssl && \
+  rm -rf /var/cache/apk/*
 RUN apk update && apk add --no-cache libc6-compat
 RUN corepack enable && corepack prepare pnpm@latest --activate
 
@@ -11,6 +14,12 @@ RUN corepack enable && corepack prepare pnpm@latest --activate
 WORKDIR /usr/app
 COPY ./ ./
 RUN pnpm install
+
+WORKDIR /usr/app/apps/api
+RUN pnpm prisma:generate
+RUN pnpm prisma:migrate:deploy
+WORKDIR /usr/app
+
 RUN pnpm build
 
 # Start server
