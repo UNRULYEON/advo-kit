@@ -1,4 +1,5 @@
 {
+  "name": "advo-kit",
   "private": true,
   "scripts": {
     "start": "turbo run start",
@@ -14,5 +15,7 @@
     "turbo": "latest"
   },
   "packageManager": "pnpm@7.15.0",
-  "name": "advo-kit"
+  "engines": {
+    "node": "20.3.0"
+  }
 }
