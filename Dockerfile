@@ -15,7 +15,6 @@ WORKDIR /usr/app
 COPY ./ ./
 RUN pnpm install
 
-ENV DATABASE_URL $DATABASE_URL
 WORKDIR /usr/app/apps/api
 RUN pnpm prisma:generate
 RUN pnpm prisma:migrate:deploy
