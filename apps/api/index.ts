@@ -79,6 +79,10 @@ app.use("/admin", express.static(STATIC_DIR_ADMIN));
 
 app.use("/api", authRouter);
 
+app.get("/api/health", (req, res) => {
+  res.status(200).send("OK");
+});
+
 app.get("/api/hello", (req, res) => {
   res.send("World!");
 });
