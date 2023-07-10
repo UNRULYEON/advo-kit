@@ -19,4 +19,4 @@ jobs:
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
       - run: export DATABASE_URL="$DATABASE_URL"
-      - run: pnpm prisma:migrate:deploy
+      - run: cd apps/api && pnpm prisma:migrate:deploy
