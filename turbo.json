@@ -7,21 +7,9 @@
       "outputs": [".next/**", "!.next/cache/**"]
     },
     "lint": {},
-    "db:up": {
-      "cache": false
-    },
     "dev": {
       "cache": false,
       "persistent": true
-    },
-    "migrations:generate": {
-      "cache": false
-    },
-    "migrations:push": {
-      "cache": false
-    },
-    "migrations:up": {
-      "cache": false
     }
   }
 }
