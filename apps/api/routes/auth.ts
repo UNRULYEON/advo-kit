@@ -22,8 +22,8 @@ type GithubProfile = {
 passport.use(
   new GitHubStrategy(
     {
-      clientID: "3001bc00768158653b81",
-      clientSecret: "1a3589b02102cd3d055948be6241cbe1fba25be8",
+      clientID: process.env.GITHUB_CLIENT_ID || "",
+      clientSecret: process.env.GITHUB_CLIENT_SECRET || "",
       callbackURL: "https://localhost:3000/api/auth/github/callback",
     },
     async (
