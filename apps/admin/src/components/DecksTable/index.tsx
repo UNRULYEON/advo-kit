@@ -12,10 +12,10 @@ import useDecks from "@/hooks/useDecks";
 import Loader from "@/components/Loader";
 
 const headers = [
-  <TableCell width={40} align="right">
+  <TableCell key={"emoji"} width={40} align="right">
     🃏
   </TableCell>,
-  <TableCell>Name</TableCell>,
+  <TableCell key={"name"}>Name</TableCell>,
 ];
 
 const DecksTable: FC = () => {
@@ -49,7 +49,7 @@ const DecksTable: FC = () => {
           {decks &&
             decks.map((deck) => (
               <TableRow
-                key={deck.name}
+                key={deck.id}
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
               >
                 <TableCell component="th" scope="row" align="right">
