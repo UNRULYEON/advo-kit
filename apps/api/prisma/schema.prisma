@@ -1,0 +1,48 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id    String @id @unique
+  email String @unique
+}
+
+model Session {
+  id        String   @id
+  sid       String   @unique
+  data      String
+  expiresAt DateTime
+}
+
+model Deck {
+  id    String @id @unique
+  name  String
+  cards Card[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Card {
+  id       String    @id @unique
+  content  String
+  cardType CARD_TYPE @default(NORMAL)
+
+  deck   Deck[]
+  deckId String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum CARD_TYPE {
+  NORMAL
+}

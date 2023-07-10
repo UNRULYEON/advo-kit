@@ -1,21 +1,61 @@
-# CommuniKit
+# advo-kit
 
-## Getting started
+Digital decks
 
-Make sure you have the following installed:
+## Prerequisites
 
-1. [Node](https://nodejs.org/en/)
-2. [PNPm](https://pnpm.io/)
+- [Node](https://nodejs.org) (version specified in [.nvmrc](./.nvmrc))
+- [pnpm](https://pnpm.io/)
+- [Docker](https://www.docker.com/)
 
-Next, follow these steps to run the project locally:
+## What's inside?
 
-1. Install dependencies with `PNPm`
-2. Run `pnpm dev` to run the project
+This project includes the following packages/apps:
 
-This project is deployed using Vercel. Linking the project to Vercel is optional; follow [Vercel setup](#vercel-setup) to link it.
+### Apps and Packages
 
-## Vercel
+- `admin`: React application that serves as the admin UI
+- `api`: API that serves both the `admin` and `web` applications and their APIs
+- `web`: A React application that is the client for browser
 
-1. Install the [Vercel CLI](https://vercel.com/docs/cli)
-2. Log in with `vercel login`
-3. Run `vercel` to link the project with Vercel
+### Utilities
+
+- [Prettier](https://prettier.io) for code formatting
+
+### Build
+
+To build all apps and packages, run the following command:
+
+```
+cd advo-kit
+pnpm build
+```
+
+### Develop
+
+To develop all apps and packages, run the following command:
+
+```
+cd advo-kit
+pnpm dev
+```
+
+This will run `web`, `admin` and `api` locally. You can access them by the URLs they print in your terminal.
+
+## Useful Links
+
+pnpm:
+
+- [Using Workspaces](https://pnpm.io/workspaces)
+- [Installing all dependencies](https://pnpm.io/cli/install)
+- [Adding dependecies](https://pnpm.io/cli/add)
+- [Removing dependencies](https://pnpm.io/cli/remove)
+
+Turbo repo:
+
+- [Tasks](https://turbo.build/repo/docs/core-concepts/monorepos/running-tasks)
+- [Caching](https://turbo.build/repo/docs/core-concepts/caching)
+- [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching)
+- [Filtering](https://turbo.build/repo/docs/core-concepts/monorepos/filtering)
+- [Configuration Options](https://turbo.build/repo/docs/reference/configuration)
+- [CLI Usage](https://turbo.build/repo/docs/reference/command-line-reference)

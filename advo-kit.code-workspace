@@ -1,0 +1,26 @@
+{
+  "folders": [
+    {
+      "path": "."
+    },
+    {
+      "name": "admin",
+      "path": "apps/admin"
+    },
+    {
+      "name": "api",
+      "path": "apps/api"
+    },
+    {
+      "name": "web",
+      "path": "apps/web"
+    }
+  ],
+  "settings": {
+    "jest.disabledWorkspaceFolders": ["advo-kit", "admin", "api", "web"],
+    "dotenv.enableAutocloaking": false
+  },
+  "extensions": {
+    "recommendations": ["orta.vscode-jest", "esbenp.prettier-vscode"]
+  }
+}

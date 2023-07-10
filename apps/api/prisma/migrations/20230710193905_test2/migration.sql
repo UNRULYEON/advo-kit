@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "Card" ALTER COLUMN "cardType" SET DEFAULT 'NORMAL';

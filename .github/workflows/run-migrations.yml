@@ -1,0 +1,20 @@
+name: Run migrations
+on:
+  push:
+    branches:
+      - main
+jobs:
+  run-migrations:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: "16"
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 7.15.0
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+      - run: pnpm prisma:generate
+      - run: pnpm prisma:migrate:deploy
