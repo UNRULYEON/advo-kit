@@ -1,0 +1,12 @@
+name: advo-kit
+region: ams
+services:
+  - name: web
+    git:
+      repo: UNRULYEON/advo-kit
+      branch: v2
+      deploy_on_push: true
+    dockerfile_path: Dockerfile
+    http_port: 3000
+    instance_count: 1
+    instance_size_slug: basic-xxs
