@@ -22,8 +22,7 @@ jobs:
   deploy-to-production:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-        uses: digitalocean/action-doctl@v2
+      - uses: digitalocean/action-doctl@v2
         with:
           token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
         run: doctl apps create-deployment d5b4fb74-f430-4fb5-ace4-45df0e73d2f5
