@@ -16,6 +16,7 @@ jobs:
           version: 7.15.0
           run_install: true
       - run: pnpm prisma:generate
-      - run: pnpm prisma:migrate:deploy
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
+      - run: export DATABASE_URL="$DATABASE_URL"
+      - run: pnpm prisma:migrate:deploy
