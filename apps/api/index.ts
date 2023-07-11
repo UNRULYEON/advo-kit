@@ -77,7 +77,7 @@ passport.deserializeUser((id: string, done: any) => {
 app.use("/", express.static(STATIC_DIR_WEB));
 app.use("/admin", express.static(STATIC_DIR_ADMIN));
 
-app.use("/api", authRouter);
+app.use("/api/admin", authRouter);
 
 app.get("/api/health", (req, res) => {
   res.status(200).send("OK");
