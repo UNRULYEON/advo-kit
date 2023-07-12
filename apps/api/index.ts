@@ -55,7 +55,10 @@ app.use(
     saveUninitialized: false,
     rolling: true,
     cookie: {
-      domain: "localhost",
+      domain:
+        process.env.NODE_ENV === "production"
+          ? "advo-kit-57yi6.ondigitalocean.app"
+          : "localhost",
       secure: true,
       sameSite: "none",
     },
