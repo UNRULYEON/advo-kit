@@ -1,24 +1,20 @@
 import { ReactNode } from "react";
 import { Navigate } from "react-router-dom";
-import useSWR from "swr";
+import Layout from "@/components/Layout";
+import useMe from "@/api/useMe";
 
 type AuthGuardProps = {
   children: ReactNode;
 };
 
 const AuthGuard = ({ children }: AuthGuardProps) => {
-  const { data, error, isLoading } = useSWR("/api/auth/me", {
-    revalidateOnFocus: false,
-  });
+  const { me, isLoading, isError } = useMe();
 
   if (isLoading) return <div>loading...</div>;
-  if (error) return <Navigate to="/admin/login" />;
+  if (isError) return <Navigate to="/admin/login" />;
+  if (me) return <Layout>{children}</Layout>;
 
-  return (
-    <>
-      {children} {JSON.stringify(data, null, 2)}
-    </>
-  );
+  return <>Hey! You're not supposed to see this!</>;
 };
 
 export default AuthGuard;

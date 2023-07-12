@@ -1,6 +1,7 @@
+import useMe from "@/api/useMe";
 import styled from "@emotion/styled";
 import { Paper, Box, Button } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import useSWR from "swr";
 
 type Provider = {
@@ -10,6 +11,9 @@ type Provider = {
 
 const Login = () => {
   const { data, error, isLoading } = useSWR<Provider[]>("/api/auth/providers");
+  const { me, isLoading: isMeLoading, isError: isMeError } = useMe();
+
+  if (!isMeLoading && !isMeError && me) return <Navigate to="/admin" />;
 
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>Error...</div>;

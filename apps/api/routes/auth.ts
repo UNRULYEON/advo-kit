@@ -82,6 +82,15 @@ const providers: Providers[] = [{ name: "Github", url: "/api/auth/github" }];
 
 router.get("/auth/providers", (_, res) => res.json(providers));
 
+router.post("/auth/logout", (req, res, next) => {
+  req.session.destroy((err) => {
+    if (err) return next(err);
+    res.status(200);
+    res.clearCookie("connect.sid");
+    res.send("OK");
+  });
+});
+
 router.get("/auth/me", (req, res) => {
   if (req.isAuthenticated()) {
     res.json(req.user);

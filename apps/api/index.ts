@@ -8,6 +8,7 @@ import cors from "cors";
 // @ts-ignore
 import passport from "passport";
 import { PrismaSessionStore } from "@quixo3/prisma-session-store";
+import cookieParser from "cookie-parser";
 import prisma from "./prisma";
 
 import authRouter from "./routes/auth";
@@ -43,6 +44,9 @@ app.use((_, res, next) => {
 
 app.enable("trust proxy");
 
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
 app.use(cors(corsOptions));
 app.use(
   session({
