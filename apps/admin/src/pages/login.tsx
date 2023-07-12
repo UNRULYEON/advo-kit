@@ -1,7 +1,7 @@
 import useMe from "@/api/useMe";
 import styled from "@emotion/styled";
 import { Paper, Box, Button } from "@mui/material";
-import { Link, Navigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import useSWR from "swr";
 
 type Provider = {
@@ -32,9 +32,9 @@ const Login = () => {
         <Box p={2} flexDirection={"column"}>
           {providers &&
             providers.map(({ name, url }) => (
-              <Link to={url} key={name}>
+              <a href={url} key={name}>
                 <Button>{name}</Button>
-              </Link>
+              </a>
             ))}
         </Box>
       </Paper>

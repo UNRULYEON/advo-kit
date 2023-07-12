@@ -91,18 +91,19 @@ passport.deserializeUser((id: string, done: any) => {
     });
 });
 
-app.use("/", express.static(STATIC_DIR_WEB));
-app.use("/admin", express.static(STATIC_DIR_ADMIN));
-
 app.use("/api", authRouter);
 
-app.get("/api/health", (req, res) => {
+app.get("/api/health", (_, res) => {
   res.status(200).send("OK");
 });
 
 app.get("/api/hello", (req, res) => {
   res.send("World!");
 });
+
+app.use("/admin", express.static(STATIC_DIR_ADMIN));
+app.use("/admin*", express.static(STATIC_DIR_ADMIN));
+app.use("/", express.static(STATIC_DIR_WEB));
 
 if (process.env.NODE_ENV === "production") {
   app.listen(PORT, () => {
