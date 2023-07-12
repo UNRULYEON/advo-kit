@@ -22,8 +22,8 @@ type GithubProfile = {
 passport.use(
   new GitHubStrategy(
     {
-      clientID: "3001bc00768158653b81",
-      clientSecret: "1a3589b02102cd3d055948be6241cbe1fba25be8",
+      clientID: process.env.GITHUB_CLIENT_ID || "",
+      clientSecret: process.env.GITHUB_CLIENT_SECRET || "",
       callbackURL: "https://localhost:3000/api/auth/github/callback",
     },
     async (
@@ -70,7 +70,33 @@ router.get(
 router.get(
   "/auth/github/callback",
   passport.authenticate("github", { failureRedirect: "/admin/login" }),
-  (req, res) => res.redirect("/admin")
+  (_, res) => res.redirect("/admin")
 );
+
+type Providers = {
+  name: string;
+  url: string;
+};
+
+const providers: Providers[] = [{ name: "Github", url: "/api/auth/github" }];
+
+router.get("/auth/providers", (_, res) => res.json(providers));
+
+router.post("/auth/logout", (req, res, next) => {
+  req.session.destroy((err) => {
+    if (err) return next(err);
+    res.status(200);
+    res.clearCookie("connect.sid");
+    res.send("OK");
+  });
+});
+
+router.get("/auth/me", (req, res) => {
+  if (req.isAuthenticated()) {
+    res.json(req.user);
+  } else {
+    res.status(401).json({ message: "Unauthorized" });
+  }
+});
 
 export default router;

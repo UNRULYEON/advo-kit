@@ -4,9 +4,11 @@ import fs from "fs";
 import express from "express";
 import https from "https";
 import session from "express-session";
+import cors from "cors";
 // @ts-ignore
 import passport from "passport";
 import { PrismaSessionStore } from "@quixo3/prisma-session-store";
+import cookieParser from "cookie-parser";
 import prisma from "./prisma";
 
 import authRouter from "./routes/auth";
@@ -16,13 +18,23 @@ const PORT = 3000;
 const STATIC_DIR_WEB = "../web/dist";
 const STATIC_DIR_ADMIN = "../admin/dist";
 
+const corsOptions = {
+  origin: [
+    "https://127.0.0.1:5173",
+    "https://localhost:5173",
+    "https://127.0.0.1:5174",
+    "https://localhost:5174",
+  ],
+  credentials: true,
+};
+
 const key =
   process.env.NODE_ENV !== "production"
-    ? fs.readFileSync("../../.cert/localhost/advo-kit-localhost.decrypted.key")
+    ? fs.readFileSync("../../localhost-key.pem")
     : undefined;
 const cert =
   process.env.NODE_ENV !== "production"
-    ? fs.readFileSync("../../.cert/localhost/advo-kit-localhost.crt")
+    ? fs.readFileSync("../../localhost.pem")
     : undefined;
 
 app.use((_, res, next) => {
@@ -30,7 +42,12 @@ app.use((_, res, next) => {
   next();
 });
 
+app.enable("trust proxy");
+
+app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(cors(corsOptions));
 app.use(
   session({
     secret: "keyboard cat",
