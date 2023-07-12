@@ -33,7 +33,7 @@ pnpm build
 
 ### Develop
 
-To develop all apps and packages, run the following command:
+A certificate is required to run the project. Generate one with [`mkcert`](https://github.com/FiloSottile/mkcert). Make sure to be in the root of the project when generating so the certificates will be placed there. To develop all apps and packages, run the following command:
 
 ```
 cd advo-kit

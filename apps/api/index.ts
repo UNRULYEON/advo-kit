@@ -4,6 +4,7 @@ import fs from "fs";
 import express from "express";
 import https from "https";
 import session from "express-session";
+import cors from "cors";
 // @ts-ignore
 import passport from "passport";
 import { PrismaSessionStore } from "@quixo3/prisma-session-store";
@@ -16,13 +17,23 @@ const PORT = 3000;
 const STATIC_DIR_WEB = "../web/dist";
 const STATIC_DIR_ADMIN = "../admin/dist";
 
+const corsOptions = {
+  origin: [
+    "https://127.0.0.1:5173",
+    "https://localhost:5173",
+    "https://127.0.0.1:5174",
+    "https://localhost:5174",
+  ],
+  credentials: true,
+};
+
 const key =
   process.env.NODE_ENV !== "production"
-    ? fs.readFileSync("../../.cert/localhost/advo-kit-localhost.decrypted.key")
+    ? fs.readFileSync("../../localhost-key.pem")
     : undefined;
 const cert =
   process.env.NODE_ENV !== "production"
-    ? fs.readFileSync("../../.cert/localhost/advo-kit-localhost.crt")
+    ? fs.readFileSync("../../localhost.pem")
     : undefined;
 
 app.use((_, res, next) => {
@@ -30,7 +41,9 @@ app.use((_, res, next) => {
   next();
 });
 
-app.use(express.urlencoded({ extended: false }));
+app.enable("trust proxy");
+
+app.use(cors(corsOptions));
 app.use(
   session({
     secret: "keyboard cat",
@@ -77,7 +90,7 @@ passport.deserializeUser((id: string, done: any) => {
 app.use("/", express.static(STATIC_DIR_WEB));
 app.use("/admin", express.static(STATIC_DIR_ADMIN));
 
-app.use("/api/admin", authRouter);
+app.use("/api", authRouter);
 
 app.get("/api/health", (req, res) => {
   res.status(200).send("OK");

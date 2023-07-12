@@ -70,7 +70,24 @@ router.get(
 router.get(
   "/auth/github/callback",
   passport.authenticate("github", { failureRedirect: "/admin/login" }),
-  (req, res) => res.redirect("/admin")
+  (_, res) => res.redirect("/admin")
 );
+
+type Providers = {
+  name: string;
+  url: string;
+};
+
+const providers: Providers[] = [{ name: "Github", url: "/api/auth/github" }];
+
+router.get("/auth/providers", (_, res) => res.json(providers));
+
+router.get("/auth/me", (req, res) => {
+  if (req.isAuthenticated()) {
+    res.json(req.user);
+  } else {
+    res.status(401).json({ message: "Unauthorized" });
+  }
+});
 
 export default router;

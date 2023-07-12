@@ -2,6 +2,9 @@ import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useMemo } from "react";
+import { SWRConfig } from "swr";
+import { fetcher } from "@/api";
+import AppRouter from "@/AppRouter";
 
 const App = () => {
   const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
@@ -19,7 +22,13 @@ const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      admin
+      <SWRConfig
+        value={{
+          fetcher: fetcher,
+        }}
+      >
+        <AppRouter />
+      </SWRConfig>
     </ThemeProvider>
   );
 };
