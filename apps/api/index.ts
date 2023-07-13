@@ -12,6 +12,8 @@ import cookieParser from "cookie-parser";
 import prisma from "./prisma";
 
 import authRouter from "./routes/auth";
+import deckRouter from "./routes/decks";
+import cardRouter from "./routes/cards";
 
 const app = express();
 const PORT = 3000;
@@ -95,6 +97,8 @@ passport.deserializeUser((id: string, done: any) => {
 });
 
 app.use("/api", authRouter);
+app.use("/api", deckRouter);
+app.use("/api", cardRouter);
 
 app.get("/api/health", (_, res) => {
   res.status(200).send("OK");

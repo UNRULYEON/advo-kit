@@ -36,7 +36,7 @@ model Card {
   content  String
   cardType CARD_TYPE @default(NORMAL)
 
-  deck   Deck[]
+  deck   Deck   @relation(fields: [deckId], references: [id])
   deckId String
 
   createdAt DateTime @default(now())
