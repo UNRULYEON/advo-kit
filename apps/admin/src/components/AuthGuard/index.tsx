@@ -14,7 +14,7 @@ const AuthGuard = ({ children }: AuthGuardProps) => {
   if (isError) return <Navigate to="/admin/login" />;
   if (me) return <Layout>{children}</Layout>;
 
-  return <>Hey! You're not supposed to see this!</>;
+  return <>Oi! You're not supposed to see this! 🐒</>;
 };
 
 export default AuthGuard;

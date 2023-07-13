@@ -1,6 +1,7 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import AuthGuard from "@/components/AuthGuard";
 import Login from "@/pages/login";
+import Decks from "@/pages/decks";
 
 const router = createBrowserRouter([
   {
@@ -9,9 +10,21 @@ const router = createBrowserRouter([
   },
   {
     path: "/admin",
+    element: <AuthGuard>:)</AuthGuard>,
+  },
+  {
+    path: "/admin/decks",
     element: (
       <AuthGuard>
-        <div>Hello world!</div>
+        <Decks />
+      </AuthGuard>
+    ),
+  },
+  {
+    path: "/admin/cards",
+    element: (
+      <AuthGuard>
+        <div>cards</div>
       </AuthGuard>
     ),
   },
