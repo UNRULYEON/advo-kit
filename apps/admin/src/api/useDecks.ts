@@ -8,10 +8,11 @@ type Deck = {
 };
 
 const useDecks = () => {
-  const { data, error, isLoading } = useSWR<Deck[]>("/api/decks");
+  const { data, mutate, error, isLoading } = useSWR<Deck[]>("/api/decks");
 
   return {
     decks: data,
+    mutateDecks: mutate,
     isLoading,
     isError: error,
   };

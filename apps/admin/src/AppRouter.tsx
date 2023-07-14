@@ -13,7 +13,7 @@ const router = createBrowserRouter([
     element: <AuthGuard>:)</AuthGuard>,
   },
   {
-    path: "/admin/decks",
+    path: "/admin/decks/:id?/edit?",
     element: (
       <AuthGuard>
         <Decks />
