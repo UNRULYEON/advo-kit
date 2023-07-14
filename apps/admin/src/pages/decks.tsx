@@ -59,7 +59,6 @@ const Decks: FC = () => {
         display: "flex",
         flexDirection: "column",
         gap: "24px",
-        paddingBottom: "24px",
       }}
     >
       <Box
