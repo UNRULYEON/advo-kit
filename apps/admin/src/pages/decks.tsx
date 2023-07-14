@@ -26,14 +26,14 @@ const Decks: FC = () => {
   const { pathname } = useLocation();
   const { decks, mutateDecks, isLoading, isError } = useDecks();
   const [isDialogOpen, setIsDialogOpen] = useState(false);
-  const { deleteDeck, isDeletingDeck, deletingDeckError } = useDeleteDeck();
+  const { deleteDeck } = useDeleteDeck();
 
   const dialogShouldOpen =
     pathname.includes("new") || pathname.includes("edit");
 
   useEffect(() => {
     setIsDialogOpen(dialogShouldOpen);
-  }, [pathname]);
+  }, [pathname, setIsDialogOpen, dialogShouldOpen]);
 
   const handleOnClickNewDeck = () => {
     navigate("new");
@@ -43,8 +43,8 @@ const Decks: FC = () => {
     navigate(`${id}/edit`);
   };
   const handleOnClickDeleteDeck = (id: string) => {
-    deleteDeck({ id }).then(() => {
-      mutateDecks();
+    void deleteDeck({ id }).then(() => {
+      void mutateDecks();
     });
   };
 

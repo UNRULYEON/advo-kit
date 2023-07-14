@@ -1,6 +1,6 @@
 import useSWR from "swr";
-import useSWRMutation, { SWRMutationConfiguration } from "swr/mutation";
-import { deleteFetcher, fetcher, patchFetcher, postFetcher } from ".";
+import useSWRMutation from "swr/mutation";
+import { deleteFetcher, patchFetcher, postFetcher } from ".";
 
 type Deck = {
   id: string;
@@ -10,7 +10,7 @@ type Deck = {
 };
 
 const useDeck = (id?: string) => {
-  const { data, mutate, error, isLoading } = useSWR<Deck>(
+  const { data, mutate, error, isLoading } = useSWR<Deck, null>(
     id ? `/api/deck/${id}` : null
   );
 

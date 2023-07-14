@@ -55,7 +55,7 @@ const Layout: FC<LayoutProps> = ({ children }) => {
   };
 
   const handleOnLogout = () => {
-    trigger().then(() => {
+    void trigger().then(() => {
       window.location.reload();
     });
   };

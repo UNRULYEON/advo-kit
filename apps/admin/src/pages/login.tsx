@@ -10,7 +10,9 @@ type Provider = {
 };
 
 const Login = () => {
-  const { data, error, isLoading } = useSWR<Provider[]>("/api/auth/providers");
+  const { data, error, isLoading } = useSWR<Provider[], null>(
+    "/api/auth/providers"
+  );
   const { me, isLoading: isMeLoading, isError: isMeError } = useMe();
 
   if (!isMeLoading && !isMeError && me) return <Navigate to="/admin" />;

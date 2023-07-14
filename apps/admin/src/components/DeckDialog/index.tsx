@@ -36,12 +36,10 @@ const DeckDialog: FC<DeckDialogProps> = ({ open, handleOnClose }) => {
   const deckId = pathname.split("/")[3];
 
   const { mutate } = useSWRConfig();
-  const { deck, isLoading, isError } = useDeck(
-    isExistingDeck ? deckId : undefined
-  );
-  const { createDeck, isCreatingDeck, creatingDeckError } = useCreateDeck();
-  const { updateDeck, isUpdatingDeck, updatingDeckError } = useUpdateDeck();
-  const { deleteDeck, isDeletingDeck, deletingDeckError } = useDeleteDeck();
+  const { deck, isLoading } = useDeck(isExistingDeck ? deckId : undefined);
+  const { createDeck, isCreatingDeck } = useCreateDeck();
+  const { updateDeck, isUpdatingDeck } = useUpdateDeck();
+  const { deleteDeck, isDeletingDeck } = useDeleteDeck();
 
   const {
     control,
@@ -60,19 +58,19 @@ const DeckDialog: FC<DeckDialogProps> = ({ open, handleOnClose }) => {
 
   useEffect(() => {
     if (!open) reset();
-  }, [open]);
+  }, [open, reset]);
 
   useEffect(() => {
     if (deck) {
       setValue("name", deck.name);
     }
-  }, [deck]);
+  }, [deck, setValue]);
 
   const onSubmit: SubmitHandler<NewDeckInputs> = (data) => {
-    new Promise<void>((resolve) => {
+    void new Promise<void>((resolve) => {
       if (isExistingDeck) {
         console.log("update deck");
-        updateDeck({
+        void updateDeck({
           id: deckId,
           payload: {
             name: data.name,
@@ -80,25 +78,25 @@ const DeckDialog: FC<DeckDialogProps> = ({ open, handleOnClose }) => {
         }).then(() => resolve());
       } else {
         console.log("create new deck");
-        createDeck({
+        void createDeck({
           name: data.name,
         })
           .then(() => {
             handleOnClose();
-            mutate("/api/decks");
+            void mutate("/api/decks");
           })
           .then(() => resolve());
       }
     }).then(() => {
       handleOnClose();
-      mutate("/api/decks");
+      void mutate("/api/decks");
     });
   };
 
   const onDelete = () => {
-    deleteDeck({ id: deckId }).then(() => {
+    void deleteDeck({ id: deckId }).then(() => {
       handleOnClose();
-      mutate("/api/decks");
+      void mutate("/api/decks");
     });
   };
 
@@ -124,6 +122,7 @@ const DeckDialog: FC<DeckDialogProps> = ({ open, handleOnClose }) => {
           gap: "12px",
         }}
         component={"form"}
+        // eslint-disable-next-line @typescript-eslint/no-misused-promises
         onSubmit={handleSubmit(onSubmit)}
       >
         <Controller
