@@ -25,8 +25,9 @@ const CardsGrid: FC = () => {
   const isExistingDeck = pathname.includes("edit");
   const deckId = pathname.split("/")[2];
 
-  const { deckCards, mutateDeckCards, isLoadingDeckCards, isDeckCardsError } =
-    useDeckCards(isExistingDeck ? deckId : undefined);
+  const { deckCards, mutateDeckCards } = useDeckCards(
+    isExistingDeck ? deckId : undefined
+  );
   const { createCard } = useCreateCard();
   const [newCardContent, setNewCardContent] = useState<string | null>(null);
 
