@@ -49,7 +49,7 @@ const Decks: FC = () => {
   };
 
   const handleOnCloseDialog = () => {
-    navigate("/admin/decks");
+    navigate("/admin");
     setIsDialogOpen(false);
   };
 
@@ -108,8 +108,12 @@ const Decks: FC = () => {
                 .sort((a, b) => a.name.localeCompare(b.name))
                 .map((deck) => (
                   <TableRowStyled
+                    hover
                     key={deck.id}
-                    sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                    sx={{
+                      cursor: "pointer",
+                      "&:last-child td, &:last-child th": { border: 0 },
+                    }}
                   >
                     <TableCell
                       component="th"

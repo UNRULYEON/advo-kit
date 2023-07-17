@@ -26,6 +26,21 @@ router.get("/deck/:id", async (req, res) => {
   res.send(deck);
 });
 
+router.get("/deck/:id/cards", async (req, res) => {
+  try {
+    const { id } = req.params;
+    if (!id) return res.status(404).send();
+
+    const cards = await prisma.card.findMany({
+      where: { deckId: id },
+    });
+
+    res.send(cards);
+  } catch (e) {
+    res.status(500).send(e);
+  }
+});
+
 const newDeckSchema = z.object({
   name: z.string(),
 });

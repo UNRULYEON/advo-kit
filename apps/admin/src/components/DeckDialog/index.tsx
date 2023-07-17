@@ -1,4 +1,4 @@
-import { FC, useEffect } from "react";
+import { FC, forwardRef, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import useDeck, {
   useCreateDeck,
@@ -7,13 +7,20 @@ import useDeck, {
 } from "@/api/useDeck";
 import { useForm, SubmitHandler, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import DialogTitle from "@mui/material/DialogTitle";
 import Dialog from "@mui/material/Dialog";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
+import AppBar from "@mui/material/AppBar";
+import Toolbar from "@mui/material/Toolbar";
+import IconButton from "@mui/material/IconButton";
+import Typography from "@mui/material/Typography";
+import CloseIcon from "@mui/icons-material/Close";
+import Slide from "@mui/material/Slide";
+import { TransitionProps } from "@mui/material/transitions";
 import { useSWRConfig } from "swr";
 import z from "zod";
+import CardsGrid from "@/components/CardsGrid";
 
 const deckSchema = z.object({
   name: z.string().min(1, {
@@ -25,6 +32,15 @@ type NewDeckInputs = {
   name: string;
 };
 
+const Transition = forwardRef(function Transition(
+  props: TransitionProps & {
+    children: React.ReactElement;
+  },
+  ref: React.Ref<unknown>
+) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
+
 type DeckDialogProps = {
   open: boolean;
   handleOnClose: () => void;
@@ -33,7 +49,7 @@ type DeckDialogProps = {
 const DeckDialog: FC<DeckDialogProps> = ({ open, handleOnClose }) => {
   const { pathname } = useLocation();
   const isExistingDeck = pathname.includes("edit");
-  const deckId = pathname.split("/")[3];
+  const deckId = pathname.split("/")[2];
 
   const { mutate } = useSWRConfig();
   const { deck, isLoading } = useDeck(isExistingDeck ? deckId : undefined);
@@ -53,8 +69,6 @@ const DeckDialog: FC<DeckDialogProps> = ({ open, handleOnClose }) => {
       name: "",
     },
   });
-
-  console.log(errors);
 
   useEffect(() => {
     if (!open) reset();
@@ -110,53 +124,95 @@ const DeckDialog: FC<DeckDialogProps> = ({ open, handleOnClose }) => {
         if (!isMutating) handleOnClose();
       }}
       open={open}
+      fullScreen
+      TransitionComponent={Transition}
     >
-      {!isExistingDeck && <DialogTitle>New deck</DialogTitle>}
-      {deck && <DialogTitle>{deck.name}</DialogTitle>}
+      <AppBar sx={{ position: "relative" }}>
+        <Toolbar>
+          <IconButton
+            edge="start"
+            color="inherit"
+            onClick={() => {
+              if (!isMutating) handleOnClose();
+            }}
+            aria-label="close"
+          >
+            <CloseIcon />
+          </IconButton>
+          <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
+            {!isExistingDeck && "New deck"}
+            {deck && deck.name}
+          </Typography>
+        </Toolbar>
+      </AppBar>
       <Box
-        p={3}
-        pt={0}
         sx={{
           display: "flex",
-          flexDirection: "column",
-          gap: "12px",
+          flexDirection: "row",
+          gap: "24px",
+          width: "100%",
+          height: "100%",
+          padding: "24px",
         }}
-        component={"form"}
-        // eslint-disable-next-line @typescript-eslint/no-misused-promises
-        onSubmit={handleSubmit(onSubmit)}
       >
-        <Controller
-          name="name"
-          control={control}
-          rules={{ required: true }}
-          render={({ field }) => (
-            <TextField
-              label="Name"
-              error={!!errors.name}
-              autoComplete="off"
-              helperText={errors.name ? errors.name.message : ""}
-              disabled={isMutatingOrLoading}
-              {...field}
-            />
-          )}
-        />
-        <Button
-          variant="contained"
-          type="submit"
-          disabled={isMutatingOrLoading}
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            width: "250px",
+            gap: "12px",
+          }}
+          component={"form"}
+          // eslint-disable-next-line @typescript-eslint/no-misused-promises
+          onSubmit={handleSubmit(onSubmit)}
         >
-          {isExistingDeck ? "Save" : "Create"}
-        </Button>
-        {isExistingDeck && (
+          <Typography variant="h6" component="div" pb={1}>
+            Deck details
+          </Typography>
+          <Controller
+            name="name"
+            control={control}
+            rules={{ required: true }}
+            render={({ field }) => (
+              <TextField
+                label="Name"
+                error={!!errors.name}
+                autoComplete="off"
+                helperText={errors.name ? errors.name.message : ""}
+                disabled={isMutatingOrLoading}
+                {...field}
+              />
+            )}
+          />
           <Button
             variant="contained"
-            color="error"
-            onClick={onDelete}
+            type="submit"
             disabled={isMutatingOrLoading}
           >
-            Delete
+            {isExistingDeck ? "Save" : "Create"}
           </Button>
-        )}
+          {isExistingDeck && (
+            <Button
+              variant="contained"
+              color="error"
+              onClick={onDelete}
+              disabled={isMutatingOrLoading}
+            >
+              Delete
+            </Button>
+          )}
+        </Box>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "12px",
+            width: "100%",
+          }}
+        >
+          <Typography variant="h6">Cards</Typography>
+          <CardsGrid />
+        </Box>
       </Box>
     </Dialog>
   );
