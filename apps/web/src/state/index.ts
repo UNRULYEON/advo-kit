@@ -5,7 +5,7 @@ interface AdvokitState {
   selectedDeck: Deck["id"] | undefined;
 }
 
-const useStore = create<AdvokitState>()((set) => ({
+const useStore = create<AdvokitState>()(() => ({
   selectedDeck: undefined,
 }));
 

@@ -5,7 +5,6 @@ import { fetcher } from "@/api";
 import InitComponent from "@/components/InitComponent";
 
 const App = () => {
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   return (
     <ThemeProvider theme={theme}>
       <SWRConfig value={{ fetcher: fetcher }}>
