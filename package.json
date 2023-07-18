@@ -10,6 +10,9 @@
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
+  "resolutions": {
+    "styled-components": "^5"
+  },
   "devDependencies": {
     "@turbo/gen": "^1.9.7",
     "commander": "^11.0.0",
