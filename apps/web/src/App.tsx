@@ -1,5 +1,9 @@
+import { ThemeProvider } from "styled-components";
+import theme from "@/theme";
+
 const App = () => {
-  return <>hello world</>;
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+  return <ThemeProvider theme={theme}>hello world</ThemeProvider>;
 };
 
 export default App;
