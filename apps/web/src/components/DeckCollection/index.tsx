@@ -93,8 +93,9 @@ const DecksContainer = styled(motion.div)`
 const DeckContainer = styled(motion.div)`
   position: relative;
   display: flex;
-  min-width: 115px;
+  min-width: 120px;
   width: 100%;
+  max-width: 120px;
   height: 100%;
   justify-content: center;
   align-items: center;
@@ -115,14 +116,20 @@ const DeckPlaceholder = styled.div`
   background-color: rgb(226 226 226);
   z-index: 1;
   border-radius: 8px;
+
+  transform: rotate(45deg);
 `;
 
 const Deck = styled(motion.div)`
-  width: inherit;
-  height: 152px;
+  min-width: 120px;
+  width: 100%;
+  max-width: 120px;
+  height: 150px;
   display: flex;
   align-items: center;
   justify-content: center;
+
+  text-align: center;
 
   background-color: #d5d5d5;
   border-radius: 8px;
@@ -132,6 +139,10 @@ const Deck = styled(motion.div)`
 
   :hover {
     cursor: pointer;
+  }
+
+  > span {
+    max-width: 105px;
   }
 `;
 

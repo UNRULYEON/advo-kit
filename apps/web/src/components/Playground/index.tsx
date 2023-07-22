@@ -9,11 +9,11 @@ const Playground: FC = () => {
   return (
     <Container>
       <AnimatePresence mode="popLayout">
-        {selectedDeck ? (
+        {selectedDeck && (
           <Deck layout key={selectedDeck.id} layoutId={selectedDeck.id}>
-            {selectedDeck.name}
+            <span>{selectedDeck.name}</span>
           </Deck>
-        ) : null}
+        )}
       </AnimatePresence>
     </Container>
   );
@@ -29,11 +29,15 @@ const Container = styled.div`
 `;
 
 const Deck = styled(motion.div)`
-  width: 115px;
-  height: 152px;
+  min-width: 120px;
+  width: 100%;
+  max-width: 120px;
+  height: 150px;
   display: flex;
   align-items: center;
   justify-content: center;
+
+  text-align: center;
 
   background-color: #d5d5d5;
   border-radius: 8px;
@@ -43,6 +47,10 @@ const Deck = styled(motion.div)`
 
   :hover {
     cursor: pointer;
+  }
+
+  > span {
+    max-width: 105px;
   }
 `;
 

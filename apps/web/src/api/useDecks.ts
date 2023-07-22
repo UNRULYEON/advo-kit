@@ -5,7 +5,7 @@ const useDecks = () => {
   const { data, mutate, error, isLoading } = useSWR<Deck[], null>("/api/decks");
 
   return {
-    decks: data,
+    decks: data?.sort((a, b) => a.name.localeCompare(b.name)) ?? [],
     mutateDecks: mutate,
     isLoading,
     isError: error,
