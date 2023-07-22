@@ -1,16 +1,15 @@
-import { ThemeProvider } from "styled-components";
-import { SWRConfig } from "swr";
-import theme from "@/theme";
-import { fetcher } from "@/api";
-import InitComponent from "@/components/InitComponent";
+import DeckCollection from "@/components/DeckCollection";
+import Playground from "@/components/Playground";
+import { LayoutGroup } from "framer-motion";
 
 const App = () => {
   return (
-    <ThemeProvider theme={theme}>
-      <SWRConfig value={{ fetcher: fetcher }}>
-        <InitComponent>Hello world!</InitComponent>
-      </SWRConfig>
-    </ThemeProvider>
+    <>
+      <LayoutGroup id="test">
+        <DeckCollection />
+        <Playground />
+      </LayoutGroup>
+    </>
   );
 };
 

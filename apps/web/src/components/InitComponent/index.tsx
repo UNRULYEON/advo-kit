@@ -25,7 +25,7 @@ const InitComponent: FC<InitComponentProps> = ({ children }) => {
           <Loader />
         </LoadingContainer>
       )}
-      <div key="main">{children}</div>
+      <Main key="main">{children}</Main>
     </AnimatePresence>
   );
 };
@@ -42,6 +42,13 @@ const LoadingContainer = styled(motion.div)`
   align-items: center;
 
   background-color: rgba(0, 0, 0, 0.3);
+`;
+
+const Main = styled.main`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 `;
 
 export default InitComponent;
