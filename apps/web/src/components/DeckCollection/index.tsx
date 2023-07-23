@@ -84,7 +84,7 @@ const DecksContainer = styled(motion.div)`
   display: flex;
   flex-flow: row;
   gap: 24px;
-  height: 200px;
+  height: 210px;
 
   overflow-y: hidden;
   overflow-x: auto;
@@ -124,7 +124,7 @@ const Deck = styled(motion.div)`
   min-width: 120px;
   width: 100%;
   max-width: 120px;
-  height: 150px;
+  height: 160px;
   display: flex;
   align-items: center;
   justify-content: center;
