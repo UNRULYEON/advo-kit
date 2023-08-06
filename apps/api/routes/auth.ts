@@ -38,7 +38,8 @@ passport.use(
         emailSplitted.includes("coolblue.nl") ||
         emailSplitted.includes("coolblue.be") ||
         emailSplitted.includes("coolblue.de") ||
-        emailSplitted.includes("kisoensingh.sh");
+        emailSplitted.includes("kisoensingh.sh") ||
+        profile.emails[0].value === "pbeijers@icloud.com";
 
       if (!isAllowedToSignIn)
         return verified(new Error("not-allowed-to-sign-in"));
