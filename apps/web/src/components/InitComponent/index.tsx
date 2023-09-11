@@ -1,15 +1,22 @@
-import { FC, ReactNode } from "react";
+import { FC, ReactNode, useEffect, useRef } from "react";
 import useDecks from "@/api/useDecks";
 import styled from "styled-components";
 import { motion, AnimatePresence } from "framer-motion";
 import Loader from "@/components/Loader";
+import useStore from "@/state";
 
 type InitComponentProps = {
   children: ReactNode;
 };
 
 const InitComponent: FC<InitComponentProps> = ({ children }) => {
+  const ref = useRef<HTMLDivElement>(null);
+  const { setAppRef } = useStore();
   const { isLoading, isError } = useDecks();
+
+  useEffect(() => {
+    if (ref.current) setAppRef(ref);
+  }, [ref]);
 
   if (isError) return <>error!</>;
 
@@ -25,7 +32,9 @@ const InitComponent: FC<InitComponentProps> = ({ children }) => {
           <Loader />
         </LoadingContainer>
       )}
-      <Main key="main">{children}</Main>
+      <Main key="main" ref={ref}>
+        {children}
+      </Main>
     </AnimatePresence>
   );
 };
